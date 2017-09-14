@@ -17,15 +17,13 @@ public class Model {
     //TODO add helperclass for translation (ex: "set speed to 50 -> translates to V0050H0000")
     private static Model instance;
     private Socket socket;
-    private String ip = "192.168.43.54";
+    private String ip = "192.168.43.61";
     private Integer port = 9000;
     private PrintWriter out;
     private boolean connected = false;
 
     private Model(){
-
         socket = new Socket();
-
     }
 
     public static Model getInstance(){
@@ -40,16 +38,23 @@ public class Model {
         //this.ip = ip;
         //this.port = port;
 
-        try {
-            socket.connect(new InetSocketAddress(ip, port));
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    InetSocketAddress inetSocketAddres = new InetSocketAddress(ip,port);
+                    socket.connect(inetSocketAddres);
 
-            out=new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
-            out.println("S0008T0007");
-            connected = true;
-        } catch (IOException e) {
-            connected = false;
-            e.printStackTrace();
-        }
+                    out=new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+                    out.println("S0008T0007");
+                    connected = true;
+                } catch (Exception e) {
+                    connected = false;
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
     }
     public boolean isConnected(){
         return connected;

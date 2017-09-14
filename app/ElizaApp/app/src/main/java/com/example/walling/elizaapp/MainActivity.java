@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements IMainView{
         setContentView(R.layout.activity_main);
         controller = new Controller(this);
 
+        Model.getInstance().establishConnection();
         initGUI();
     }
 
