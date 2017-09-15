@@ -39,4 +39,12 @@
         android:layout_weight="1"
         android:text="TextView" />
 
+
+    <ToggleButton
+        android:id="@+id/tbCC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Cruise Control" />
+
 </android.support.v7.widget.ButtonBarLayout>

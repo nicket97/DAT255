@@ -4,13 +4,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity implements IMainView{
 
     private Controller controller;
     private Button btnForward, btnBackward, btnStop;
     private TextView txtView;
+    private ToggleButton tbCruiseControl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +21,6 @@ public class MainActivity extends AppCompatActivity implements IMainView{
         setContentView(R.layout.activity_main);
         controller = new Controller(this);
 
-        Model.getInstance().establishConnection();
         initGUI();
     }
 
@@ -29,16 +31,18 @@ public class MainActivity extends AppCompatActivity implements IMainView{
         btnBackward = (Button) findViewById(R.id.btnBackward);
         btnStop = (Button) findViewById(R.id.btnStop);
         txtView = (TextView) findViewById(R.id.txtResult);
+        tbCruiseControl = (ToggleButton) findViewById(R.id.tbCC);
 
-        btnForward.setOnClickListener(btnForwardOnCLick);
-        btnStop.setOnClickListener(btnStopOnCLick);
-        btnBackward.setOnClickListener(btnBackwardOnCLick);
+        btnForward.setOnClickListener(btnForwardOnClick);
+        btnStop.setOnClickListener(btnStopOnClick);
+        btnBackward.setOnClickListener(btnBackwardOnClick);
+        tbCruiseControl.setOnClickListener(tbCCOnClick);
     }
 
     // Here we initalize listeners
 
 
-    private View.OnClickListener btnForwardOnCLick = new View.OnClickListener() {
+    private View.OnClickListener btnForwardOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             //TODO
@@ -46,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements IMainView{
             updateResult("Accelerated");
         }
     };
-    private View.OnClickListener btnStopOnCLick = new View.OnClickListener() {
+    private View.OnClickListener btnStopOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             //TODO
@@ -54,12 +58,24 @@ public class MainActivity extends AppCompatActivity implements IMainView{
             updateResult("Stop");
         }
     };
-    private View.OnClickListener btnBackwardOnCLick = new View.OnClickListener() {
+    private View.OnClickListener btnBackwardOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             //TODO
             controller.reverse();
             updateResult("Reversed");
+        }
+    };
+    private View.OnClickListener tbCCOnClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            //TODO
+            if(tbCruiseControl.isChecked()){
+                controller.activateCruiseControl();
+            } else {
+                controller.deActivateCruiseControl();
+            }
+            updateResult("Cruise Control: " + tbCruiseControl.isChecked());
         }
     };
 

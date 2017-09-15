@@ -23,4 +23,11 @@ public class Controller {
     public void reverse() {
         Model.getInstance().setBackwardSpeed();
     }
+
+    public void activateCruiseControl(){
+        Model.getInstance().setCruiseControlState(true);
+    }
+    public void deActivateCruiseControl(){
+        Model.getInstance().setCruiseControlState(false);
+    }
 }

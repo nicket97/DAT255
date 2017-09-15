@@ -21,6 +21,7 @@ public class Model {
     private Integer port = 9000;
     private PrintWriter out;
     private boolean connected = false;
+    private boolean isCruiseControlActive = false;
 
     private Model(){
         socket = new Socket();
@@ -63,13 +64,17 @@ public class Model {
         if(!isConnected()) {
             establishConnection();
         }
-        out.println("V0050H0000");
+        if(!isCruiseControlActive) {
+            out.println("V0050H0000");
+        }
     }
     public void setBackwardSpeed(){
         if(!isConnected()) {
             establishConnection();
         }
-        out.println("V-050H0000");
+        if(!isCruiseControlActive) {
+            out.println("V-050H0000");
+        }
     }
     public void setSteer(int value){
 
@@ -79,6 +84,12 @@ public class Model {
             establishConnection();
         }
         out.println("V0000H0000");
+        setCruiseControlState(false);
     }
+
+    public void setCruiseControlState(boolean state){
+        this.isCruiseControlActive = state;
+    }
+
 
 }
