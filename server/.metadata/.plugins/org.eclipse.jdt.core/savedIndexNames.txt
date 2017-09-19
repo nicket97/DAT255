@@ -1,0 +1,2 @@
+INDEX VERSION 1.130+C:\Users\nicla\Dat255\DAT255\server\.metadata\.plugins\org.eclipse.jdt.core
+3407860232.index
