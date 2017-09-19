@@ -18,6 +18,17 @@
         android:layout_marginLeft="47dp" />
 
     <EditText
+        android:id="@+id/ipText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="177dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintLeft_toRightOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
         android:id="@+id/portText"
         android:layout_width="123dp"
         android:layout_height="45dp"
@@ -37,17 +48,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="190dp" />
-
-    <EditText
-        android:id="@+id/ipText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="177dp"
-        android:ems="10"
-        android:inputType="text"
-        app:layout_constraintLeft_toRightOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/connectButton"
