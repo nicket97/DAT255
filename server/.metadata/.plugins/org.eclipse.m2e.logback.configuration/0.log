@@ -1,1 +1,18 @@
 2017-09-19 16:55:11,429 [Worker-0] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2017-09-19 17:08:22,470 [Worker-1] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2017-09-19 17:08:52,255 [Worker-4] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: server:server:0.0.1-SNAPSHOT @ C:\Users\nicla\Dat255\DAT255\server\server\pom.xml.
+2017-09-19 17:08:52,942 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-19 17:08:52,950 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\nicla\Dat255\DAT255\server\server\src\main\resources
+2017-09-19 17:08:53,030 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-19 17:08:53,034 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\nicla\Dat255\DAT255\server\server\src\test\resources
+2017-09-19 17:08:53,240 [Worker-4] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /server/src
+2017-09-19 17:08:53,243 [Worker-4] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /server/src/test/java because it overlaps with /server/src
+2017-09-19 17:08:53,444 [Worker-4] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-09-19 17:08:53,866 [Worker-4] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: server:server:0.0.1-SNAPSHOT @ C:\Users\nicla\Dat255\DAT255\server\server\pom.xml.
+2017-09-19 17:08:54,312 [Worker-4] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /server/src
+2017-09-19 17:08:54,314 [Worker-4] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /server/src/test/java because it overlaps with /server/src
+2017-09-19 17:08:54,402 [Worker-4] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 0 sec
+2017-09-19 17:08:54,610 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-19 17:08:54,626 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\nicla\Dat255\DAT255\server\server\src\main\resources
+2017-09-19 17:08:54,629 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-19 17:08:54,641 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\nicla\Dat255\DAT255\server\server\src\test\resources
