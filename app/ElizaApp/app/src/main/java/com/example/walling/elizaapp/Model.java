@@ -17,7 +17,7 @@ public class Model {
     //TODO add helperclass for translation (ex: "set speed to 50 -> translates to V0050H0000")
     private static Model instance;
     private Socket socket;
-    private String ip = "192.168.43.61";
+    private String ip = "192.168.43.183";
     private Integer port = 9000;
     private PrintWriter out;
     private boolean connected = false;
