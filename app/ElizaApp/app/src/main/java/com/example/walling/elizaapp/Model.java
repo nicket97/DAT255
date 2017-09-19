@@ -22,9 +22,13 @@ public class Model {
     private PrintWriter out;
     private boolean connected = false;
     private boolean isCruiseControlActive = false;
+    private SteeringHelper steerHelp;
+
+
 
     private Model(){
         socket = new Socket();
+        steerHelp = new SteeringHelper();
     }
 
     public static Model getInstance(){
@@ -60,12 +64,14 @@ public class Model {
     public boolean isConnected(){
         return connected;
     }
+
     public void setForwardSpeed(){
         if(!isConnected()) {
             establishConnection();
         }
         if(!isCruiseControlActive) {
             out.println("V0050H0000");
+            //
         }
     }
     public void setBackwardSpeed(){
@@ -76,15 +82,14 @@ public class Model {
             out.println("V-050H0000");
         }
     }
-    public void setSteer(int value){
 
-    }
     public void stop(){
         if(!isConnected()) {
             establishConnection();
         }
-        out.println("V0000H0000");
+        steerHelp.setVelocity(0);
         setCruiseControlState(false);
+        sendSteeringCommand();
     }
 
     public void setCruiseControlState(boolean state){
@@ -92,4 +97,27 @@ public class Model {
     }
 
 
+    //If in reverse, go slower and slower until you go forward again
+    public void increaseForwardSpeed(){
+        steerHelp.setVelocity(5);
+        sendSteeringCommand();
+    }
+    //Decrease enough and you go into revers
+    public void decreaseForwardSpeed(){
+        steerHelp.setVelocity(-5);
+        sendSteeringCommand();
+    }
+
+    public void turnLeft(){
+        steerHelp.setDirection(-5);
+        sendSteeringCommand();
+    }
+    public void turnRight(){
+        steerHelp.setDirection(5);
+        sendSteeringCommand();
+    }
+
+    public void sendSteeringCommand(){
+        out.println(steerHelp.getCommandString());
+    }
 }
