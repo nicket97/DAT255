@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Output {
+public class Output implements Runnable {
 	Socket s;
 	private BufferedReader in;
 	private PrintWriter out;
@@ -35,6 +35,12 @@ public class Output {
 		}
 		out.println("hej igen");
 		System.exit(1);
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 
 

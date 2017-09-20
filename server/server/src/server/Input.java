@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Input {
+public class Input implements Runnable{
 	
 	ServerSocket s;
 	private BufferedReader in;
@@ -44,6 +44,12 @@ public class Input {
 				
 			}
 		}
+		
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
 		
 	}
 
