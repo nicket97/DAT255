@@ -12,7 +12,7 @@ import android.widget.ToggleButton;
 public class MainActivity extends AppCompatActivity implements IMainView{
 
     private Controller controller;
-    private Button btnForward, btnBackward, btnStop, btnSwitchScreen;
+    private Button btnForward, btnBackward, btnStop, btnSwitchScreen, buttonDebug;
     private TextView txtView;
     private ToggleButton tbCruiseControl;
 
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements IMainView{
         btnBackward = (Button) findViewById(R.id.btnBackward);
         btnStop = (Button) findViewById(R.id.btnStop);
         btnSwitchScreen = (Button) findViewById(R.id.switchScreen);
+        buttonDebug = (Button) findViewById(R.id.buttonDebug);
 
         txtView = (TextView) findViewById(R.id.txtResult);
         tbCruiseControl = (ToggleButton) findViewById(R.id.tbCC);
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements IMainView{
         btnBackward.setOnClickListener(btnBackwardOnClick);
         btnSwitchScreen.setOnClickListener(btnSwitchScreenOnClick);
         tbCruiseControl.setOnClickListener(tbCCOnClick);
+        buttonDebug.setOnClickListener(btnOnDebugClick);
     }
 
     // Here we initalize listeners
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements IMainView{
             updateResult("Reversed");
         }
     };
+
     private View.OnClickListener tbCCOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -75,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements IMainView{
             updateResult("Cruise Control: " + tbCruiseControl.isChecked());
         }
     };
+
     private View.OnClickListener btnStopOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -83,10 +87,18 @@ public class MainActivity extends AppCompatActivity implements IMainView{
             updateResult("Stop");
         }
     };
+
     private View.OnClickListener btnSwitchScreenOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             startActivity(new Intent(MainActivity.this, ConnectActivity.class));
+        }
+    };
+
+    private View.OnClickListener btnOnDebugClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(MainActivity.this, DebugActivity.class));
         }
     };
 
