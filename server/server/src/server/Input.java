@@ -34,6 +34,12 @@ public class Input implements Runnable{
 		} catch(IOException e){
 			
 		}
+		
+		
+	}
+
+	@Override
+	public void run() {
 		while(true){
 			try{
 				line = in.readLine();
@@ -43,13 +49,13 @@ public class Input implements Runnable{
 				
 				
 			}
+			try {
+				Thread.sleep(50);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		
-	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
 		
 	}
 
