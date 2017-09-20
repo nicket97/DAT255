@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DataSaver {
 
-    private List<Integer> dataList;
+    private List<DebugDataObject> dataList;
     private int maxLength;
 
     public DataSaver() {
@@ -22,18 +22,18 @@ public class DataSaver {
         this.maxLength = maxLength;
     }
 
-    public void addValue(int val) {
+    public void addValue(DebugDataObject data) {
         if (maxLength == 0) {
-            dataList.add(val);
+            dataList.add(data);
         } else {
             if (dataList.size() >= maxLength) {
                 removeLastVal();
             }
-            dataList.add(val);
+            dataList.add(data);
         }
     }
 
-    public int getLatestVal() {
+    public DebugDataObject getLatestVal() {
         return dataList.get(dataList.size()-1);
     }
 

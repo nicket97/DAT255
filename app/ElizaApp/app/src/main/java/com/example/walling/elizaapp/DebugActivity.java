@@ -29,6 +29,8 @@ public class DebugActivity extends AppCompatActivity {
         debugTextView = (TextView) findViewById(R.id.textViewData);
 
         backButton.setOnClickListener(btnOnBackClick);
+
+        testingtesting();
     }
 
     private View.OnClickListener btnOnBackClick = new View.OnClickListener() {
@@ -37,4 +39,12 @@ public class DebugActivity extends AppCompatActivity {
             startActivity(new Intent(DebugActivity.this, MainActivity.class));
         }
     };
+
+    //TEST DEBUG VIEW
+    private void testingtesting() {
+        debugTextView.setText("hello\n"
+                                + " line 2\n" +
+                "line . . . 3");
+
+    }
 }
