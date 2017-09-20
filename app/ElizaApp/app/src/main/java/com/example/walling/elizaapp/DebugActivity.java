@@ -42,9 +42,11 @@ public class DebugActivity extends AppCompatActivity {
 
     //TEST DEBUG VIEW
     private void testingtesting() {
-        debugTextView.setText("hello\n"
-                                + " line 2\n" +
-                "line . . . 3");
+        debugTextView.setText(    "Battery percentage: \n"
+                                + "\n"
+                                + "Battery wattage: \n"
+                                + "\n"
+                                + "Speed: ");
 
     }
 }

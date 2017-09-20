@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements IMainView{
     private TextView txtView;
     private ToggleButton tbCruiseControl;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
