@@ -58,4 +58,14 @@
         app:layout_constraintTop_toBottomOf="@+id/portText"
         app:layout_constraintLeft_toRightOf="@+id/textView2"
         android:layout_marginLeft="48dp" />
+
+    <Button
+        android:id="@+id/connectBackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="BACK"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
