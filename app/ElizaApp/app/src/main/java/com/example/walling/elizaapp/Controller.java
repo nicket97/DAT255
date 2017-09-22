@@ -26,6 +26,15 @@ public class Controller {
        // Model.getInstance().setBackwardSpeed();
     }
 
+    public void turnLeft(){
+        Model.getInstance().turnLeft();
+    }
+
+    public void turnRight(){
+        Model.getInstance().turnRight();
+
+    }
+
     public void activateCruiseControl(){
         Model.getInstance().setCruiseControlState(true);
     }
