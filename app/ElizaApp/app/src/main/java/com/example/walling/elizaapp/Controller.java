@@ -14,7 +14,6 @@ public class Controller {
 
     public void accelerate() {
         Model.getInstance().increaseForwardSpeed();
-       // Model.getInstance().setForwardSpeed();
     }
 
     public void stop() {
@@ -23,7 +22,6 @@ public class Controller {
 
     public void reverse() {
         Model.getInstance().decreaseForwardSpeed();
-       // Model.getInstance().setBackwardSpeed();
     }
 
     public void turnLeft(){
@@ -32,7 +30,6 @@ public class Controller {
 
     public void turnRight(){
         Model.getInstance().turnRight();
-
     }
 
     public void activateCruiseControl(){

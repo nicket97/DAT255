@@ -17,7 +17,7 @@ public class Model {
     //TODO add helperclass for translation (ex: "set speed to 50 -> translates to V0050H0000")
     private static Model instance;
     private Socket socket;
-    private String ip = "192.168.43.63";
+    private String ip = "192.168.43.183";
     private Integer port = 9000;
     private PrintWriter out;
     private boolean connected = false;
@@ -61,24 +61,6 @@ public class Model {
         return connected;
     }
 
-    public void setForwardSpeed(){
-        if(!isConnected()) {
-            establishConnection();
-        }
-        if(!isCruiseControlActive) {
-            out.println("V0050H0000");
-            //
-        }
-    }
-    public void setBackwardSpeed(){
-        if(!isConnected()) {
-            establishConnection();
-        }
-        if(!isCruiseControlActive) {
-            out.println("V-050H0000");
-        }
-    }
-
     public void stop(){
         if(!isConnected()) {
             establishConnection();
@@ -94,13 +76,23 @@ public class Model {
 
     //If in reverse, go slower and slower until you go forward again
     public void increaseForwardSpeed(){
-       SteeringHelper.getInstance().changeVelocity(5);
-       sendSteeringCommand();
+        if(!isConnected()) {
+            establishConnection();
+        }
+        if(!isCruiseControlActive) {
+            SteeringHelper.getInstance().changeVelocity(5);
+            sendSteeringCommand();
+        }
     }
     //Decrease enough and you go into revers
     public void decreaseForwardSpeed(){
-        SteeringHelper.getInstance().changeVelocity(-5);
-        sendSteeringCommand();
+        if(!isConnected()) {
+            establishConnection();
+        }
+        if(!isCruiseControlActive) {
+            SteeringHelper.getInstance().changeVelocity(-5);
+            sendSteeringCommand();
+        }
     }
 
     public void turnLeft(){
