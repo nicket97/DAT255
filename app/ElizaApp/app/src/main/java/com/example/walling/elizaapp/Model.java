@@ -17,18 +17,14 @@ public class Model {
     //TODO add helperclass for translation (ex: "set speed to 50 -> translates to V0050H0000")
     private static Model instance;
     private Socket socket;
-    private String ip = "192.168.43.183";
+    private String ip = "192.168.43.63";
     private Integer port = 9000;
     private PrintWriter out;
     private boolean connected = false;
     private boolean isCruiseControlActive = false;
-    private SteeringHelper steerHelp;
-
-
 
     private Model(){
         socket = new Socket();
-        steerHelp = new SteeringHelper();
     }
 
     public static Model getInstance(){
@@ -87,7 +83,7 @@ public class Model {
         if(!isConnected()) {
             establishConnection();
         }
-        steerHelp.setVelocity(0);
+        SteeringHelper.getInstance().setVelocity(0);
         setCruiseControlState(false);
         sendSteeringCommand();
     }
@@ -96,28 +92,28 @@ public class Model {
         this.isCruiseControlActive = state;
     }
 
-
     //If in reverse, go slower and slower until you go forward again
     public void increaseForwardSpeed(){
-        steerHelp.setVelocity(5);
-        sendSteeringCommand();
+       SteeringHelper.getInstance().changeVelocity(5);
+       sendSteeringCommand();
     }
     //Decrease enough and you go into revers
     public void decreaseForwardSpeed(){
-        steerHelp.setVelocity(-5);
+        SteeringHelper.getInstance().changeVelocity(-5);
         sendSteeringCommand();
     }
 
     public void turnLeft(){
-        steerHelp.setDirection(-5);
+        SteeringHelper.getInstance().changeDirection(-5);
         sendSteeringCommand();
     }
     public void turnRight(){
-        steerHelp.setDirection(5);
+        SteeringHelper.getInstance().changeDirection(5);
         sendSteeringCommand();
     }
 
     public void sendSteeringCommand(){
-        out.println(steerHelp.getCommandString());
+        System.out.println(SteeringHelper.getInstance().getCommandString());
+        out.println(SteeringHelper.getInstance().getCommandString());
     }
 }
