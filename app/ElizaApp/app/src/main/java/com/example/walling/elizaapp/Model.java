@@ -38,16 +38,19 @@ public class Model {
         return instance;
     }
 
-    public void establishConnection(/*String ip, int port*/){
+    public void establishConnection(final String ipInput, final int portInput){
 
-        //this.ip = ip;
-        //this.port = port;
+        System.out.println("Model register request, starting thread...");
 
         new Thread(new Runnable() {
             @Override
             public void run() {
+
+                System.out.println("Trying to connect to: " + ipInput + " @ port: " + portInput);
+                System.out.println("Entering try-catch sequence: ");
+
                 try {
-                    InetSocketAddress inetSocketAddres = new InetSocketAddress(ip,port);
+                    InetSocketAddress inetSocketAddres = new InetSocketAddress(ipInput, portInput);
                     socket.connect(inetSocketAddres);
 
                     out=new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
@@ -66,27 +69,27 @@ public class Model {
     }
 
     public void setForwardSpeed(){
-        if(!isConnected()) {
+        /*if(!isConnected()) {
             establishConnection();
-        }
+        }*/
         if(!isCruiseControlActive) {
             out.println("V0050H0000");
             //
         }
     }
     public void setBackwardSpeed(){
-        if(!isConnected()) {
+        /*if(!isConnected()) {
             establishConnection();
-        }
+        }*/
         if(!isCruiseControlActive) {
             out.println("V-050H0000");
         }
     }
 
     public void stop(){
-        if(!isConnected()) {
+        /*if(!isConnected()) {
             establishConnection();
-        }
+        }*/
         steerHelp.setVelocity(0);
         setCruiseControlState(false);
         sendSteeringCommand();

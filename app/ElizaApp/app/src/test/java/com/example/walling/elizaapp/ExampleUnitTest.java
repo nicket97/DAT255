@@ -14,15 +14,4 @@ public class ExampleUnitTest {
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
     }
-    @Test
-    public void testDataSaver() throws Exception {
-        DataSaver myDataSaver = new DataSaver(100);
-
-        for (int i = 0; i <= 120; i++) {
-            myDataSaver.addValue(i);
-            System.out.println("Last val: " + myDataSaver.getLatestVal());
-        }
-
-        assertTrue(myDataSaver.getLatestVal() == 120);
-    }
 }

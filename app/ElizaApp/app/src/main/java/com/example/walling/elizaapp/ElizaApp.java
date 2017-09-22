@@ -11,7 +11,7 @@ public class ElizaApp extends Application {
     public void onCreate() {
         super.onCreate();
 
-        Model.getInstance().establishConnection();
+        //Model.getInstance().establishConnection();
 
     }
 

@@ -8,7 +8,7 @@ public class Controller {
     private IMainView ui;
 
 
-    public Controller(MainActivity ui){
+    public Controller(IMainView ui){
         this.ui = ui;
     }
 
@@ -29,5 +29,14 @@ public class Controller {
     }
     public void deActivateCruiseControl(){
         Model.getInstance().setCruiseControlState(false);
+    }
+
+    public void establishConnection(String ip, int port) {
+        System.out.println("controller sending to model");
+        Model.getInstance().establishConnection(ip, port);
+    }
+
+    public boolean getConnectionStatus() {
+        return Model.getInstance().isConnected();
     }
 }
