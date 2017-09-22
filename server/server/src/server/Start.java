@@ -16,8 +16,7 @@ public class Start {
 		// TODO Auto-generated method stub
 		System.out.println("hej");
 		//Input hej = new Input(9000); 
-		Output hej2 = new Output(9000);
-		
+		//Output hej2 = new Output(9000);		
 	}
 	
 	public void getConnectionDetails(){
@@ -26,6 +25,11 @@ public class Start {
 		mopedIP = s.nextLine();
 		System.out.println("Input port: ");
 		mopedPort = s.nextLine();
+	}
+	
+	public boolean validateIP(final String ip){
+		String ipPattern = "^((0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)\\.){3}(0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)$";
+	    return ip.matches(ipPattern);
 	}
 	
 
