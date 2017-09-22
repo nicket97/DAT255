@@ -96,11 +96,11 @@ public class Model {
     }
 
     public void turnLeft(){
-        SteeringHelper.getInstance().changeDirection(-5);
+        SteeringHelper.getInstance().changeDirection(5);
         sendSteeringCommand();
     }
     public void turnRight(){
-        SteeringHelper.getInstance().changeDirection(5);
+        SteeringHelper.getInstance().changeDirection(-5);
         sendSteeringCommand();
     }
 

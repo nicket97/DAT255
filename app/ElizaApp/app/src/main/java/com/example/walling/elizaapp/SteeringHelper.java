@@ -4,14 +4,16 @@ package com.example.walling.elizaapp;
  */
 public class SteeringHelper {
     public static SteeringHelper instance;
+
     //V0000H0000
     //V0000 = STOP
     //V-100 = Full reverse
     //V0100 = Max forward
     //H0000 = Straight forward
-    //H0100 = Max Right turn
-    //H-100 = Max Left turn
+    //H0100 = Max Left turn
+    //H-100 = Max Right turn
     //Values between -100 to 100.
+
     private int velocity;
     private int direction;
     private String commandString;
@@ -30,12 +32,6 @@ public class SteeringHelper {
         }
         return instance;
     }
-    /* public SteeringHelper(){
-         this.velocity = 0;
-         this.direction = 0;
-         this.commandString = "V0000H0000";
-     }
-     */
 
     public void setVelocity(int newVelocity){
         this.velocity = newVelocity;
