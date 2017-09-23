@@ -40,6 +40,12 @@ public class ConnectActivity extends AppCompatActivity implements IMainView {
         checkConnectionButton.setOnClickListener(checkConnectionButtonClick);
         connectButton.setOnClickListener(connectButtonClick);
         connectBackButton.setOnClickListener(backButtonOnClick);
+
+        // set default ip
+        ipText.setText("192.168.43.183");
+        portText.setText("9000");
+
+        connectionStatusTxtView.setText("Connection status: " + controller.getConnectionStatus());
     }
 
     private View.OnClickListener backButtonOnClick = new View.OnClickListener() {
