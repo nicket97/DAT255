@@ -55,7 +55,6 @@ public class ConnectActivity extends AppCompatActivity implements IMainView, IMe
     }
 
     private void allSetEnable(boolean isEnable) {
-        System.out.println("disabling...");
         ipText.setEnabled(isEnable);
         portText.setEnabled(isEnable);
         connectButton.setEnabled(isEnable);
@@ -74,10 +73,7 @@ public class ConnectActivity extends AppCompatActivity implements IMainView, IMe
     private View.OnClickListener connectButtonClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            System.out.println("click registered");
-            //allSetEnable(false);
             controller.establishConnection(ipText.getText().toString(), Integer.parseInt(portText.getText().toString()));
-            //allSetEnable(true);
         }
     };
 

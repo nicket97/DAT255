@@ -40,7 +40,6 @@ public class Controller {
     }
 
     public void establishConnection(String ip, int port) {
-        System.out.println("controller sending to model");
         Model.getInstance().establishConnection(ip, port);
     }
 
