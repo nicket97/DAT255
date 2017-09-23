@@ -1,30 +1,36 @@
 package com.example.walling.elizaapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by olofenstrom on 2017-09-18.
  */
 
-public class ConnectActivity extends AppCompatActivity implements IMainView {
+public class ConnectActivity extends AppCompatActivity implements IMainView, IMessageListener {
 
     private EditText ipText;
     private EditText portText;
     private Button connectButton, connectBackButton, checkConnectionButton;
     private Controller controller;
     private TextView connectionStatusTxtView;
+    Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connect);
         controller = new Controller(this);
+
+        MessageListener.BUS.addListener(this);
 
         initGUI();
     }
@@ -48,6 +54,16 @@ public class ConnectActivity extends AppCompatActivity implements IMainView {
         connectionStatusTxtView.setText("Connection status: " + controller.getConnectionStatus());
     }
 
+    private void allSetEnable(boolean isEnable) {
+        System.out.println("disabling...");
+        ipText.setEnabled(isEnable);
+        portText.setEnabled(isEnable);
+        connectButton.setEnabled(isEnable);
+        connectBackButton.setEnabled(isEnable);
+        connectionStatusTxtView.setEnabled(isEnable);
+        checkConnectionButton.setEnabled(isEnable);
+    }
+
     private View.OnClickListener backButtonOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -59,7 +75,9 @@ public class ConnectActivity extends AppCompatActivity implements IMainView {
         @Override
         public void onClick(View v) {
             System.out.println("click registered");
+            //allSetEnable(false);
             controller.establishConnection(ipText.getText().toString(), Integer.parseInt(portText.getText().toString()));
+            //allSetEnable(true);
         }
     };
 
@@ -73,5 +91,24 @@ public class ConnectActivity extends AppCompatActivity implements IMainView {
     @Override
     public void updateResult(String res) {
 
+    }
+
+    @Override
+    public void update(MessageData msgData) {
+
+        if (toast != null) toast.cancel();
+
+        if (msgData.getMessageType() == MessageData.MessageType.PORT_CLOSED) {
+            toast = Toast.makeText(getBaseContext(), "PORT CLOSED", Toast.LENGTH_SHORT);
+        } else if(msgData.getMessageType() == MessageData.MessageType.ALREADY_CONNECTED){
+            toast = Toast.makeText(getBaseContext(), "ALREADY CONNECTED", Toast.LENGTH_SHORT);
+        } else if(msgData.getMessageType() == MessageData.MessageType.CONNECTING) {
+            toast = Toast.makeText(getBaseContext(), "CONNECTING, WAIT...", Toast.LENGTH_LONG);
+            allSetEnable(false);
+        } else if(msgData.getMessageType() == MessageData.MessageType.CONNECTION_DONE) {
+            toast = Toast.makeText(getBaseContext(), "DONE!", Toast.LENGTH_SHORT);
+            allSetEnable(true);
+        }
+        toast.show();
     }
 }

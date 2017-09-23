@@ -7,7 +7,9 @@ package com.example.walling.elizaapp;
 public class MessageData {
     public enum MessageType {
         PORT_CLOSED,
-        ALREADY_CONNECTED;
+        ALREADY_CONNECTED,
+        CONNECTING,
+        CONNECTION_DONE;
     }
 
     private MessageType msgType;
