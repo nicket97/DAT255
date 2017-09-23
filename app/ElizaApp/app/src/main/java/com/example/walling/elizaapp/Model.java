@@ -55,6 +55,9 @@ public class Model {
                 } catch (Exception e) {
                     connected = false;
                     e.printStackTrace();
+                    System.out.println("exception localized message: " + e.getLocalizedMessage());
+                    System.out.println("exception message: " + e.getMessage());
+
                 }
             }
         }).start();
