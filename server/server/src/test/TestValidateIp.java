@@ -46,6 +46,6 @@ public class TestValidateIp {
 	@Test
 	public void ipTest(){
 		System.out.println("Running test for: "+ip);
-		assertEquals(start.validateIp(ip), expected);
+		assertEquals(start.validateIP(ip), expected);
 	}
 }

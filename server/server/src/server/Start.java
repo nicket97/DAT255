@@ -23,8 +23,15 @@ public class Start {
 		Scanner s = new Scanner(System.in);
 		System.out.println("Input IP: ");
 		mopedIP = s.nextLine();
+		if(validateIP(mopedIP)){
 		System.out.println("Input port: ");
 		mopedPort = s.nextLine();
+		}
+		else{
+			System.out.println("The IP is not valid");
+			this.getConnectionDetails();
+		}
+		s.close();
 	}
 	
 	public boolean validateIP(final String ip){
