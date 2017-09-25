@@ -14,8 +14,18 @@ public class Input implements Runnable{
 	private PrintWriter out;
 	private Socket client;
 	private String line;
+	private int port;
 	
 	public Input(int port){
+		this.port = port;
+		
+		
+		
+	}
+
+	@Override
+	public void run() {
+		System.out.println("Connecting on port " + port);
 		try {
 			s = new ServerSocket(port);
 		} catch (IOException e) {
@@ -53,14 +63,6 @@ public class Input implements Runnable{
 				e.printStackTrace();
 			}
 		}
-		
-		
-	}
-
-	@Override
-	public void run() {
-		
-		
 	}
 
 }

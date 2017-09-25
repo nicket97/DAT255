@@ -12,40 +12,46 @@ public class Start {
 	public static Output output;
 	
 	private String mopedIP;
-	private String mopedPort;
+	private int mopedPort;
 	
 	
 	public static void main(String[] args) {
+		Start s = new Start();
+	}
+	public Start(){
+		this.getConnectionDetails();
+		input = new Input(9000);
 		dataHolder = new Data();
 		dataPublisher = new DataPublisher();
 		dataReader = new DataReader();
 		threadManager = new ThreadManager();
-		input = new Input(12345);
-		output = new Output(12345);
+
+		//output = new Output(mopedIP, mopedPort);
 		
 		
 		//Input hej = new Input(9000); 
 
-		Output hej2 = new Output(9000);
+		//Output hej2 = new Output("192.2433453546",9000);
 		
 		// TODO Auto-generated method stub
 		System.out.println("hej");
 
-		Input hej = new Input(9000); 
+		//Input hej = new Input(9000); 
 
 		//Output hej2 = new Output(9000);		
 
 	}
 	
+	
 	public void getConnectionDetails(){
 		Scanner s = new Scanner(System.in);
 		System.out.println("Input IP: ");
-		mopedIP = s.nextLine();
+		this.mopedIP = s.nextLine();
 
 		if(validateIP(mopedIP)){
 
 		System.out.println("Input port: ");
-		mopedPort = s.nextLine();
+		this.mopedPort = Integer.parseInt(s.nextLine());
 		
 		}
 		else{
