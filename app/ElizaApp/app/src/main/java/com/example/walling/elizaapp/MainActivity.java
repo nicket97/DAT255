@@ -12,7 +12,7 @@ import android.widget.ToggleButton;
 public class MainActivity extends AppCompatActivity implements IMainView{
 
     private Controller controller;
-    private Button btnForward, btnBackward, btnStop, btnSwitchScreen, buttonDebug;
+    private Button btnForward, btnBackward, btnStop, btnSwitchScreen, buttonDebug, btnLeft, btnRight;
     private TextView txtView;
     private ToggleButton tbCruiseControl;
 
@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements IMainView{
         btnStop = (Button) findViewById(R.id.btnStop);
         btnSwitchScreen = (Button) findViewById(R.id.switchScreen);
         buttonDebug = (Button) findViewById(R.id.buttonDebug);
+        btnLeft = (Button) findViewById(R.id.btnLeft);
+        btnRight = (Button) findViewById(R.id.btnRight);
 
         txtView = (TextView) findViewById(R.id.txtResult);
         tbCruiseControl = (ToggleButton) findViewById(R.id.tbCC);
@@ -44,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements IMainView{
         btnSwitchScreen.setOnClickListener(btnSwitchScreenOnClick);
         tbCruiseControl.setOnClickListener(tbCCOnClick);
         buttonDebug.setOnClickListener(btnOnDebugClick);
+        btnRight.setOnClickListener(btnRightOnClick);
+        btnLeft.setOnClickListener(btnLeftOnClick);
     }
 
     // Here we initalize listeners
@@ -52,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements IMainView{
     private View.OnClickListener btnForwardOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            //TODO
             controller.accelerate();
             updateResult("Accelerated");
         }
@@ -61,7 +64,6 @@ public class MainActivity extends AppCompatActivity implements IMainView{
     private View.OnClickListener btnBackwardOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            //TODO
             controller.reverse();
             updateResult("Reversed");
         }
@@ -100,6 +102,22 @@ public class MainActivity extends AppCompatActivity implements IMainView{
         @Override
         public void onClick(View v) {
             startActivity(new Intent(MainActivity.this, DebugActivity.class));
+        }
+    };
+
+    private View.OnClickListener btnLeftOnClick = new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            controller.turnLeft();
+            updateResult("left");
+        }
+    };
+
+    private View.OnClickListener btnRightOnClick = new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            controller.turnRight();
+            updateResult("right");
         }
     };
 

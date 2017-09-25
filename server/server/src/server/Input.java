@@ -43,7 +43,9 @@ public class Input implements Runnable{
 		while(true){
 			try{
 				line = in.readLine();
-				System.out.println(line);
+				if(line != null){
+					InputInterpreter.InterpreterAppInput(line);
+				}
 			} catch(IOException e){
 				System.out.println("Read Failed");
 				

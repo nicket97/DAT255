@@ -1,5 +1,8 @@
 package com.example.walling.elizaapp;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -22,13 +25,9 @@ public class Model {
     private PrintWriter out;
     private boolean connected = false;
     private boolean isCruiseControlActive = false;
-    private SteeringHelper steerHelp;
-
-
 
     private Model(){
         socket = new Socket();
-        steerHelp = new SteeringHelper();
     }
 
     public static Model getInstance(){
@@ -38,16 +37,22 @@ public class Model {
         return instance;
     }
 
-    public void establishConnection(/*String ip, int port*/){
+    public void establishConnection(final String ipInput, final int portInput){
 
-        //this.ip = ip;
-        //this.port = port;
-
+        final Handler handler = new Handler();
         new Thread(new Runnable() {
             @Override
             public void run() {
+                Looper.prepare();
+
                 try {
-                    InetSocketAddress inetSocketAddres = new InetSocketAddress(ip,port);
+                    InetSocketAddress inetSocketAddres = new InetSocketAddress(ipInput, portInput);
+                    handler.post(new Runnable() {
+                        public void run() {
+                            MessageListener.BUS.updateMessage(new MessageData(MessageData.MessageType.CONNECTING));
+                        }
+                    });
+
                     socket.connect(inetSocketAddres);
 
                     out=new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
@@ -56,7 +61,21 @@ public class Model {
                 } catch (Exception e) {
                     connected = false;
                     e.printStackTrace();
+                    if (e.getMessage().equals("Connection refused") || e.getMessage().equals("Socket closed")){
+                        MessageListener.BUS.updateMessage(new MessageData(MessageData.MessageType.PORT_CLOSED));
+                    }
+
+                    //TODO is it really "Already connected" ????. CHECK!
+                    else if(e.getMessage().equals("Already Connected")) {
+                        MessageListener.BUS.updateMessage(new MessageData(MessageData.MessageType.ALREADY_CONNECTED));
+                    }
+
+                } finally { handler.post(new Runnable() {
+                    public void run() {
+                        MessageListener.BUS.updateMessage(new MessageData(MessageData.MessageType.CONNECTION_DONE));                    }
+                });
                 }
+
             }
         }).start();
 
@@ -65,29 +84,8 @@ public class Model {
         return connected;
     }
 
-    public void setForwardSpeed(){
-        if(!isConnected()) {
-            establishConnection();
-        }
-        if(!isCruiseControlActive) {
-            out.println("V0050H0000");
-            //
-        }
-    }
-    public void setBackwardSpeed(){
-        if(!isConnected()) {
-            establishConnection();
-        }
-        if(!isCruiseControlActive) {
-            out.println("V-050H0000");
-        }
-    }
-
     public void stop(){
-        if(!isConnected()) {
-            establishConnection();
-        }
-        steerHelp.setVelocity(0);
+        SteeringHelper.getInstance().setVelocity(0);
         setCruiseControlState(false);
         sendSteeringCommand();
     }
@@ -96,28 +94,32 @@ public class Model {
         this.isCruiseControlActive = state;
     }
 
-
     //If in reverse, go slower and slower until you go forward again
     public void increaseForwardSpeed(){
-        steerHelp.setVelocity(5);
-        sendSteeringCommand();
+        if(!isCruiseControlActive) {
+            SteeringHelper.getInstance().changeVelocity(5);
+            sendSteeringCommand();
+        }
     }
     //Decrease enough and you go into revers
     public void decreaseForwardSpeed(){
-        steerHelp.setVelocity(-5);
-        sendSteeringCommand();
+        if(!isCruiseControlActive) {
+            SteeringHelper.getInstance().changeVelocity(-5);
+            sendSteeringCommand();
+        }
     }
 
     public void turnLeft(){
-        steerHelp.setDirection(-5);
+        SteeringHelper.getInstance().changeDirection(5);
         sendSteeringCommand();
     }
     public void turnRight(){
-        steerHelp.setDirection(5);
+        SteeringHelper.getInstance().changeDirection(-5);
         sendSteeringCommand();
     }
 
     public void sendSteeringCommand(){
-        out.println(steerHelp.getCommandString());
+        System.out.println(SteeringHelper.getInstance().getCommandString());
+        out.println(SteeringHelper.getInstance().getCommandString());
     }
 }
