@@ -15,7 +15,7 @@ public class Start {
 		dataPublisher = new DataPublisher();
 		// TODO Auto-generated method stub
 		System.out.println("hej");
-		//Input hej = new Input(9000); 
+		Input hej = new Input(9000); 
 		//Output hej2 = new Output(9000);		
 	}
 	
@@ -26,6 +26,7 @@ public class Start {
 		if(validateIP(mopedIP)){
 		System.out.println("Input port: ");
 		mopedPort = s.nextLine();
+		
 		}
 		else{
 			System.out.println("The IP is not valid");

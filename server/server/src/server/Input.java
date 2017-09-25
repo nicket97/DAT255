@@ -34,18 +34,13 @@ public class Input implements Runnable{
 		} catch(IOException e){
 			
 		}
-		
-		
-	}
-
-	@Override
-	public void run() {
 		while(true){
 			try{
 				line = in.readLine();
-				if(line != null){
-					InputInterpreter.InterpreterAppInput(line);
-				}
+				
+					//InputInterpreter.InterpreterAppInput(line);
+					System.out.println(line);
+				
 			} catch(IOException e){
 				System.out.println("Read Failed");
 				
@@ -58,6 +53,13 @@ public class Input implements Runnable{
 				e.printStackTrace();
 			}
 		}
+		
+		
+	}
+
+	@Override
+	public void run() {
+		
 		
 	}
 
