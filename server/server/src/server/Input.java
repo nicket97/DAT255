@@ -41,6 +41,7 @@ public class Input implements Runnable{
 		try{
 			in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 			out = new PrintWriter(client.getOutputStream(), true);
+			out.println("connected");
 		} catch(IOException e){
 			
 		}
