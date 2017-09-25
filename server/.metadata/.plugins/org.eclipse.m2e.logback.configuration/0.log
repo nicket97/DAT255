@@ -166,3 +166,51 @@
 2017-09-25 13:26:27,670 [Worker-545] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hannajacobsson/git/DAT255/server/server/src/main/resources
 2017-09-25 13:26:27,672 [Worker-545] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
 2017-09-25 13:26:27,672 [Worker-545] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hannajacobsson/git/DAT255/server/server/src/test/resources
+2017-09-25 13:31:08,937 [Worker-536] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-25 13:31:08,939 [Worker-536] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hannajacobsson/git/DAT255/server/server/src/main/resources
+2017-09-25 13:31:08,941 [Worker-536] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-25 13:31:08,942 [Worker-536] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hannajacobsson/git/DAT255/server/server/src/test/resources
+2017-09-25 13:31:16,836 [Worker-549] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-25 13:31:16,837 [Worker-549] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hannajacobsson/git/DAT255/server/server/src/main/resources
+2017-09-25 13:31:16,838 [Worker-549] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-25 13:31:16,838 [Worker-549] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hannajacobsson/git/DAT255/server/server/src/test/resources
+2017-09-25 13:50:21,744 [Worker-540] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-25 13:50:21,745 [Worker-540] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hannajacobsson/git/DAT255/server/server/src/main/resources
+2017-09-25 13:50:21,746 [Worker-540] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-25 13:50:21,747 [Worker-540] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hannajacobsson/git/DAT255/server/server/src/test/resources
+2017-09-25 13:50:22,784 [Worker-552] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-25 13:50:22,785 [Worker-552] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hannajacobsson/git/DAT255/server/server/src/main/resources
+2017-09-25 13:50:22,787 [Worker-552] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-25 13:50:22,787 [Worker-552] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hannajacobsson/git/DAT255/server/server/src/test/resources
+2017-09-25 13:57:23,771 [Worker-558] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-25 13:57:23,774 [Worker-558] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hannajacobsson/git/DAT255/server/server/src/main/resources
+2017-09-25 13:57:23,776 [Worker-558] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-25 13:57:23,777 [Worker-558] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hannajacobsson/git/DAT255/server/server/src/test/resources
+2017-09-25 14:03:29,262 [Worker-558] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-25 14:03:29,263 [Worker-558] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hannajacobsson/git/DAT255/server/server/src/main/resources
+2017-09-25 14:03:29,264 [Worker-558] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-25 14:03:29,265 [Worker-558] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hannajacobsson/git/DAT255/server/server/src/test/resources
+2017-09-25 14:11:52,084 [Worker-557] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-25 14:11:52,085 [Worker-557] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hannajacobsson/git/DAT255/server/server/src/main/resources
+2017-09-25 14:11:52,086 [Worker-557] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-25 14:11:52,086 [Worker-557] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hannajacobsson/git/DAT255/server/server/src/test/resources
+2017-09-25 14:14:22,101 [Worker-552] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-25 14:14:22,103 [Worker-552] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hannajacobsson/git/DAT255/server/server/src/main/resources
+2017-09-25 14:14:22,105 [Worker-552] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-25 14:14:22,105 [Worker-552] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hannajacobsson/git/DAT255/server/server/src/test/resources
+2017-09-25 14:16:26,731 [Worker-556] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-25 14:16:26,732 [Worker-556] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hannajacobsson/git/DAT255/server/server/src/main/resources
+2017-09-25 14:16:26,733 [Worker-556] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-25 14:16:26,734 [Worker-556] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hannajacobsson/git/DAT255/server/server/src/test/resources
+2017-09-25 14:17:51,057 [Worker-556] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-25 14:17:51,058 [Worker-556] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hannajacobsson/git/DAT255/server/server/src/main/resources
+2017-09-25 14:17:51,059 [Worker-556] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-25 14:17:51,059 [Worker-556] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hannajacobsson/git/DAT255/server/server/src/test/resources
+2017-09-25 14:20:53,017 [Worker-563] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-25 14:20:53,021 [Worker-563] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hannajacobsson/git/DAT255/server/server/src/main/resources
+2017-09-25 14:20:53,022 [Worker-563] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-25 14:20:53,030 [Worker-563] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hannajacobsson/git/DAT255/server/server/src/test/resources
+2017-09-25 14:21:54,386 [Worker-558] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-25 14:21:54,387 [Worker-558] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hannajacobsson/git/DAT255/server/server/src/main/resources
+2017-09-25 14:21:54,388 [Worker-558] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-25 14:21:54,390 [Worker-558] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/hannajacobsson/git/DAT255/server/server/src/test/resources

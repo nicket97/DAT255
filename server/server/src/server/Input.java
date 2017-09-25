@@ -14,10 +14,10 @@ public class Input implements Runnable{
 	private PrintWriter out;
 	private Socket client;
 	private String line;
-	private int port;
+	private int mopedPort;
 	
 	public Input(int port){
-		this.port = port;
+		this.mopedPort = port;
 		
 		
 		
@@ -25,9 +25,9 @@ public class Input implements Runnable{
 
 	@Override
 	public void run() {
-		System.out.println("Connecting on port " + port);
+		System.out.println("Connecting on port " + mopedPort);
 		try {
-			s = new ServerSocket(port);
+			s = new ServerSocket(mopedPort);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

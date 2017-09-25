@@ -13,6 +13,7 @@ public class Start {
 	
 	private String mopedIP;
 	private int mopedPort;
+	private int serverPort;
 	
 	
 	public static void main(String[] args) {
@@ -50,8 +51,22 @@ public class Start {
 
 		if(validateIP(mopedIP)){
 
-		System.out.println("Input port: ");
+		System.out.println("Input moped port: ");
 		this.mopedPort = Integer.parseInt(s.nextLine());
+		
+		if(validatePort(mopedPort)){
+			
+			System.out.println("Input server port: ");
+			this.serverPort = Integer.parseInt(s.nextLine());
+
+			if (validatePort(serverPort)){
+				System.out.println("Valid moped port, server port and IP");
+			}
+			
+			else { 
+				System.out.println("The server port is not valid");
+			}
+		}
 		
 		}
 		else{
@@ -64,6 +79,19 @@ public class Start {
 	public boolean validateIP(final String ip){
 		String ipPattern = "^((0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)\\.){3}(0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)$";
 	    return ip.matches(ipPattern);
+	}
+	
+	public boolean validatePort(int port){
+		int portNumber = port;
+		if (portNumber < 80 && portNumber > 65535){
+			System.out.println("Port was not validated");
+			return false;
+		}
+		if (mopedPort == serverPort){
+			return false;
+		}
+		return true;
+		
 	}
 	
 
