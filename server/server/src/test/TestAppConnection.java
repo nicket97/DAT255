@@ -45,8 +45,9 @@ public class TestAppConnection {
 			socket.connect(inetSocketAddres);
 			out = new PrintWriter(socket.getOutputStream(), 
 	                 true);
-	     in = new BufferedReader(new InputStreamReader(
+			in = new BufferedReader(new InputStreamReader(
 	                socket.getInputStream()));
+	     
 			String s = in.readLine();
 			 System.out.println(s);
 			 assertEquals(s.equalsIgnoreCase("connected") ,true);
