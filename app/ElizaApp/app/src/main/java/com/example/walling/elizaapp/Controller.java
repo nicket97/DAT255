@@ -6,10 +6,12 @@ package com.example.walling.elizaapp;
 
 public class Controller {
     private IMainView ui;
+    private ServerCommunicator SC;
 
 
     public Controller(IMainView ui){
         this.ui = ui;
+        this.SC = new ServerCommunicator();
     }
 
     public void accelerate() {

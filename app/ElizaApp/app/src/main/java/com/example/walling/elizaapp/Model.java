@@ -118,8 +118,8 @@ public class Model {
         sendSteeringCommand();
     }
 
-    public void sendSteeringCommand(){
+    public String sendSteeringCommand(){
         System.out.println(SteeringHelper.getInstance().getCommandString());
-        out.println(SteeringHelper.getInstance().getCommandString());
+        return SteeringHelper.getInstance().getCommandString();
     }
 }
