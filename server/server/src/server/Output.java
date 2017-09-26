@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 
 public class Output implements Runnable {
@@ -12,10 +13,22 @@ public class Output implements Runnable {
 	private PrintWriter out;
 	
 	private String mopedData;
+	private String ip;
+	private int port;
 	
 	public Output(String ip, int port){
+		this.ip = ip;
+		this.port = port;
+	
+	}
+
+	@Override
+	public void run() {
 		try {
-			s = new Socket(ip, port);
+			
+			s = new Socket();
+			InetSocketAddress inetSocketAddres = new InetSocketAddress("localhost", 9000);
+			s.connect(inetSocketAddres);
 		} catch (IOException e) {
 			
 			e.printStackTrace();
@@ -24,13 +37,10 @@ public class Output implements Runnable {
 		try{
 			in = new BufferedReader(new InputStreamReader(s.getInputStream()));
 			out = new PrintWriter(s.getOutputStream(), true);
+			out.println("Connected");
 		} catch(IOException e){
 			
 		}
-	}
-
-	@Override
-	public void run() {
 		while(true){
 			out.println(mopedData);
 			try {
