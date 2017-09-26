@@ -24,10 +24,12 @@ public class Model {
     private Integer port = 9000;
     private PrintWriter out;
     private boolean connected = false;
-    private boolean isCruiseControlActive = false;
+    private ServerCommunicator SC;
 
     private Model(){
         socket = new Socket();
+        this.SC = new ServerCommunicator(out);
+
     }
 
     public static Model getInstance(){
@@ -84,42 +86,4 @@ public class Model {
         return connected;
     }
 
-    public void stop(){
-        SteeringHelper.getInstance().setVelocity(0);
-        setCruiseControlState(false);
-        sendSteeringCommand();
-    }
-
-    public void setCruiseControlState(boolean state){
-        this.isCruiseControlActive = state;
-    }
-
-    //If in reverse, go slower and slower until you go forward again
-    public void increaseForwardSpeed(){
-        if(!isCruiseControlActive) {
-            SteeringHelper.getInstance().changeVelocity(5);
-            sendSteeringCommand();
-        }
-    }
-    //Decrease enough and you go into revers
-    public void decreaseForwardSpeed(){
-        if(!isCruiseControlActive) {
-            SteeringHelper.getInstance().changeVelocity(-5);
-            sendSteeringCommand();
-        }
-    }
-
-    public void turnLeft(){
-        SteeringHelper.getInstance().changeDirection(5);
-        sendSteeringCommand();
-    }
-    public void turnRight(){
-        SteeringHelper.getInstance().changeDirection(-5);
-        sendSteeringCommand();
-    }
-
-    public String sendSteeringCommand(){
-        System.out.println(SteeringHelper.getInstance().getCommandString());
-        return SteeringHelper.getInstance().getCommandString();
-    }
 }

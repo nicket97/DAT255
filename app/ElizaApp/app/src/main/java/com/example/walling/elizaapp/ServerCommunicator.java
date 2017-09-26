@@ -2,6 +2,7 @@ package com.example.walling.elizaapp;
 
 import android.graphics.PorterDuff;
 
+import java.io.PrintWriter;
 import java.net.Socket;
 
 /**
@@ -13,18 +14,18 @@ public class ServerCommunicator implements Runnable {
     private int ticRate = 15;
     private String newCommand;
     private String currentCommand;
-    private Socket cmd;
+    private PrintWriter stream;
 
 
-    public ServerCommunicator(){
-
+    public ServerCommunicator(PrintWriter stream){
+        this.stream = stream;
     }
     @Override
     public void run() {
         while (true){
             try {
                 //TODO
-                newCommand = Model.getInstance().sendSteeringCommand();
+                newCommand = DrivingModel.getInstance().sendSteeringCommand();
 
                 if (currentCommand==null || !newCommand.equals(currentCommand))
                 {
@@ -32,6 +33,7 @@ public class ServerCommunicator implements Runnable {
                 }
 
                 //TODO take socket from Model class and send it up to the server
+                stream.println(currentCommand);
                 Thread.sleep(ticRate);
             } catch (InterruptedException e) {
                 e.printStackTrace();

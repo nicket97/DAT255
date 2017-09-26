@@ -6,39 +6,36 @@ package com.example.walling.elizaapp;
 
 public class Controller {
     private IMainView ui;
-    private ServerCommunicator SC;
-
 
     public Controller(IMainView ui){
         this.ui = ui;
-        this.SC = new ServerCommunicator();
     }
 
     public void accelerate() {
-        Model.getInstance().increaseForwardSpeed();
+        DrivingModel.getInstance().increaseForwardSpeed();
     }
 
     public void stop() {
-        Model.getInstance().stop();
+        DrivingModel.getInstance().stop();
     }
 
     public void reverse() {
-        Model.getInstance().decreaseForwardSpeed();
+        DrivingModel.getInstance().decreaseForwardSpeed();
     }
 
     public void turnLeft(){
-        Model.getInstance().turnLeft();
+        DrivingModel.getInstance().turnLeft();
     }
 
     public void turnRight(){
-        Model.getInstance().turnRight();
+        DrivingModel.getInstance().turnRight();
     }
 
     public void activateCruiseControl(){
-        Model.getInstance().setCruiseControlState(true);
+        DrivingModel.getInstance().setCruiseControlState(true);
     }
     public void deActivateCruiseControl(){
-        Model.getInstance().setCruiseControlState(false);
+        DrivingModel.getInstance().setCruiseControlState(false);
     }
 
     public void establishConnection(String ip, int port) {
