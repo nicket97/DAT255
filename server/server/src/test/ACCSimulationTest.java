@@ -14,8 +14,10 @@ public class ACCSimulationTest {
 	Thread car;
 	@Before
 	public void setup(){
+		Data.dist = 200;
 		car = new Thread(new ACCController(50));
 		Data.speed = 0;
+		
 		
 	}
 	@Test

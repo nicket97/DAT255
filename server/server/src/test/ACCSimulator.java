@@ -12,11 +12,13 @@ public class ACCSimulator implements Runnable {
 		ACCController acc = new ACCController(50);
 		while(true){
 			acc.updateMopedSpeed();
+			
 			leadCarDist += leadCarSpeed;
 			mopedDist += Data.speed;
 			Data.dist = leadCarDist - mopedDist;
+			//System.out.println(acc.detreminLeadSpeed());
 			System.out.println("LeadCarDist = " + leadCarDist + "  mopedDist = " + mopedDist + " MoedSpeed = " + Data.speed);
-			
+			System.out.println(acc.detreminLeadSpeed(Data.dist));
 			
 			try {
 				System.out.println("sleeping");
