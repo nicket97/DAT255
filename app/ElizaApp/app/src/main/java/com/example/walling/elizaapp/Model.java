@@ -28,7 +28,7 @@ public class Model {
 
     private Model(){
         socket = new Socket();
-        this.SC = new ServerCommunicator(out);
+        this.SC = new ServerCommunicator(socket);
 
     }
 

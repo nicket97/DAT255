@@ -14,10 +14,10 @@ public class ServerCommunicator implements Runnable {
     private int ticRate = 15;
     private String newCommand;
     private String currentCommand;
-    private PrintWriter stream;
+    private Socket stream;
 
 
-    public ServerCommunicator(PrintWriter stream){
+    public ServerCommunicator(Socket stream){
         this.stream = stream;
     }
     @Override
@@ -33,7 +33,6 @@ public class ServerCommunicator implements Runnable {
                 }
 
                 //TODO take socket from Model class and send it up to the server
-                stream.println(currentCommand);
                 Thread.sleep(ticRate);
             } catch (InterruptedException e) {
                 e.printStackTrace();
