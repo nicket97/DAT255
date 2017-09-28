@@ -2,35 +2,34 @@ package test;
 
 import static org.junit.Assert.*;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import server.Input;
+import server.AppConnection;
+import server.Start;
 
 @RunWith(Parameterized.class)
 public class TestServerProtocol {
 	private String inputLine;
 	private String outputLine;
-	private Input input;
+	private AppConnection input;
+	private Start start;
 	private Thread serverThread;
 	private boolean alreadySetup;
 
 	@Before
 	public void setup() {
 		if (!alreadySetup) {
-			input = new Input(8080);
-			serverThread = new Thread(input);
-			serverThread.start();
+			//input = new AppConnection(8080);
+			start = new Start();
+			
+			//serverThread = new Thread(input);
+			//serverThread.start();
 			alreadySetup = true;
 		}
 		
@@ -50,7 +49,9 @@ public class TestServerProtocol {
 	public static Collection<Object[]> getTestData() {
 		return Arrays.asList(new Object[][] { 
 			{ "Hej", "Data received." }, 
-			{ "Hello", "Data received." }, });
+			{ "Hello", "Data received." },
+			{ "12345", "Data received." },
+			{ "    ", "Data received." }  });
 	}
 
 	@Test
@@ -64,5 +65,7 @@ public class TestServerProtocol {
 			e.printStackTrace();
 		}
 		assertEquals(dc.connectAndSend(inputLine), outputLine);
+		System.out.println("Test for " + inputLine + " done.");
+		System.out.println(" ");
 	}
 }

@@ -1,23 +1,30 @@
 package server;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.*;
 import java.net.*;
+import java.util.Observable;
 
-public class Input implements Runnable {
+public class AppConnection implements Runnable {
 
-	private int mopedPort;
+	private int appPort;
+	private String message;
+	private PropertyChangeSupport pcs;
 
-	public Input(int port) {
-		this.mopedPort = port;
-
+	public AppConnection(int port, PropertyChangeListener mainServer) {
+		this.appPort = port;
+		pcs = new PropertyChangeSupport(this);
+		pcs.addPropertyChangeListener(mainServer);
 	}
+
 
 	@Override
 	public void run() {
 
-		System.out.println("Connecting on port " + mopedPort);
+		System.out.println("Connecting on port " + appPort);
 
-		try (ServerSocket s = new ServerSocket(mopedPort);
+		try (ServerSocket s = new ServerSocket(appPort);
 
 				Socket client = s.accept();
 				PrintWriter out = new PrintWriter(client.getOutputStream(), true);
@@ -29,6 +36,7 @@ public class Input implements Runnable {
 			System.out.println("connected");
 			
 			while ((inputLine = in.readLine()) != null) {
+				pcs.firePropertyChange(inputLine, 0, 1);
 				System.out.println("Server received " + inputLine);
 				outputLine = sp.processInput(inputLine);
 				out.println(outputLine);
@@ -37,7 +45,7 @@ public class Input implements Runnable {
 			}
 		} catch (IOException e) {
 			System.out.println(
-					"Exception caught when trying to listen on port " + mopedPort + " or listening for a connection");
+					"Exception caught when trying to listen on port " + appPort + " or listening for a connection");
 			System.out.println(e.getMessage());
 		}
 
