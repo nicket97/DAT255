@@ -1,14 +1,16 @@
 package server;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.Scanner;
 
-public class Start {
+public class Start implements PropertyChangeListener {
 	public static Data dataHolder;
 	public static DataPublisher dataPublisher;
 	public static DataReader dataReader;
 	public static ImageInput imageInput;
 	public static ThreadManager threadManager;
-	public static Input input;
+	public static AppConnection input;
 	public static Output output;
 	
 	private String mopedIP;
@@ -20,8 +22,8 @@ public class Start {
 		Start s = new Start();
 	}
 	public Start(){
-		this.getConnectionDetails();
-		input = new Input(9000);
+		//this.getConnectionDetails();
+		input = new AppConnection(8080, this);
 		dataHolder = new Data();
 		dataPublisher = new DataPublisher();
 		dataReader = new DataReader();
@@ -35,7 +37,7 @@ public class Start {
 		//Output hej2 = new Output("192.2433453546",9000);
 		
 		// TODO Auto-generated method stub
-		System.out.println("hej");
+		//System.out.println("hej");
 
 		//Input hej = new Input(9000); 
 
@@ -91,6 +93,15 @@ public class Start {
 			return false;
 		}
 		return true;
+		
+	}
+	@Override
+	public void propertyChange(PropertyChangeEvent arg) {
+		System.out.println("RECEIVED EVENT");
+		System.out.println(InputInterpreter.interpretString(arg.getPropertyName().toString()));
+		if(arg.getPropertyName().equals("message_received")) {
+			System.out.println("App sent a message");
+		}
 		
 	}
 	

@@ -48,7 +48,7 @@ public class ConnectActivity extends AppCompatActivity implements IMainView, IMe
         connectBackButton.setOnClickListener(backButtonOnClick);
 
         // set default ip
-        ipText.setText("192.168.43.183");
+        ipText.setText("10.0.2.2");
         portText.setText("9000");
 
         connectionStatusTxtView.setText("Connection status: " + controller.getConnectionStatus());

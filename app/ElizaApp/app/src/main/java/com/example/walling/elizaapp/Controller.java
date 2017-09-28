@@ -7,7 +7,6 @@ package com.example.walling.elizaapp;
 public class Controller {
     private IMainView ui;
 
-
     public Controller(IMainView ui){
         this.ui = ui;
     }
