@@ -18,14 +18,13 @@ public class AppConnection implements Runnable {
 		pcs.addPropertyChangeListener(mainServer);
 	}
 
-
 	@Override
 	public void run() {
 
 		System.out.println("Connecting on port " + appPort);
 
 		try (ServerSocket s = new ServerSocket(appPort);
-
+				//TODO Needs better error handling and some more stuff.
 				Socket client = s.accept();
 				PrintWriter out = new PrintWriter(client.getOutputStream(), true);
 				BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));) {
@@ -34,7 +33,7 @@ public class AppConnection implements Runnable {
 			outputLine = sp.processInput(null);
 			out.println(outputLine);
 			System.out.println("connected");
-			
+
 			while ((inputLine = in.readLine()) != null) {
 				pcs.firePropertyChange(inputLine, 0, 1);
 				System.out.println("Server received " + inputLine);
