@@ -18,6 +18,7 @@ public class Input implements Runnable {
 		System.out.println("Connecting on port " + mopedPort);
 
 		try (ServerSocket s = new ServerSocket(mopedPort);
+
 				Socket client = s.accept();
 				PrintWriter out = new PrintWriter(client.getOutputStream(), true);
 				BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));) {

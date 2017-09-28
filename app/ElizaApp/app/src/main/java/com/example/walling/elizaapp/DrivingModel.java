@@ -18,6 +18,7 @@ import java.net.Socket;
 
 public class DrivingModel {
     //TODO add helperclass for translation (ex: "set speed to 50 -> translates to V0050H0000")
+    /*
     private static DrivingModel instance;
     private boolean isCruiseControlActive = false;
 
@@ -69,4 +70,5 @@ public class DrivingModel {
         System.out.println(SteeringHelper.getInstance().getCommandString());
         return SteeringHelper.getInstance().getCommandString();
     }
+    */
 }

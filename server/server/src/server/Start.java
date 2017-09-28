@@ -20,7 +20,7 @@ public class Start {
 		Start s = new Start();
 	}
 	public Start(){
-		this.getConnectionDetails();
+		//this.getConnectionDetails();
 		input = new Input(9000);
 		dataHolder = new Data();
 		dataPublisher = new DataPublisher();
@@ -35,7 +35,7 @@ public class Start {
 		//Output hej2 = new Output("192.2433453546",9000);
 		
 		// TODO Auto-generated method stub
-		System.out.println("hej");
+		//System.out.println("hej");
 
 		//Input hej = new Input(9000); 
 

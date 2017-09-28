@@ -12,30 +12,30 @@ public class Controller {
     }
 
     public void accelerate() {
-        DrivingModel.getInstance().increaseForwardSpeed();
+        Model.getInstance().increaseForwardSpeed();
     }
 
     public void stop() {
-        DrivingModel.getInstance().stop();
+        Model.getInstance().stop();
     }
 
     public void reverse() {
-        DrivingModel.getInstance().decreaseForwardSpeed();
+        Model.getInstance().decreaseForwardSpeed();
     }
 
     public void turnLeft(){
-        DrivingModel.getInstance().turnLeft();
+        Model.getInstance().turnLeft();
     }
 
     public void turnRight(){
-        DrivingModel.getInstance().turnRight();
+        Model.getInstance().turnRight();
     }
 
     public void activateCruiseControl(){
-        DrivingModel.getInstance().setCruiseControlState(true);
+        Model.getInstance().setCruiseControlState(true);
     }
     public void deActivateCruiseControl(){
-        DrivingModel.getInstance().setCruiseControlState(false);
+        Model.getInstance().setCruiseControlState(false);
     }
 
     public void establishConnection(String ip, int port) {
