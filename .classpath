@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="app/ElizaApp/app/src/androidTest/java"/>
+	<classpathentry kind="src" path="app/ElizaApp/app/src/main/java"/>
+	<classpathentry kind="src" path="app/ElizaApp/app/src/test/java"/>
+	<classpathentry kind="src" path="server/server/src"/>
+	<classpathentry kind="lib" path="app/ElizaApp/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
