@@ -14,20 +14,59 @@ public class ACCSimulationTest {
 	Thread car;
 	@Before
 	public void setup(){
-		Data.dist = 200;
-		car = new Thread(new ACCController(50));
-		Data.speed = 0;
+		
 		
 		
 	}
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testACC(){
-		car.start();
-		Thread t = new Thread(new ACCSimulator());
+		int targetSpeed = 50;
+		int targetDist = 50;
+		int startDist = 200;
+		ACCSimulator acc = new ACCSimulator(targetSpeed,startDist,targetDist);
+		Thread t = new Thread(acc);
 		t.start();
+		
 		while(true){
-			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println("Dist = " + Data.dist + " speed = " + Data.speed);
+			if(Data.dist == targetDist && Data.speed == targetSpeed){
+				assertEquals(true, true);
+				t.stop();
+				break;
+				
+			}
 		}
+		
+		
+		targetSpeed = 30;
+		targetDist = 80;
+		startDist = 100;
+		ACCSimulator acc2 = new ACCSimulator(targetSpeed,startDist,targetDist);
+		Thread t2 = new Thread(acc2);
+		t2.start();
+		
+		while(true){
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println("Dist = " + Data.dist + " speed = " + Data.speed);
+			if(Data.dist == targetDist && Data.speed == targetSpeed){
+				assertEquals(true, true);
+				break;
+			}
+		}
+		
 	}
+	
 	
 }
