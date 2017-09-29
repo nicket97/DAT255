@@ -11,25 +11,18 @@ public class Controller {
         this.ui = ui;
     }
 
-    public void accelerate() {
-        Model.getInstance().increaseForwardSpeed();
-    }
-
     public void stop() {
         Model.getInstance().stop();
+        //ui.setSpeedBarValue(0);
     }
 
-    public void reverse() {
-        Model.getInstance().decreaseForwardSpeed();
+    public void changeDirection(int direction){
+        Model.getInstance().changeDirection(direction);
+    }
+    public void changeVelocity(int velocity){
+        Model.getInstance().changeVelocity(velocity);
     }
 
-    public void turnLeft(){
-        Model.getInstance().turnLeft();
-    }
-
-    public void turnRight(){
-        Model.getInstance().turnRight();
-    }
 
     public void activateCruiseControl(){
         Model.getInstance().setCruiseControlState(true);

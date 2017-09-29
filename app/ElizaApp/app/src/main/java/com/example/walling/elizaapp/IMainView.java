@@ -6,4 +6,5 @@ package com.example.walling.elizaapp;
 
 public interface IMainView {
     void updateResult(String res);
+
 }

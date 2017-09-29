@@ -120,27 +120,12 @@ public class Model {
         this.isCruiseControlActive = state;
     }
 
-    //If in reverse, go slower and slower until you go forward again
-    public void increaseForwardSpeed(){
-        if(!isCruiseControlActive) {
-            SteeringHelper.getInstance().changeVelocity(5);
-            sendSteeringCommand();
-        }
-    }
-    //Decrease enough and you go into revers
-    public void decreaseForwardSpeed(){
-        if(!isCruiseControlActive) {
-            SteeringHelper.getInstance().changeVelocity(-5);
-            sendSteeringCommand();
-        }
-    }
-
-    public void turnLeft(){
-        SteeringHelper.getInstance().changeDirection(5);
+    public void changeDirection(int direction){
+        SteeringHelper.getInstance().setDirection(direction);
         sendSteeringCommand();
     }
-    public void turnRight(){
-        SteeringHelper.getInstance().changeDirection(-5);
+    public void changeVelocity(int velocity){
+        SteeringHelper.getInstance().setVelocity(velocity);
         sendSteeringCommand();
     }
 

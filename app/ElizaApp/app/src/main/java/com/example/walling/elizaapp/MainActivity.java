@@ -1,10 +1,12 @@
 package com.example.walling.elizaapp;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -12,62 +14,82 @@ import android.widget.ToggleButton;
 public class MainActivity extends AppCompatActivity implements IMainView{
 
     private Controller controller;
-    private Button btnForward, btnBackward, btnStop, btnSwitchScreen, buttonDebug, btnLeft, btnRight;
+    private Button btnStop, btnSwitchScreen, buttonDebug;
     private TextView txtView;
     private ToggleButton tbCruiseControl;
+    private SeekBar speedBar, steerBar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_main);
         controller = new Controller(this);
 
         initGUI();
     }
 
-
-
     private void initGUI(){
-        btnForward = (Button) findViewById(R.id.btnForward);
-        btnBackward = (Button) findViewById(R.id.btnBackward);
         btnStop = (Button) findViewById(R.id.btnStop);
         btnSwitchScreen = (Button) findViewById(R.id.switchScreen);
         buttonDebug = (Button) findViewById(R.id.buttonDebug);
-        btnLeft = (Button) findViewById(R.id.btnLeft);
-        btnRight = (Button) findViewById(R.id.btnRight);
 
         txtView = (TextView) findViewById(R.id.txtResult);
         tbCruiseControl = (ToggleButton) findViewById(R.id.tbCC);
 
-        btnForward.setOnClickListener(btnForwardOnClick);
         btnStop.setOnClickListener(btnStopOnClick);
-        btnBackward.setOnClickListener(btnBackwardOnClick);
         btnSwitchScreen.setOnClickListener(btnSwitchScreenOnClick);
         tbCruiseControl.setOnClickListener(tbCCOnClick);
         buttonDebug.setOnClickListener(btnOnDebugClick);
-        btnRight.setOnClickListener(btnRightOnClick);
-        btnLeft.setOnClickListener(btnLeftOnClick);
+        initSpeedBar();
+        initSteerBar();
     }
+    private void initSteerBar(){
+        steerBar = (SeekBar) findViewById(R.id.steerBar);
+        steerBar.setOnSeekBarChangeListener(changeSteerListener);
+        steerBar.setMax(200);
+        steerBar.setProgress(100);
+    }
+    private void initSpeedBar(){
+        speedBar = (SeekBar) findViewById(R.id.speedBar);
+        speedBar.setOnSeekBarChangeListener(changeSpeedListener);
+        speedBar.setMax(200);
+        speedBar.setProgress(100);
+    }
+
+    private void setSpeedBarValue(int newValue){
+        speedBar.setProgress(newValue);
+    }
+
 
     // Here we initalize listeners
 
-
-    private View.OnClickListener btnForwardOnClick = new View.OnClickListener() {
+    private SeekBar.OnSeekBarChangeListener changeSteerListener= new SeekBar.OnSeekBarChangeListener(){
         @Override
-        public void onClick(View v) {
-            controller.accelerate();
-            updateResult("Accelerated");
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            controller.changeDirection(progress-100);
+        }
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+        }
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+        }
+    };
+    private SeekBar.OnSeekBarChangeListener changeSpeedListener= new SeekBar.OnSeekBarChangeListener(){
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            controller.changeVelocity(progress-100);
+        }
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+        }
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
         }
     };
 
-    private View.OnClickListener btnBackwardOnClick = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            controller.reverse();
-            updateResult("Reversed");
-        }
-    };
 
     private View.OnClickListener tbCCOnClick = new View.OnClickListener() {
         @Override
@@ -88,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements IMainView{
             //TODO
             controller.stop();
             updateResult("Stop");
+            setSpeedBarValue(100);
         }
     };
 
@@ -104,24 +127,6 @@ public class MainActivity extends AppCompatActivity implements IMainView{
             startActivity(new Intent(MainActivity.this, DebugActivity.class));
         }
     };
-
-    private View.OnClickListener btnLeftOnClick = new View.OnClickListener(){
-        @Override
-        public void onClick(View v) {
-            controller.turnLeft();
-            updateResult("left");
-        }
-    };
-
-    private View.OnClickListener btnRightOnClick = new View.OnClickListener(){
-        @Override
-        public void onClick(View v) {
-            controller.turnRight();
-            updateResult("right");
-        }
-    };
-
-
 
     @Override
     public void updateResult(String res) {
