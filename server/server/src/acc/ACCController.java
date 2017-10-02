@@ -54,7 +54,7 @@ public class ACCController implements Runnable {
 	}
 
 	public int detreminLeadSpeed(int dist) {
-		System.out.println("==================================== " + Thread.currentThread().getName());
+		
 		int speed = 0;
 		long clock = System.currentTimeMillis();
 		long dClock = clock - oldClock;
