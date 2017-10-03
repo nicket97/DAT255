@@ -48,10 +48,10 @@ public class ACCController implements Runnable {
 		}
 		else{
 			double k = (double)(200-targetDist)/(double)(100-targetSpeed);
-			if((100 + (dist - 200)/k) < targetSpeed){
+			if((100 + (dist - 200)/k) > targetSpeed){
 				speed = (int) Math.ceil((100 + (dist - 200)/k)) ;
 			}
-			else if ((100 + (dist - 200)/k) > targetSpeed){
+			else if ((100 + (dist - 200)/k) < targetSpeed){
 				speed = (int) Math.round((100 + (dist - 200)/k)) ;
 			}
 			else{
