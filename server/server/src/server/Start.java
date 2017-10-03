@@ -4,10 +4,10 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Scanner;
 
-import model.FixedDataQue;
+import model.FixedDataQueue;
 
 public class Start implements PropertyChangeListener {
-	public static FixedDataQue dataHolder;
+	public static FixedDataQueue dataHolder;
 	public static DataPublisher dataPublisher;
 	public static DataReader dataReader;
 	public static ImageInput imageInput;
@@ -30,7 +30,7 @@ public class Start implements PropertyChangeListener {
 		appConnection = new AppConnection(8080, this);
 		imgInput = new MopedImgConnection("localhost", 8090, this);
 		dataInput = new MopedDataConnection("localhost", 8091, this);
-		dataHolder = new FixedDataQue(10);
+		dataHolder = new FixedDataQueue(10);
 
 		dataPublisher = new DataPublisher();
 		dataReader = new DataReader();
@@ -52,6 +52,15 @@ public class Start implements PropertyChangeListener {
 		// Output hej2 = new Output(9000);
 
 	}
+	public Start(boolean testcase){
+		dataHolder = new FixedDataQueue(10);
+
+		dataPublisher = new DataPublisher();
+		dataReader = new DataReader();
+		threadManager = new ThreadManager();
+
+	}
+	
 
 	public void getConnectionDetails() {
 		Scanner s = new Scanner(System.in);

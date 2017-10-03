@@ -6,9 +6,17 @@ public class Data {
 	public int speed;
 	public int engineSpeed;
 	public int batteryVoltage;
-	public int timeStamp;
+	public long timeStamp;
 	
-	public Data(int dist, int speed, int engineSpeed, int batteryVoltage, int timeStamp){
+	/**
+	 * 
+	 * @param dist
+	 * @param speed
+	 * @param engineSpeed
+	 * @param batteryVoltage
+	 * @param timeStamp
+	 */
+	public Data(int dist, int speed, int engineSpeed, int batteryVoltage, long timeStamp){
 		this.dist = dist;
 		this.speed = speed;
 		this.engineSpeed = engineSpeed;
@@ -16,7 +24,7 @@ public class Data {
 		this.timeStamp = timeStamp;
 	}
 
-	public int getTime() {
+	public long getTime() {
 		
 		return timeStamp;
 	}
@@ -53,9 +61,6 @@ public class Data {
 		this.batteryVoltage = batteryVoltage;
 	}
 
-	public int getTimeStamp() {
-		return timeStamp;
-	}
 
 	public void setTimeStamp(int timeStamp) {
 		this.timeStamp = timeStamp;
