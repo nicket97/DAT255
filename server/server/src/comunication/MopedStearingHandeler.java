@@ -8,5 +8,9 @@ public class MopedStearingHandeler {
 		//TODO make the stingbuilder for stearing comand
 		return "";
 	}
+	public void setSpeed(int speed){
+		//TODO make the cm/s convert to a engine setting
+		
+	}
 	
 }

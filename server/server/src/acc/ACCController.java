@@ -1,5 +1,6 @@
 package acc;
 
+import comunication.MopedStearingHandeler;
 import server.Data;
 import server.Start;
 
@@ -20,7 +21,7 @@ public class ACCController implements Runnable {
 	public void run() {
 		while(true){
 		this.targetSpeed = detreminLeadSpeed();
-		
+		this.updateMopedSpeed();
 		}
 		
 		
@@ -28,7 +29,7 @@ public class ACCController implements Runnable {
 	}
 	public void updateMopedSpeed(){
 		
-		//this.detreminLeadSpeed();
+		MopedStearingHandeler.enginePercentage = this.getACCSpeed(Start.dataHolder.getFirst().getDist(), targetSpeed, targetDist);
 		
 		
 	

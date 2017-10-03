@@ -2,7 +2,7 @@ package test;
 
 public class MopedSimulator implements Runnable {
 	
-	public MopedSimulator(boolean mopedInFront, int startspeed , ){
+	public MopedSimulator(boolean mopedInFront, int startspeed){
 		
 	}
 	@Override

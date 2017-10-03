@@ -20,7 +20,6 @@ import server.AppConnection;
 import server.Start;
 
 public class TestAppConnection {
-	private String ip;
 	private AppConnection input;
 	private PrintWriter out;
 	private BufferedReader in;
