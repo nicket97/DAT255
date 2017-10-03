@@ -25,9 +25,9 @@ public class Output implements Runnable {
 	@Override
 	public void run() {
 		try {
-			
+			System.out.println("connecting to moped");
 			s = new Socket();
-			InetSocketAddress inetSocketAddres = new InetSocketAddress("localhost", 9000);
+			InetSocketAddress inetSocketAddres = new InetSocketAddress(ip, port);
 			s.connect(inetSocketAddres);
 		} catch (IOException e) {
 			
@@ -42,7 +42,12 @@ public class Output implements Runnable {
 			
 		}
 		while(true){
-			out.println(mopedData);
+			try {
+				System.out.println("" + in.readLine());
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			try {
 				Thread.sleep(50);
 			} catch (InterruptedException e) {

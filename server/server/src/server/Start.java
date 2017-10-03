@@ -22,14 +22,15 @@ public class Start implements PropertyChangeListener {
 		Start s = new Start();
 	}
 	public Start(){
-		//this.getConnectionDetails();
-		input = new AppConnection(8080, this);
+		this.getConnectionDetails();
+		input = new AppConnection(serverPort, this);
+		output = new Output(mopedIP, mopedPort);
 		dataHolder = new Data();
 		dataPublisher = new DataPublisher();
 		dataReader = new DataReader();
 		threadManager = new ThreadManager();
 
-		//output = new Output(mopedIP, mopedPort);
+		
 		
 		
 		//Input hej = new Input(9000); 
