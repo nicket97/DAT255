@@ -9,7 +9,6 @@ import java.util.Observable;
 public class AppConnection implements Runnable {
 
 	private int appPort;
-	private String message;
 	private PropertyChangeSupport pcs;
 
 	public AppConnection(int port, PropertyChangeListener mainServer) {
@@ -35,7 +34,7 @@ public class AppConnection implements Runnable {
 			System.out.println("connected");
 
 			while ((inputLine = in.readLine()) != null) {
-				pcs.firePropertyChange(inputLine, 0, 1);
+				pcs.firePropertyChange("new message from app", null, inputLine);
 				System.out.println("Server received " + inputLine);
 				outputLine = sp.processInput(inputLine);
 				out.println(outputLine);

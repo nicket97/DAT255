@@ -27,6 +27,7 @@ public class Model {
     private PrintWriter out;
     private boolean connected = false;
     private ServerCommunicator SC;
+    String message;
 
     private Model(){
         //this.SC = new ServerCommunicator(out);
@@ -39,6 +40,8 @@ public class Model {
         }
         return instance;
     }
+
+
 
     public void establishConnection(final String ipInput, final int portInput){
 
@@ -54,9 +57,10 @@ public class Model {
                     Socket client = new Socket(ipInput, portInput);
                     System.out.println("client created");
 
+
                     handler.post(new Runnable() {
                         public void run() {
-                            MessageListener.BUS.updateMessage(new MessageData(MessageData.MessageType.CONNECTING));
+                            //MessageListener.BUS.updateMessage(new MessageData(MessageData.MessageType.CONNECTING));
                         }
                     });
 
@@ -64,9 +68,34 @@ public class Model {
 
                      out = new PrintWriter(client.getOutputStream(), true);
                     BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));{
-                        String firstResponse=in.readLine();
+                        String response=in.readLine();
+                        //TODO set "message" variable on button click from view
+                        message = "empty";
+                        System.out.println("I received: " + response);
+                        connected = true;
+                        while(true) {
+                            //System.out.println("looping in big loop");
+                            response = in.readLine();
+                            if(response != null) {
+                                //System.out.println("looping in response loop");
+                                //System.out.println("I received: " + response);
+                                response = null;
+                            }
+
+                            if(message != null) {
+                                if (!message.equals("empty")) {
+                                    //System.out.println("Sending: " + message);
+                                    out.println(message);
+                                    //message = "empty";
+                                } else {
+                                    out.println(message);
+                                }
+                            }
+                        }
+                        /*
                         if (firstResponse.equals("Send over data.")) {
                             while(true){
+                                //wait(200);
                                 out.println(sendSteeringCommand());
 
                                 if(in.readLine().equals("bye")){
@@ -78,12 +107,13 @@ public class Model {
                             String reply = in.readLine();
                             System.out.println("Reply was " + reply);
                             //return reply;
-                        }
+
+                        }*/
                 }
 
                     //out=new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
                     //out.println("S0008T0007");
-                    connected = true;
+
                 } catch (Exception e) {
                     connected = false;
                     e.printStackTrace();
@@ -147,5 +177,17 @@ public class Model {
     public String sendSteeringCommand(){
         System.out.println(SteeringHelper.getInstance().getCommandString());
          return (SteeringHelper.getInstance().getCommandString());
+    }
+
+    public void setSocketMessage(final String message) {
+        System.out.println("setting message: " + message);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Model.getInstance().message = message;
+            }
+        }).start();
+
+
     }
 }
