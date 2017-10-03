@@ -2,6 +2,7 @@ package test;
 
 import acc.ACCController;
 import server.Data;
+import server.Start;
 
 public class ACCSimulator implements Runnable {
 	public int leadCarSpeed ;
@@ -13,30 +14,13 @@ public class ACCSimulator implements Runnable {
 		this.leadCarSpeed = leadSpeed;
 		this.leadCarDist = leadDist;
 		this.targetDist = targetDist;
-		Data.dist = leadCarDist - mopedDist;
-		Data.speed = 0;
+
 	}
 	@Override
 	public void run() {
-		ACCController acc = new ACCController(50, leadCarSpeed, targetDist);
+		ACCController acc = new ACCController(50);
 		while(true){
 			
-			acc.updateMopedSpeed();
-			
-			leadCarDist += leadCarSpeed;
-			mopedDist += Data.speed;
-			Data.dist = leadCarDist - mopedDist;
-			//System.out.println(acc.detreminLeadSpeed());
-			System.out.println("LeadCarDist = " + leadCarDist + "  mopedDist = " + mopedDist + " MoedSpeed = " + Data.speed);
-			//System.out.println(acc.detreminLeadSpeed(Data.dist));
-			
-			try {
-				System.out.println("sleeping");
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 
 	}
