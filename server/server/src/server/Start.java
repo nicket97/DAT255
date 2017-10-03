@@ -30,7 +30,7 @@ public class Start implements PropertyChangeListener {
 		appConnection = new AppConnection(8080, this);
 		imgInput = new MopedImgConnection("localhost", 8090, this);
 		dataInput = new MopedDataConnection("localhost", 8091, this);
-		dataHolder = new Data();
+		dataHolder = new FixedDataQue(10);
 
 		dataPublisher = new DataPublisher();
 		dataReader = new DataReader();
