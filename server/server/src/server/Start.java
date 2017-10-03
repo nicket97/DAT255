@@ -4,8 +4,10 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Scanner;
 
+import model.FixedDataQue;
+
 public class Start implements PropertyChangeListener {
-	public static Data dataHolder;
+	public static FixedDataQue dataHolder;
 	public static DataPublisher dataPublisher;
 	public static DataReader dataReader;
 	public static ImageInput imageInput;
@@ -25,7 +27,7 @@ public class Start implements PropertyChangeListener {
 		this.getConnectionDetails();
 		input = new AppConnection(serverPort, this);
 		output = new Output(mopedIP, mopedPort);
-		dataHolder = new Data();
+		dataHolder = new FixedDataQue(10);
 		dataPublisher = new DataPublisher();
 		dataReader = new DataReader();
 		threadManager = new ThreadManager();

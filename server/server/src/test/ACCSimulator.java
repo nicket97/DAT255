@@ -13,14 +13,13 @@ public class ACCSimulator implements Runnable {
 		this.leadCarSpeed = leadSpeed;
 		this.leadCarDist = leadDist;
 		this.targetDist = targetDist;
-		Data.dist = leadCarDist - mopedDist;
-		Data.speed = 0;
+
 	}
 	@Override
 	public void run() {
-		ACCController acc = new ACCController(50, leadCarSpeed, targetDist);
+		ACCController acc = new ACCController(50);
 		while(true){
-			
+			acc.setTargetSpeed(acc.detreminLeadSpeed(dist));
 			acc.updateMopedSpeed();
 			
 			leadCarDist += leadCarSpeed;

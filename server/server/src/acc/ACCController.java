@@ -1,6 +1,7 @@
 package acc;
 
 import server.Data;
+import server.Start;
 
 public class ACCController implements Runnable {
 	
@@ -10,18 +11,17 @@ public class ACCController implements Runnable {
 	private int targetSpeed;
 	private int targetDist;
 	
-	public ACCController(int distToCar, int targetSpeed, int targetDist){
-		this.distToCar = distToCar;
-		this.targetSpeed = targetSpeed;
+	public ACCController(int targetDist){
 		this.targetDist = targetDist;
 		
 	}
 	
 	@Override
 	public void run() {
+		while(true){
+		this.targetSpeed = detreminLeadSpeed();
 		
-		
-		
+		}
 		
 		
 		
@@ -29,7 +29,7 @@ public class ACCController implements Runnable {
 	public void updateMopedSpeed(){
 		
 		//this.detreminLeadSpeed();
-		Data.speed = getACCSpeed(Data.dist, targetSpeed, targetDist);
+		
 		
 	
 	}
@@ -52,17 +52,18 @@ public class ACCController implements Runnable {
 		
 		return speed;
 	}
+	public void setTargetSpeed(int targetSpeed){
+		this.targetSpeed = targetSpeed;
+	}
 
-	public int detreminLeadSpeed(int dist) {
-		
+	public int detreminLeadSpeed() {
+		Data d1 = Start.dataHolder.getFirst();
+		Data d2 = Start.dataHolder.get(1);
 		int speed = 0;
-		long clock = System.currentTimeMillis();
-		long dClock = clock - oldClock;
-		int dDist = dist - oldDist;
+		long dClock= d1.getTime() - d2.getTime();
+		int dDist = d1.getDist() - d2.getDist();
 		speed = (int) (dDist*(1000.0/dClock));
 		System.out.println("dDist = " + dDist + "  dClock = " + dClock);
-		oldClock = clock;
-		oldDist = dist;
 		return speed;
 	}
 }
