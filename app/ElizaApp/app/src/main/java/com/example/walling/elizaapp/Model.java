@@ -72,6 +72,7 @@ public class Model {
                         //TODO set "message" variable on button click from view
                         message = "empty";
                         System.out.println("I received: " + response);
+                        out.println("hi from app to server!! :D <3");
                         connected = true;
                         while(true) {
                             //System.out.println("looping in big loop");
@@ -90,6 +91,9 @@ public class Model {
                                 } else {
                                     out.println(message);
                                 }
+                                System.out.println("sending " + message);
+                            } else {
+                                System.out.println("message is.. null");
                             }
                         }
                         /*
