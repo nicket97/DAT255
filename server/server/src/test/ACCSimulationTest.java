@@ -8,6 +8,7 @@ import org.omg.CORBA.DATA_CONVERSION;
 
 import acc.ACCController;
 import server.Data;
+import server.Start;
 
 public class ACCSimulationTest {
 	
@@ -35,8 +36,8 @@ public class ACCSimulationTest {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println("Dist = " + Data.dist + " speed = " + Data.speed);
-			if(Data.dist == targetDist && Data.speed == targetSpeed){
+			//System.out.println("Dist = " + Data.dist + " speed = " + Data.speed);
+			if(Start.dataHolder.getFirst().getDist() == targetDist && Start.dataHolder.getFirst().getSpeed() == targetSpeed){
 				assertEquals(true, true);
 				t.stop();
 				break;
@@ -59,8 +60,8 @@ public class ACCSimulationTest {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println("Dist = " + Data.dist + " speed = " + Data.speed);
-			if(Data.dist == targetDist && Data.speed == targetSpeed){
+			//System.out.println("Dist = " + Data.dist + " speed = " + Data.speed);
+			if(Start.dataHolder.getFirst().getDist() == targetDist && Start.dataHolder.getFirst().getSpeed() == targetSpeed){
 				assertEquals(true, true);
 				break;
 			}

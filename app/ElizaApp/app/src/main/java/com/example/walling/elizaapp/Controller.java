@@ -7,7 +7,6 @@ package com.example.walling.elizaapp;
 public class Controller {
     private IMainView ui;
 
-
     public Controller(IMainView ui){
         this.ui = ui;
     }
@@ -41,6 +40,10 @@ public class Controller {
 
     public void establishConnection(String ip, int port) {
         Model.getInstance().establishConnection(ip, port);
+    }
+
+    public void setSocketMessage(String message) {
+        Model.getInstance().setSocketMessage(message);
     }
 
     public boolean getConnectionStatus() {

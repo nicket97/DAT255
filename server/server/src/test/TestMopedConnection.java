@@ -12,11 +12,11 @@ import java.net.Socket;
 import org.junit.Before;
 import org.junit.Test;
 
-import server.Output;
+import server.MopedDataConnection;
 
 public class TestMopedConnection {
 	
-	private Output output;
+	private MopedDataConnection output;
 	private ServerSocket socket;
 	private Socket client;
 	private BufferedReader in;
@@ -24,7 +24,7 @@ public class TestMopedConnection {
 
 	@Before
 	public void setup(){
-		output = new Output("localhost", 0);
+		output = new MopedDataConnection("localhost", 0);
 		Thread t = new Thread(output);
 		t.start();
 		try {

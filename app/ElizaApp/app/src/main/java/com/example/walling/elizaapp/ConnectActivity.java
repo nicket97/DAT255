@@ -19,7 +19,8 @@ public class ConnectActivity extends AppCompatActivity implements IMainView, IMe
 
     private EditText ipText;
     private EditText portText;
-    private Button connectButton, connectBackButton, checkConnectionButton;
+    private EditText serverTestEditText;
+    private Button connectButton, connectBackButton, checkConnectionButton, testButton;
     private Controller controller;
     private TextView connectionStatusTxtView;
     Toast toast;
@@ -42,14 +43,17 @@ public class ConnectActivity extends AppCompatActivity implements IMainView, IMe
         connectBackButton = (Button) findViewById(R.id.connectBackButton);
         connectionStatusTxtView = (TextView) findViewById(R.id.textViewConnectStatus);
         checkConnectionButton = (Button) findViewById(R.id.checkConnectionButton);
+        testButton = (Button) findViewById(R.id.testButton);
+        serverTestEditText = (EditText) findViewById(R.id.serverTestEditText);
 
         checkConnectionButton.setOnClickListener(checkConnectionButtonClick);
         connectButton.setOnClickListener(connectButtonClick);
         connectBackButton.setOnClickListener(backButtonOnClick);
+        testButton.setOnClickListener(testButtonOnClick);
 
         // set default ip
-        ipText.setText("192.168.43.183");
-        portText.setText("9000");
+        ipText.setText("10.0.2.2");
+        portText.setText("8080");
 
         connectionStatusTxtView.setText("Connection status: " + controller.getConnectionStatus());
     }
@@ -81,6 +85,13 @@ public class ConnectActivity extends AppCompatActivity implements IMainView, IMe
         @Override
         public void onClick(View v) {
             connectionStatusTxtView.setText("Connection status: " + controller.getConnectionStatus());
+        }
+    };
+
+    private View.OnClickListener testButtonOnClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            controller.setSocketMessage(serverTestEditText.getText().toString());
         }
     };
 

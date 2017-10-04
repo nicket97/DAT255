@@ -16,12 +16,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runners.Parameterized;
 
-import server.Input;
+import server.AppConnection;
 import server.Start;
 
 public class TestAppConnection {
-	private String ip;
-	private Input input;
+	private AppConnection input;
 	private PrintWriter out;
 	private BufferedReader in;
 	private Socket socket;
@@ -29,7 +28,7 @@ public class TestAppConnection {
 
 	@Before
 	public void setup(){
-		input = new Input(9000);
+		input = new AppConnection(9000);
 		Thread t = new Thread(input);
 		t.start();
 		socket = new Socket();
@@ -39,7 +38,7 @@ public class TestAppConnection {
 	
 	@Test
 	public void connectionTest(){
-		System.out.println("Running test från app server comunication");
+		System.out.println("Running test frï¿½n app server comunication");
 		InetSocketAddress inetSocketAddres = new InetSocketAddress("localhost", 9000);
 		try {
 			socket.connect(inetSocketAddres);
