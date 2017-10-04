@@ -31,8 +31,16 @@ public class MopedImgConnection implements Runnable {
 		try (Socket client = new Socket(hostname, port);
 				PrintWriter out = new PrintWriter(client.getOutputStream(), true);
 				BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));) {
-			while (true) { //Reads the image from the moped
-				BufferedImage img = ImageIO.read(ImageIO.createImageInputStream(in));
+				BufferedImage img=null;
+			while () { //Reads the image from the moped
+				try {
+					//img = ImageIO.read(ImageIO.createImageInputStream(in));
+					System.out.println(in.readLine());
+				}
+				catch (IllegalArgumentException e){
+					continue;
+				}
+
 				System.out.println("received image");
 				out.println("image received on server");
 				pcs.firePropertyChange("new image", null, img);	
