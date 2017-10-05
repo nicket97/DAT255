@@ -26,40 +26,29 @@ public class Start implements PropertyChangeListener {
 
 
 	public Start() {
-		// this.getConnectionDetails();
-		//appConnection = new AppConnection(8080, this);
+		this.getConnectionDetails();
+		appConnection = new AppConnection(8080, this);
 		imgInput = new MopedImgConnection("192.168.43.183", 3500, this);
 		imgInput.run();
-		//dataInput = new MopedDataConnection("localhost", 8091, this);
-		//dataHolder = new FixedDataQueue(10);
-
-		//dataPublisher = new DataPublisher();
-		//dataReader = new DataReader();
-		//threadManager = new ThreadManager();
+		dataInput = new MopedDataConnection("localhost", 8091, this);
+		
 
 
-		// output = new Output(mopedIP, mopedPort);
-
-		// Input hej = new Input(9000);
-
-		// Output hej2 = new Output("192.2433453546",9000);
-
-
-		// TODO Auto-generated method stub
-		// System.out.println("hej");
-
-		// Input hej = new Input(9000);
-
-		// Output hej2 = new Output(9000);
-
+		
 	}
 	public Start(boolean testcase){
+		
+	}
+	public static void init(){
 		dataHolder = new FixedDataQueue(10);
 
 		dataPublisher = new DataPublisher();
 		dataReader = new DataReader();
 		threadManager = new ThreadManager();
 
+	}
+	public static void initConnections(){
+		
 	}
 	
 
