@@ -35,6 +35,10 @@ public class Controller {
         Model.getInstance().establishConnection(ip, port);
     }
 
+    public void setSocketMessage(String message) {
+        Model.getInstance().setSocketMessage(message);
+    }
+
     public boolean getConnectionStatus() {
         return Model.getInstance().isConnected();
     }
