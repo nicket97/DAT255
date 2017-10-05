@@ -32,7 +32,6 @@ public class Start implements PropertyChangeListener {
 		imgInput = new MopedImgConnection("192.168.43.183", 3500, this);
 		imgInput.run();
 		dataInput = new MopedDataConnection("localhost", 8091, this);
-		mopedData = new Data();
 		init();
 	}
 
@@ -114,7 +113,7 @@ public class Start implements PropertyChangeListener {
 			System.out.println("App sent a message: " + arg.getNewValue());
 		} else if (arg.getPropertyName().equals("new data from moped")) {
 			System.out.println("New data from moped: " + arg.getNewValue());
-			InputInterpreter.interpretObject(mopedData, arg.getNewValue());
+			Data.getInstance().update(arg.getNewValue().toString());
 		} else if (arg.getPropertyName().equals("new image")) {
 			System.out.println("new image received from moped");
 		}
