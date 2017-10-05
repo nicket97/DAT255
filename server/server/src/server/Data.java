@@ -7,7 +7,10 @@ public class Data {
 	public int engineSpeed;
 	public int batteryVoltage;
 	public long timeStamp;
-	
+
+	public Data() {
+		// TODO Auto-generated constructor stub
+	}
 	/**
 	 * 
 	 * @param dist
