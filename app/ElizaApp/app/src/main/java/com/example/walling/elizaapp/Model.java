@@ -164,7 +164,8 @@ public class Model {
     }
 
     public String sendSteeringCommand(){
-        System.out.println(SteeringHelper.getInstance().getCommandString());
+        setSocketMessage(SteeringHelper.getInstance().getCommandString());
+        //System.out.println(SteeringHelper.getInstance().getCommandString());
         return (SteeringHelper.getInstance().getCommandString());
     }
 
