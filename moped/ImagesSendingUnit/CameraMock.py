@@ -5,7 +5,7 @@ import shutil
 folder = "./images/"
 counter = 0
 while True:
-    time.sleep(2)
+    time.sleep(0.2)
     counter+=1
     filename = str(counter)+".jpg"
 

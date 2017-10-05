@@ -28,6 +28,26 @@ def getLatestFile(folder):
 def printPercentage(msg,percentage):
     print (msg + " "+str(percentage),end='\r')
 
+def analyzeFile(filename):
+	size=0;
+	contents =b""
+
+	chunk = 1024*1024
+	with open(filename,"rb") as file:
+		try:
+			bytes_read = file.read(chunk)
+			while bytes_read:
+				contents+=bytes_read
+				bytes_read=file.read(chunk)
+		finally:
+			file.close()
+		
+	size=len(contents)
+
+	print ("SIZE:")
+	print (size)
+
+	return size,contents		
 
 def RetrieveFile(thread_name,client):
     while True:
@@ -37,18 +57,17 @@ def RetrieveFile(thread_name,client):
         print (filename)
         if (os.path.isfile(filename)):
             print (filename + "is found")
-            filesize=os.path.getsize(filename)
-            print (str(os.path.getsize(filename)))
-            client.send((filename+","+str(os.path.getsize(filename))+'\n').encode())
+            filesize,contents=analyzeFile(filename)
+            print (str(filesize))
+            client.send((filename+","+str(filesize)+'\n').encode())
             starttime =time.time()
-            chunk=filesize
-            with open(filename,"rb") as f:
-                bytes_to_send=f.read(chunk)
-                client.send(bytes_to_send)
-                while (bytes_to_send!=b""):
-                    bytes_to_send = f.read(chunk)
-                    client.send(bytes_to_send)
-                print("done in " + str(time.time() - starttime) + " seconds")
+            client.send(contents)
+            print("done in " + str(time.time() - starttime) + " seconds")
+        while True:
+            resp = client.recv(10);
+            resp = resp.decode();
+            if ("OK" in resp):
+                break
                 
 
 
