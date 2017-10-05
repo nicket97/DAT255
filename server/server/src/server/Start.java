@@ -31,13 +31,13 @@ public class Start implements PropertyChangeListener {
 		imgInput = new MopedImgConnection("192.168.43.183", 3500, this);
 		imgInput.run();
 		dataInput = new MopedDataConnection("localhost", 8091, this);
-		
+		init();
 
 
 		
 	}
 	public Start(boolean testcase){
-		
+		init();
 	}
 	public static void init(){
 		dataHolder = new FixedDataQueue(10);
