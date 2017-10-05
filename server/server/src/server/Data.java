@@ -14,7 +14,7 @@ public class Data {
 	public int batteryVoltage;
 	public long timeStamp;
 
-	public static Data getInstance() {
+	public static synchronized Data getInstance() {
 		if (instance == null) {
 			instance = new Data();
 		}

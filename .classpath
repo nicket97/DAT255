@@ -7,6 +7,6 @@
 	<classpathentry kind="src" path="server/server/src"/>
 	<classpathentry kind="lib" path="app/ElizaApp/gradle/wrapper/gradle-wrapper.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="/home/stina/Documents/java-json.jar"/>
+	<classpathentry kind="lib" path="server/server/lib/java-json.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
