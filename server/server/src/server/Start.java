@@ -22,9 +22,9 @@ public class Start implements PropertyChangeListener {
 	private String mopedIP;
 	private int mopedPort;
 	private int serverPort;
-
+	public static Start start;
 	public static void main(String[] args) {
-		Start s = new Start();
+		start = new Start();
 	}
 
 	public Start() {
