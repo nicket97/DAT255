@@ -5,23 +5,14 @@ import org.json.JSONObject;
 
 public class Data {
 	
-	public static Data instance;
-	
 	public static final int maxSpeed = 100;
 	public double dist;
 	public double speed;
 	public double engineSpeed;
 	public int batteryVoltage;
 	public long timeStamp;
-
-	public static synchronized Data getInstance() {
-		if (instance == null) {
-			instance = new Data();
-		}
-		return instance;
-	}
 	
-	private Data() {
+	public Data() {
 		// TODO Auto-generated constructor stub
 	}
 	/**
@@ -32,28 +23,21 @@ public class Data {
 	 * @param batteryVoltage
 	 * @param timeStamp
 	 */
-	private Data(int dist, int speed, int engineSpeed, int batteryVoltage, long timeStamp){
-		this.dist = dist;
-		this.speed = speed;
-		this.engineSpeed = engineSpeed;
-		this.batteryVoltage = batteryVoltage;
-		this.timeStamp = timeStamp;
-	}
-	
-	public void update(String data) {
-		 try {
-	            JSONObject json = new JSONObject(data);
+	public Data(String data){
+		try {
+            JSONObject json = new JSONObject(data);
 
-	            speed = json.getDouble("inspeed_avg"); //typ speed?
-	            //fodometer = json.getDouble("fodometer"); //??
-	            //odometer = json.getDouble("odometer"); //avstånd beräkna hastighet
-	            dist = json.getDouble("can_ultra"); //sensor avstånd i meter
-	            engineSpeed = json.getDouble("can_speed"); //motorns kraft 0-100
-	            //can_steer = json.getDouble("can_steer"); //styrning
+            this.speed = json.getDouble("inspeed_avg"); //typ speed?
+            //fodometer = json.getDouble("fodometer"); //??
+            //odometer = json.getDouble("odometer"); //avstånd beräkna hastighet
+            this.dist = json.getDouble("can_ultra"); //sensor avstånd i meter
+            this.engineSpeed = json.getDouble("can_speed"); //motorns kraft 0-100
+            //can_steer = json.getDouble("can_steer"); //styrning
+            this.timeStamp = json.getLong("timestamp");
 
-	        } catch (JSONException e){
-	            e.printStackTrace();
-	        }
+        } catch (JSONException e){
+            e.printStackTrace();
+        }
 	}
 
 	public long getTime() {

@@ -1,6 +1,6 @@
 package acc;
 
-import comunication.MopedStearingHandeler;
+import comunication.MopedSteeringHandler;
 import server.Data;
 import server.Start;
 
@@ -29,7 +29,7 @@ public class ACCController implements Runnable {
 	}
 	public void updateMopedSpeed(){
 		
-		MopedStearingHandeler.enginePercentage = this.getACCSpeed(Start.dataHolder.getFirst().getDist(), targetSpeed, targetDist);
+		MopedSteeringHandler.enginePercentage = this.getACCSpeed(Start.dataHolder.getFirst().getDist(), targetSpeed, targetDist);
 		
 		
 	

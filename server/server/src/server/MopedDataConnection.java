@@ -9,6 +9,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import comunication.MopedSteeringHandler;
+
 public class MopedDataConnection implements Runnable {
 
 	private String hostname;
@@ -30,7 +32,7 @@ public class MopedDataConnection implements Runnable {
 			while (true) { //Reads the image from the moped
 				String inputLine = in.readLine();
 				System.out.println("Server received " + in);
-				out.println(inputLine + "received on server");
+				out.println(MopedSteeringHandler.getSteeringCommand());
 				pcs.firePropertyChange("new data from moped", null, inputLine);	
 			}
 		} catch (UnknownHostException e) {

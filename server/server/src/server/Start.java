@@ -4,6 +4,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Scanner;
 
+import comunication.MopedSteeringHandler;
 import model.FixedDataQueue;
 
 public class Start implements PropertyChangeListener {
@@ -104,16 +105,21 @@ public class Start implements PropertyChangeListener {
 		return true;
 
 	}
+	
+	private boolean programsRunning() {
+		return ProgramManager.isProgramActive();
+	}
 
 	@Override
 	public void propertyChange(PropertyChangeEvent arg) {
 		System.out.println("RECEIVED EVENT");
-		System.out.println(InputInterpreter.interpretString(arg.getPropertyName().toString()));
 		if (arg.getPropertyName().equals("new message from app")) {
+			if (!programsRunning())
+				MopedSteeringHandler.setSteeringCommand(arg.getNewValue().toString());
 			System.out.println("App sent a message: " + arg.getNewValue());
 		} else if (arg.getPropertyName().equals("new data from moped")) {
 			System.out.println("New data from moped: " + arg.getNewValue());
-			Data.getInstance().update(arg.getNewValue().toString());
+			dataHolder.addFirst(new Data(arg.getNewValue().toString()));
 		} else if (arg.getPropertyName().equals("new image")) {
 			System.out.println("new image received from moped");
 		}

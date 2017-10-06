@@ -4,7 +4,7 @@ import acc.ACCController;
 import platooning.PlatooningController;
 
 public class ProgramManager {
-	boolean programActive = false;
+	static boolean programActive = false;
 	boolean ACCActive = false;
 	boolean platooningActive = false;
 	Thread accThread = null;
@@ -43,7 +43,7 @@ public class ProgramManager {
 	public boolean isPlatooningActive(){
 		return platooningActive;
 	}
-	public boolean isProgramActive(){
+	public static boolean isProgramActive(){
 		return programActive;
 	}
 }
