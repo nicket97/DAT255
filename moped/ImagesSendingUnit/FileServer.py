@@ -2,6 +2,7 @@ import socket
 import time
 import threading
 import os
+import glob
 from os import listdir
 
 s=socket.socket()
@@ -15,6 +16,14 @@ def getNumer(item):
     return int(filename)
 
 
+def deleteFiles(folder,mesFiles):
+    files = mesFiles
+    print ("keeping "+str(files[-1]))
+    files = files[:-1]
+    # Remove all files in the other list
+    for f in files:
+        os.remove('./'+folder+'/'+f)
+
 def getLatestFile(folder):
     global lastResult
     files = listdir("./"+folder)
@@ -22,6 +31,7 @@ def getLatestFile(folder):
     if (files[-1]==lastResult):
         return ""
     lastResult = files[-1]
+    deleteFiles(folder,files)
     return "./"+folder+"/"+files[-1]
 
 

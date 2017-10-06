@@ -1,13 +1,29 @@
 package server;
-	
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Data {
+	
+	public static Data instance;
+	
 	public static final int maxSpeed = 100;
-	public int dist;
-	public int speed;
-	public int engineSpeed;
+	public double dist;
+	public double speed;
+	public double engineSpeed;
 	public int batteryVoltage;
 	public long timeStamp;
+
+	public static synchronized Data getInstance() {
+		if (instance == null) {
+			instance = new Data();
+		}
+		return instance;
+	}
 	
+	private Data() {
+		// TODO Auto-generated constructor stub
+	}
 	/**
 	 * 
 	 * @param dist
@@ -16,12 +32,28 @@ public class Data {
 	 * @param batteryVoltage
 	 * @param timeStamp
 	 */
-	public Data(int dist, int speed, int engineSpeed, int batteryVoltage, long timeStamp){
+	private Data(int dist, int speed, int engineSpeed, int batteryVoltage, long timeStamp){
 		this.dist = dist;
 		this.speed = speed;
 		this.engineSpeed = engineSpeed;
 		this.batteryVoltage = batteryVoltage;
 		this.timeStamp = timeStamp;
+	}
+	
+	public void update(String data) {
+		 try {
+	            JSONObject json = new JSONObject(data);
+
+	            speed = json.getDouble("inspeed_avg"); //typ speed?
+	            //fodometer = json.getDouble("fodometer"); //??
+	            //odometer = json.getDouble("odometer"); //avstånd beräkna hastighet
+	            dist = json.getDouble("can_ultra"); //sensor avstånd i meter
+	            engineSpeed = json.getDouble("can_speed"); //motorns kraft 0-100
+	            //can_steer = json.getDouble("can_steer"); //styrning
+
+	        } catch (JSONException e){
+	            e.printStackTrace();
+	        }
 	}
 
 	public long getTime() {
@@ -29,7 +61,7 @@ public class Data {
 		return timeStamp;
 	}
 
-	public int getDist() {
+	public double getDist() {
 		return dist;
 	}
 
@@ -37,7 +69,7 @@ public class Data {
 		this.dist = dist;
 	}
 
-	public int getSpeed() {
+	public double getSpeed() {
 		return speed;
 	}
 
@@ -45,7 +77,7 @@ public class Data {
 		this.speed = speed;
 	}
 
-	public int getEngineSpeed() {
+	public double getEngineSpeed() {
 		return engineSpeed;
 	}
 

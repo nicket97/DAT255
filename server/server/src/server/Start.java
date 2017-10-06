@@ -16,6 +16,8 @@ public class Start implements PropertyChangeListener {
 	public static MopedImgConnection imgInput;
 	public static MopedDataConnection dataInput;
 
+	public Data mopedData;
+
 	private String mopedIP;
 	private int mopedPort;
 	private int serverPort;
@@ -24,7 +26,6 @@ public class Start implements PropertyChangeListener {
 		start = new Start();
 	}
 
-
 	public Start() {
 		this.getConnectionDetails();
 		appConnection = new AppConnection(8080, this);
@@ -32,25 +33,22 @@ public class Start implements PropertyChangeListener {
 		imgInput.run();
 		dataInput = new MopedDataConnection("localhost", 8091, this);
 		init();
-
-
-		
 	}
-	public Start(boolean testcase){
+
+	public Start(boolean testcase) {
 		init();
 	}
-	public static void init(){
-		dataHolder = new FixedDataQueue(10);
 
+	public static void init() {
+		dataHolder = new FixedDataQueue(10);
 		dataPublisher = new DataPublisher();
 		dataReader = new DataReader();
 		threadManager = new ThreadManager();
+	}
+
+	public static void initConnections() {
 
 	}
-	public static void initConnections(){
-		
-	}
-	
 
 	public void getConnectionDetails() {
 		Scanner s = new Scanner(System.in);
@@ -63,15 +61,11 @@ public class Start implements PropertyChangeListener {
 			this.mopedPort = Integer.parseInt(s.nextLine());
 
 			if (validatePort(mopedPort)) {
-
 				System.out.println("Input server port: ");
 				this.serverPort = Integer.parseInt(s.nextLine());
-
 				if (validatePort(serverPort)) {
 					System.out.println("Valid moped port, server port and IP");
-				}
-
-				else {
+				} else {
 					System.out.println("The server port is not valid");
 				}
 			}
@@ -83,11 +77,21 @@ public class Start implements PropertyChangeListener {
 		s.close();
 	}
 
+	/***
+	 * Validates the given ip by regex check.
+	 * @param ip
+	 * @return
+	 */
 	public boolean validateIP(final String ip) {
 		String ipPattern = "^((0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)\\.){3}(0|1\\d?\\d?|2[0-4]?\\d?|25[0-5]?|[3-9]\\d?)$";
 		return ip.matches(ipPattern);
 	}
 
+	/***
+	 * Validates the given port by checking that it is in range.
+	 * @param port
+	 * @return
+	 */
 	public boolean validatePort(int port) {
 		int portNumber = port;
 		if (portNumber < 80 && portNumber > 65535) {
@@ -109,6 +113,7 @@ public class Start implements PropertyChangeListener {
 			System.out.println("App sent a message: " + arg.getNewValue());
 		} else if (arg.getPropertyName().equals("new data from moped")) {
 			System.out.println("New data from moped: " + arg.getNewValue());
+			Data.getInstance().update(arg.getNewValue().toString());
 		} else if (arg.getPropertyName().equals("new image")) {
 			System.out.println("new image received from moped");
 		}

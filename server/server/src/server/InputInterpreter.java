@@ -1,9 +1,8 @@
 package server;
 
 public class InputInterpreter {
-	
+
 	public InputInterpreter(String input) {
-		
 	}
 	
 	public static String interpretString(String input) {
