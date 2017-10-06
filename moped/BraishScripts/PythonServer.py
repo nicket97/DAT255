@@ -9,6 +9,7 @@ myG= None
 def filter(object,interesting_fields=["height","weight"]):
     data=object.__dict__
     res=dict()
+    res["timestamp"]=int(time.time()*1000)
     for key,value in data.items():
         if (key in interesting_fields):
             res[key]=data[key]
