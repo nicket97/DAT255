@@ -1,7 +1,10 @@
 package server;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -10,6 +13,7 @@ import comunication.MopedSteeringHandler;
 public class MopedOutputConnection implements Runnable {
 	private String hostname;
 	private int port;
+	private Socket client;
 
 	public MopedOutputConnection(String hostname, int port) {
 		this.hostname = hostname;
@@ -18,8 +22,13 @@ public class MopedOutputConnection implements Runnable {
 	
 	@Override
 	public void run() {
-		try (Socket client = new Socket(hostname, port);
-				PrintWriter out = new PrintWriter(client.getOutputStream(), true);) {
+		client = new Socket();
+		try {
+			client.connect(new InetSocketAddress(hostname, port));
+				PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(client.getOutputStream())), true);
+			out.println("S0008T0007");
+			out.println("V0000H0050");
+		System.out.println("sending");
 			while (true) { //Reads the image from the moped
 				try {
 					Thread.sleep(50);

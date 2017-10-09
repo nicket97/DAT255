@@ -29,12 +29,12 @@ public class Start implements PropertyChangeListener {
 	}
 
 	public Start() {
-		this.getConnectionDetails();
+		//this.getConnectionDetails();
 		appConnection = new AppConnection(8080, this);
-		imgInput = new MopedImgConnection("192.168.43.183", 3500, this);
-		imgInput.run();
-		dataInput = new MopedDataConnection("localhost", 8091, this);
-		dataOutput = new MopedOutputConnection("localhost", 8092);
+		//imgInput = new MopedImgConnection("192.168.43.183", 3500, this);
+		//imgInput.run();
+		//dataInput = new MopedDataConnection("localhost", 8091, this);
+		dataOutput = new MopedOutputConnection("192.168.43.183", 9000);
 		init();
 	}
 

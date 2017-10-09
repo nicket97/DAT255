@@ -19,12 +19,13 @@ public class ThreadManager {
 		//dataPublisherThread.start();
 		//dataReaderThread.start();
 		//imageInputThread.start();
+		initThreads();
 		
 	}
 	public void initThreads(){
-		appThread.start();
-		imgThread.start();
-		dataThread.start();
+		//appThread.start();
+		//imgThread.start();
+		//dataThread.start();
 		dataOutThread.start();
 	}
 
