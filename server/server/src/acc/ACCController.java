@@ -35,8 +35,8 @@ public class ACCController implements Runnable {
 	
 	}
 
-	public int getACCSpeed(int dist, int targetSpeed, int targetDist) {
-		
+	public int getACCSpeed(double dist, int targetSpeed, int targetDist) {
+		dist *= 100;
 		int speed = 0;
 		//TODO update max speed
 		if(dist > 200){
@@ -71,7 +71,7 @@ public class ACCController implements Runnable {
 		Data d2 = Start.dataHolder.get(1);
 		int speed = 0;
 		long dClock= d2.getTime() - d1.getTime();
-		int dDist = d2.getDist() - d1.getDist();
+		double dDist = d2.getDist() - d1.getDist();
 		speed = (int) (dDist*(1000.0/dClock));
 		System.out.println("dDist = " + dDist + "  dClock = " + dClock + " speed = " + speed);
 		return speed;
