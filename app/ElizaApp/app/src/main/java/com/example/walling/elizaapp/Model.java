@@ -27,7 +27,8 @@ public class Model {
     private PrintWriter out;
     private boolean connected = false;
     private ServerCommunicator SC;
-    String message;
+    private String message;
+    private MessageCreator msgCreator = new MessageCreator();
 
     private Model(){
         //this.SC = new ServerCommunicator(out);
@@ -50,7 +51,6 @@ public class Model {
             @Override
             public void run() {
                 Looper.prepare();
-
                 try {
                     //InetSocketAddress inetSocketAddres = new InetSocketAddress(ipInput, portInput);
                     System.out.println(ipInput + ", " + Integer.toString(portInput));
@@ -75,6 +75,7 @@ public class Model {
                         out.println("hi from app to server!! :D <3");
                         connected = true;
                         while(true) {
+                            Thread.sleep(35);
                             //System.out.println("looping in big loop");
                             response = in.readLine();
                             if(response != null) {
@@ -150,8 +151,9 @@ public class Model {
         sendSteeringCommand();
     }
 
-    public void setCruiseControlState(boolean state){
-        this.isCruiseControlActive = state;
+    public void setCruiseControlState(boolean state) {
+
+
     }
 
     public void changeDirection(int direction){
@@ -170,6 +172,8 @@ public class Model {
     }
 
     public void setSocketMessage(final String message) {
+
+
         System.out.println("setting message: " + message);
         new Thread(new Runnable() {
             @Override
@@ -177,7 +181,5 @@ public class Model {
                 Model.getInstance().message = message;
             }
         }).start();
-
-
     }
 }
