@@ -16,6 +16,7 @@ public class Start implements PropertyChangeListener {
 	public static AppConnection appConnection;
 	public static MopedImgConnection imgInput;
 	public static MopedDataConnection dataInput;
+	public static MopedOutputConnection dataOutput;
 
 	public Data mopedData;
 
@@ -33,6 +34,7 @@ public class Start implements PropertyChangeListener {
 		imgInput = new MopedImgConnection("192.168.43.183", 3500, this);
 		imgInput.run();
 		dataInput = new MopedDataConnection("localhost", 8091, this);
+		dataOutput = new MopedOutputConnection("localhost", 8092);
 		init();
 	}
 
