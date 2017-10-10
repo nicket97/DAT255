@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements IMainView{
         @Override
         public void onClick(View v) {
             System.out.println("Set speed to " + setSpeedEditText.getText().toString() + " cm/s.");
-
+            controller.setSpeed(Double.parseDouble(setSpeedEditText.getText().toString()));
         }
     };
 
@@ -109,8 +109,10 @@ public class MainActivity extends AppCompatActivity implements IMainView{
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             if (isChecked) {
                 System.out.println("Platooning ON");
+                controller.setPlatooning(true);
             } else {
                 System.out.println("Platooning OFF");
+                controller.setPlatooning(false);
             }
         }
     };
@@ -120,8 +122,10 @@ public class MainActivity extends AppCompatActivity implements IMainView{
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (isChecked) {
                         System.out.println("Cruise control ON");
+                        controller.setACC(true);
                     } else {
                         System.out.println("Cruise control OFF");
+                        controller.setACC(false);
                     }
                 }
             };

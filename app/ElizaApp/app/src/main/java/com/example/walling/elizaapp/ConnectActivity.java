@@ -43,13 +43,11 @@ public class ConnectActivity extends AppCompatActivity implements IMainView, IMe
         connectBackButton = (Button) findViewById(R.id.connectBackButton);
         connectionStatusTxtView = (TextView) findViewById(R.id.textViewConnectStatus);
         checkConnectionButton = (Button) findViewById(R.id.checkConnectionButton);
-        testButton = (Button) findViewById(R.id.testButton);
         serverTestEditText = (EditText) findViewById(R.id.serverTestEditText);
 
         checkConnectionButton.setOnClickListener(checkConnectionButtonClick);
         connectButton.setOnClickListener(connectButtonClick);
         connectBackButton.setOnClickListener(backButtonOnClick);
-        testButton.setOnClickListener(testButtonOnClick);
 
         // set default ip
         ipText.setText("10.0.2.2");
@@ -85,13 +83,6 @@ public class ConnectActivity extends AppCompatActivity implements IMainView, IMe
         @Override
         public void onClick(View v) {
             connectionStatusTxtView.setText("Connection status: " + controller.getConnectionStatus());
-        }
-    };
-
-    private View.OnClickListener testButtonOnClick = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            controller.setSocketMessage(serverTestEditText.getText().toString());
         }
     };
 

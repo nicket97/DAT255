@@ -35,8 +35,20 @@ public class Controller {
         Model.getInstance().establishConnection(ip, port);
     }
 
-    public void setSocketMessage(String message) {
-        Model.getInstance().setSocketMessage(message);
+    public void setACC(boolean state) {
+        Model.getInstance().setACC(state);
+    }
+
+    public void setSpeed(double speed) {
+        Model.getInstance().setSpeed(speed);
+    }
+
+    public void setSteerString(String string) {
+        Model.getInstance().setSteerString(string);
+    }
+
+    public void setPlatooning(boolean state) {
+        Model.getInstance().setPlatooning(state);
     }
 
     public boolean getConnectionStatus() {

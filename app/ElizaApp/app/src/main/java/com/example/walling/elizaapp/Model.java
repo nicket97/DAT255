@@ -70,12 +70,13 @@ public class Model {
                     BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));{
                         String response=in.readLine();
                         //TODO set "message" variable on button click from view
-                        message = "empty";
+                        message = "V0000H0000";
                         System.out.println("I received: " + response);
-                        out.println("hi from app to server!! :D <3");
+                        out.println("V0000H0000");
                         connected = true;
                         while(true) {
                             Thread.sleep(35);
+                            message = msgCreator.getCompleteString();
                             //System.out.println("looping in big loop");
                             response = in.readLine();
                             if(response != null) {
@@ -148,7 +149,7 @@ public class Model {
     public void stop(){
         SteeringHelper.getInstance().setVelocity(0);
         setCruiseControlState(false);
-        sendSteeringCommand();
+        msgCreator.setSteerString(SteeringHelper.getInstance().getCommandString());
     }
 
     public void setCruiseControlState(boolean state) {
@@ -158,28 +159,31 @@ public class Model {
 
     public void changeDirection(int direction){
         SteeringHelper.getInstance().setDirection(direction);
-        sendSteeringCommand();
+        msgCreator.setSteerString(SteeringHelper.getInstance().getCommandString());
     }
     public void changeVelocity(int velocity){
         SteeringHelper.getInstance().setVelocity(velocity);
-        sendSteeringCommand();
+        msgCreator.setSteerString(SteeringHelper.getInstance().getCommandString());
     }
 
     public String sendSteeringCommand(){
-        setSocketMessage(SteeringHelper.getInstance().getCommandString());
-        //System.out.println(SteeringHelper.getInstance().getCommandString());
+        msgCreator.setSteerString(SteeringHelper.getInstance().getCommandString());
         return (SteeringHelper.getInstance().getCommandString());
     }
 
-    public void setSocketMessage(final String message) {
+    public void setACC(boolean state) {
+        msgCreator.setACC(state);
+    }
 
+    public void setPlatooning(boolean state) {
+        msgCreator.setPlatooning(state);
+    }
 
-        System.out.println("setting message: " + message);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Model.getInstance().message = message;
-            }
-        }).start();
+    public void setSteerString(String steerString) {
+        msgCreator.setSteerString(steerString);
+    }
+
+    public void setSpeed(double speed) {
+        msgCreator.setSpeed(speed);
     }
 }

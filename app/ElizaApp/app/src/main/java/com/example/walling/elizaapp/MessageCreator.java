@@ -13,6 +13,7 @@ public class MessageCreator {
 
     public void setSteerString(String steerString) {
         this.steerString = steerString;
+        System.out.println(getCompleteString());
     }
 
     public void setACC(boolean state) {
@@ -21,6 +22,7 @@ public class MessageCreator {
         } else {
             ACCString = "ACC:NO";
         }
+        System.out.println(getCompleteString());
     }
 
     public void setPlatooning(boolean state) {
@@ -29,6 +31,8 @@ public class MessageCreator {
         } else {
             platooningString = "PLATOONING:NO";
         }
+        System.out.println(getCompleteString());
+
     }
 
     public void setSpeed(double speed) {
@@ -37,6 +41,8 @@ public class MessageCreator {
         } else {
             speedString = "SPEED:" + speed;
         }
+        System.out.println(getCompleteString());
+
     }
 
     public MessageCreator () {
