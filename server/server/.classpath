@@ -17,7 +17,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="C:/Users/nicla/Dat255/DAT255/server/server/lib/java-json.jar"/>
-	<classpathentry kind="lib" path="C:/Users/nicla/Dat255/DAT255/server/server/lib/opencv-330.jar"/>
+	<classpathentry kind="lib" path="/Users/hannajacobsson/git/DAT255/server/server/lib/opencv-330.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
