@@ -20,7 +20,7 @@ public class Start implements PropertyChangeListener {
 	public MopedOutputConnection dataOutput;
 	public InputInterpreter input;
 	public ImageRecognition img;
-	
+
 	public Data mopedData;
 
 	private String mopedIP;
@@ -105,7 +105,7 @@ public class Start implements PropertyChangeListener {
 	 * @return
 	 */
 	public boolean validatePort(int portNumber) {
-		
+
 		if (portNumber < 80 || portNumber > 65535) {
 			System.out.println("Port was not validated");
 			return false;
@@ -123,15 +123,14 @@ public class Start implements PropertyChangeListener {
 		if (arg.getPropertyName().equals("new message from app")) {
 			input = new InputInterpreter(arg.getNewValue().toString());
 			if (input.startACC())
-				ProgramManager.startACC(10); //TODO Change to proper value after testing
+				ProgramManager.startACC(10); // TODO Change to proper value after testing
 			else if (input.startPlatooning())
 				ProgramManager.startPlatooning();
-			else
-				if (ProgramManager.ACCActive)
-					ProgramManager.stopACC();
-				else if (ProgramManager.platooningActive)
-					ProgramManager.stopPlatooning();
-				MopedSteeringHandler.setSteeringCommand(input.getSignal());
+			else if (ProgramManager.ACCActive)
+				ProgramManager.stopACC();
+			else if (ProgramManager.platooningActive)
+				ProgramManager.stopPlatooning();
+			MopedSteeringHandler.setSteeringCommand(input.getSignal());
 			System.out.println("App sent a message: " + arg.getNewValue());
 		} else if (arg.getPropertyName().equals("new data from moped")) {
 			System.out.println("New data from moped: " + arg.getNewValue());

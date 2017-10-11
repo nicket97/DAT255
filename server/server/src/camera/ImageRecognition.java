@@ -13,12 +13,15 @@ import org.bytedeco.javacv.OpenCVFrameConverter;
 import org.bytedeco.javacpp.opencv_core.Mat;
 
 import java.awt.Dimension;
+import java.io.File;
 
 public class ImageRecognition {
 
 
-    public static double locateImage(File imgFile){
+    public double locateImage(Object imgFile){
         //input img
+    	
+    	File img = (File) imgFile;
 
         //IplImage orgImg = img;
         IplImage orgImg = imgFile;
