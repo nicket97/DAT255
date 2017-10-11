@@ -17,9 +17,9 @@ import java.awt.Dimension;
 public class ImageRecognition {
 
 
-    public static double recognizeImage(){
+    public static double locateImage(){
         //input img
-        IplImage orgImg = cvLoadImage("/Users/erikstrid/Desktop/CameraTest/src/main/resources/IMG_8809.JPG");
+        IplImage orgImg = loadImage();
 
         IplImage thresholdImage = createThreshold(orgImg);
         thresholdImage = morphImage(thresholdImage);
@@ -29,7 +29,7 @@ public class ImageRecognition {
         System.out.print(position.getWidth());
 
         //output x pos
-        return position.getWidth();
+        return position.getWidth() - 486.0;
     }
 
     static Dimension getCoordinates(IplImage thresholdImage) {
@@ -74,6 +74,7 @@ public class ImageRecognition {
     }
 
     static IplImage morphImage(IplImage img){
+
         OpenCVFrameConverter fc = new OpenCVFrameConverter.ToMat();
 
         //Morphological operations
@@ -93,5 +94,33 @@ public class ImageRecognition {
         img = fc.convertToIplImage(fc.convert(test1234));
 
         return img;
+    }
+
+    static IplImage loadImage(){
+
+        File folder = new File("/Users/erikstrid/Desktop/CameraTest/src/main/resources");
+        File[] listOfFiles = folder.listFiles();
+
+        String x = "";
+        int max = 0;
+
+        for (int i = 0; i < listOfFiles.length; i++) {
+
+            System.out.println(listOfFiles[i].getName());
+            x = listOfFiles[i].getName();
+            x.substring(0, x.length() - 4);
+
+            int temp = Integer.parseInt(x);
+
+            if(max > temp){
+                max = temp;
+            }
+        }
+        x = String.valueOf(max);
+
+        IplImage orgImg = cvLoadImage("/Users/erikstrid/Desktop/CameraTest/src/main/resources/" + x + ".jpg");
+
+        return orgImg;
+
     }
 }
