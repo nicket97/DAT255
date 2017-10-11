@@ -4,7 +4,6 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.*;
 import java.net.*;
-import java.util.Observable;
 
 public class AppConnection implements Runnable {
 

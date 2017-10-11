@@ -11,6 +11,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import org.json.*;
 
 /**
  * Created by walling on 2017-09-13.
@@ -27,11 +28,12 @@ public class Model {
     private PrintWriter out;
     private boolean connected = false;
     private ServerCommunicator SC;
-    String message;
+    private String message;
+    private MessageCreator msgCreator = new MessageCreator();
+    private JSONObject json = new JSONObject();
 
     private Model(){
-        //this.SC = new ServerCommunicator(out);
-
+        initJSON();
     }
 
     public static Model getInstance(){
@@ -41,22 +43,28 @@ public class Model {
         return instance;
     }
 
+    private void initJSON() {
+        try {
+            json.put("Steering", "V0000H0000");
+            json.put("ACC", false);
+            json.put("Platooning", false);
+            json.put("Speed", 0.0);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
+    }
 
     public void establishConnection(final String ipInput, final int portInput){
-
         final Handler handler = new Handler();
         new Thread(new Runnable() {
             @Override
             public void run() {
                 Looper.prepare();
-
                 try {
-                    //InetSocketAddress inetSocketAddres = new InetSocketAddress(ipInput, portInput);
                     System.out.println(ipInput + ", " + Integer.toString(portInput));
                     Socket client = new Socket(ipInput, portInput);
                     System.out.println("client created");
-
 
                     handler.post(new Runnable() {
                         public void run() {
@@ -64,59 +72,25 @@ public class Model {
                         }
                     });
 
-                    //socket.connect(inetSocketAddres);
-
                      out = new PrintWriter(client.getOutputStream(), true);
                     BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));{
                         String response=in.readLine();
                         //TODO set "message" variable on button click from view
-                        message = "empty";
+                        message = "V0000H0000";
                         System.out.println("I received: " + response);
-                        out.println("hi from app to server!! :D <3");
+                        out.println(json);
                         connected = true;
                         while(true) {
-                            //System.out.println("looping in big loop");
+                            Thread.sleep(50);
                             response = in.readLine();
                             if(response != null) {
-                                //System.out.println("looping in response loop");
-                                //System.out.println("I received: " + response);
-                                response = null;
+                                System.out.println("From server: " + response);
                             }
 
-                            if(message != null) {
-                                if (!message.equals("empty")) {
-                                    //System.out.println("Sending: " + message);
-                                    out.println(message);
-                                    //message = "empty";
-                                } else {
-                                    out.println(message);
-                                }
-                                System.out.println("sending " + message);
-                            } else {
-                                System.out.println("message is.. null");
-                            }
+                            System.out.println("sending json: " + json.get("Steering"));
+                            out.println(json);
                         }
-                        /*
-                        if (firstResponse.equals("Send over data.")) {
-                            while(true){
-                                //wait(200);
-                                out.println(sendSteeringCommand());
-
-                                if(in.readLine().equals("bye")){
-                                    break;
-                                }
-                            }
-                            out.println("hi from app");
-                            System.out.println("sent hi from app");
-                            String reply = in.readLine();
-                            System.out.println("Reply was " + reply);
-                            //return reply;
-
-                        }*/
                 }
-
-                    //out=new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
-                    //out.println("S0008T0007");
 
                 } catch (Exception e) {
                     connected = false;
@@ -147,37 +121,59 @@ public class Model {
     public void stop(){
         SteeringHelper.getInstance().setVelocity(0);
         setCruiseControlState(false);
-        sendSteeringCommand();
+        setSteerString(SteeringHelper.getInstance().getCommandString());
     }
 
-    public void setCruiseControlState(boolean state){
-        this.isCruiseControlActive = state;
+    public void setCruiseControlState(boolean state) {
     }
 
     public void changeDirection(int direction){
         SteeringHelper.getInstance().setDirection(direction);
-        sendSteeringCommand();
+        setSteerString(SteeringHelper.getInstance().getCommandString());
     }
     public void changeVelocity(int velocity){
         SteeringHelper.getInstance().setVelocity(velocity);
-        sendSteeringCommand();
+        setSteerString(SteeringHelper.getInstance().getCommandString());
     }
 
     public String sendSteeringCommand(){
-        setSocketMessage(SteeringHelper.getInstance().getCommandString());
-        //System.out.println(SteeringHelper.getInstance().getCommandString());
+        msgCreator.setSteerString(SteeringHelper.getInstance().getCommandString());
         return (SteeringHelper.getInstance().getCommandString());
     }
 
-    public void setSocketMessage(final String message) {
-        System.out.println("setting message: " + message);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Model.getInstance().message = message;
-            }
-        }).start();
+    public void setACC(boolean state) {
+        try {
+            json.put("ACC", state);
+            System.out.println(json.get("ACC").toString());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
+    public void setPlatooning(boolean state) {
+        try {
+            json.put("Platooning", state);
+            System.out.println(json.get("Platooning").toString());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
+    public void setSteerString(String steerString) {
+        try {
+            json.put("Steering", steerString);
+            System.out.println(json.get("Steering").toString());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void setSpeed(double speed) {
+        try {
+            json.put("Speed", speed);
+            System.out.println(json.get("Speed").toString());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

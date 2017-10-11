@@ -17,6 +17,7 @@ public class Start implements PropertyChangeListener {
 	public static MopedImgConnection imgInput;
 	public static MopedDataConnection dataInput;
 	public static MopedOutputConnection dataOutput;
+	public InputInterpreter input;
 
 	public Data mopedData;
 
@@ -24,17 +25,18 @@ public class Start implements PropertyChangeListener {
 	private int mopedPort;
 	private int serverPort;
 	public static Start start;
+
 	public static void main(String[] args) {
 		start = new Start();
 	}
 
 	public Start() {
-		//this.getConnectionDetails();
+		// this.getConnectionDetails();
 		appConnection = new AppConnection(8080, this);
 
-		//imgInput = new MopedImgConnection("192.168.43.183", 3500, this);
-		//imgInput.run();
-		//dataInput = new MopedDataConnection("localhost", 8091, this);
+		// imgInput = new MopedImgConnection("192.168.43.183", 3500, this);
+		// imgInput.run();
+		// dataInput = new MopedDataConnection("localhost", 8091, this);
 		dataOutput = new MopedOutputConnection("192.168.43.183", 9000);
 
 		init();
@@ -84,6 +86,7 @@ public class Start implements PropertyChangeListener {
 
 	/***
 	 * Validates the given ip by regex check.
+	 * 
 	 * @param ip
 	 * @return
 	 */
@@ -94,6 +97,7 @@ public class Start implements PropertyChangeListener {
 
 	/***
 	 * Validates the given port by checking that it is in range.
+	 * 
 	 * @param port
 	 * @return
 	 */
@@ -109,17 +113,22 @@ public class Start implements PropertyChangeListener {
 		return true;
 
 	}
-	
-	private boolean programsRunning() {
-		return ProgramManager.isProgramActive();
-	}
 
 	@Override
 	public void propertyChange(PropertyChangeEvent arg) {
 		System.out.println("RECEIVED EVENT");
 		if (arg.getPropertyName().equals("new message from app")) {
-			if (!programsRunning())
-				MopedSteeringHandler.setSteeringCommand(arg.getNewValue().toString());
+			input = new InputInterpreter(arg.getNewValue().toString());
+			if (input.startACC())
+				ProgramManager.startACC(10); //TODO Change to proper value after testing
+			else if (input.startPlatooning())
+				ProgramManager.startPlatooning();
+			else
+				if (ProgramManager.ACCActive)
+					ProgramManager.stopACC();
+				else if (ProgramManager.platooningActive)
+					ProgramManager.stopPlatooning();
+				MopedSteeringHandler.setSteeringCommand(input.getSignal());
 			System.out.println("App sent a message: " + arg.getNewValue());
 		} else if (arg.getPropertyName().equals("new data from moped")) {
 			System.out.println("New data from moped: " + arg.getNewValue());
