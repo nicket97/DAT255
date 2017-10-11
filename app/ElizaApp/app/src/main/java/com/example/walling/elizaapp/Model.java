@@ -11,6 +11,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import org.json.*;
 
 /**
  * Created by walling on 2017-09-13.
@@ -29,6 +30,7 @@ public class Model {
     private ServerCommunicator SC;
     private String message;
     private MessageCreator msgCreator = new MessageCreator();
+    private JSONObject json = new JSONObject();
 
     private Model(){
         //this.SC = new ServerCommunicator(out);
@@ -40,6 +42,18 @@ public class Model {
             instance = new Model();
         }
         return instance;
+    }
+
+    private void initJSON() {
+        try {
+            json.put("Steering", "V0000H0000");
+            json.put("ACC", false);
+            json.put("Platooning", false);
+            json.put("Speed", 0.0);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
 
@@ -72,11 +86,11 @@ public class Model {
                         //TODO set "message" variable on button click from view
                         message = "V0000H0000";
                         System.out.println("I received: " + response);
-                        out.println("V0000H0000");
+                        out.println(json);
                         connected = true;
                         while(true) {
                             Thread.sleep(35);
-                            message = msgCreator.getCompleteString();
+                            //message = msgCreator.getCompleteString();
                             //System.out.println("looping in big loop");
                             response = in.readLine();
                             if(response != null) {
@@ -88,12 +102,12 @@ public class Model {
                             if(message != null) {
                                 if (!message.equals("empty")) {
                                     //System.out.println("Sending: " + message);
-                                    out.println(message);
+                                    out.println(json);
                                     //message = "empty";
                                 } else {
-                                    out.println(message);
+                                    out.println(json);
                                 }
-                                System.out.println("sending " + message);
+                                System.out.println("sending " + json.toString());
                             } else {
                                 System.out.println("message is.. null");
                             }
@@ -146,10 +160,17 @@ public class Model {
         return connected;
     }
 
+    /*private JSONObject stringToJSON(String string) {
+        JSONObject jsonobj = new JSONObject();
+        jsonobj.put("Steering signal", )
+
+        return jsonobj;
+    }*/
+
     public void stop(){
         SteeringHelper.getInstance().setVelocity(0);
         setCruiseControlState(false);
-        msgCreator.setSteerString(SteeringHelper.getInstance().getCommandString());
+        setSteerString(SteeringHelper.getInstance().getCommandString());
     }
 
     public void setCruiseControlState(boolean state) {
@@ -159,11 +180,11 @@ public class Model {
 
     public void changeDirection(int direction){
         SteeringHelper.getInstance().setDirection(direction);
-        msgCreator.setSteerString(SteeringHelper.getInstance().getCommandString());
+        setSteerString(SteeringHelper.getInstance().getCommandString());
     }
     public void changeVelocity(int velocity){
         SteeringHelper.getInstance().setVelocity(velocity);
-        msgCreator.setSteerString(SteeringHelper.getInstance().getCommandString());
+        setSteerString(SteeringHelper.getInstance().getCommandString());
     }
 
     public String sendSteeringCommand(){
@@ -172,18 +193,39 @@ public class Model {
     }
 
     public void setACC(boolean state) {
-        msgCreator.setACC(state);
+        try {
+            json.put("ACC", state);
+            System.out.println(json.get("ACC").toString());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     public void setPlatooning(boolean state) {
-        msgCreator.setPlatooning(state);
+        try {
+            json.put("Platooning", state);
+            System.out.println(json.get("Platooning").toString());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void setSteerString(String steerString) {
-        msgCreator.setSteerString(steerString);
+        try {
+            json.put("Steering", steerString);
+            System.out.println(json.get("Steering").toString());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void setSpeed(double speed) {
-        msgCreator.setSpeed(speed);
+        try {
+            json.put("Speed", speed);
+            System.out.println(json.get("Speed").toString());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
