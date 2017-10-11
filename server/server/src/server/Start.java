@@ -8,15 +8,15 @@ import comunication.MopedSteeringHandler;
 import model.FixedDataQueue;
 
 public class Start implements PropertyChangeListener {
-	public static FixedDataQueue dataHolder;
-	public static DataPublisher dataPublisher;
-	public static DataReader dataReader;
-	public static ImageInput imageInput;
-	public static ThreadManager threadManager;
-	public static AppConnection appConnection;
-	public static MopedImgConnection imgInput;
-	public static MopedDataConnection dataInput;
-	public static MopedOutputConnection dataOutput;
+	public FixedDataQueue dataHolder;
+	public DataPublisher dataPublisher;
+	public DataReader dataReader;
+	public ImageInput imageInput;
+	public ThreadManager threadManager;
+	public AppConnection appConnection;
+	public MopedImgConnection imgInput;
+	public MopedDataConnection dataInput;
+	public MopedOutputConnection dataOutput;
 	public InputInterpreter input;
 
 	public Data mopedData;
@@ -46,7 +46,7 @@ public class Start implements PropertyChangeListener {
 		init();
 	}
 
-	public static void init() {
+	public void init() {
 		dataHolder = new FixedDataQueue(10);
 		dataPublisher = new DataPublisher();
 		dataReader = new DataReader();

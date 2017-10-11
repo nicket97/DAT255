@@ -36,7 +36,7 @@ public class ACCSimulator implements Runnable {
 			}
 			System.out.println("=================================");
 			
-			Data d = Start.dataHolder.getFirst();
+			Data d = Start.start.dataHolder.getFirst();
 			
 			
 			

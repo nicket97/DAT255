@@ -33,7 +33,7 @@ package test;
  				e.printStackTrace();
  			}
  			//System.out.println("Dist = " + Data.dist + " speed = " + Data.speed);
- 			if(Start.dataHolder.getFirst().getDist() == targetDist && Start.dataHolder.getFirst().getSpeed() == targetSpeed){
+ 			if(Start.start.dataHolder.getFirst().getDist() == targetDist && Start.start.dataHolder.getFirst().getSpeed() == targetSpeed){
  				assertEquals(true, true);
  				t.stop();
  				break;
@@ -57,7 +57,7 @@ package test;
  				e.printStackTrace();
  			}
  			//System.out.println("Dist = " + Data.dist + " speed = " + Data.speed);
- 			if(Start.dataHolder.getFirst().getDist() == targetDist && Start.dataHolder.getFirst().getSpeed() == targetSpeed){
+ 			if(Start.start.dataHolder.getFirst().getDist() == targetDist && Start.start.dataHolder.getFirst().getSpeed() == targetSpeed){
  				assertEquals(true, true);
  				break;
  			}
