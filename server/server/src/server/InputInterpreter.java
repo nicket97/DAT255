@@ -13,10 +13,10 @@ public class InputInterpreter {
 	public InputInterpreter(String input) {
 		try {
 			JSONObject json = new JSONObject(input);
-			this.signal = json.getString("signal"); // steering signal
-			this.acc = json.getBoolean("acc"); // is acc active?
-			this.platooning = json.getBoolean("platooning"); // is platooning active?
-			this.speed = json.getDouble("speed"); // speed
+			this.signal = json.getString("Steering"); // steering signal
+			this.acc = json.getBoolean("ACC"); // is acc active?
+			this.platooning = json.getBoolean("Platooning"); // is platooning active?
+			this.speed = json.getDouble("Speed"); // speed
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
