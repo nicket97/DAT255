@@ -33,8 +33,7 @@ public class Model {
     private JSONObject json = new JSONObject();
 
     private Model(){
-        //this.SC = new ServerCommunicator(out);
-
+        initJSON();
     }
 
     public static Model getInstance(){
@@ -56,29 +55,22 @@ public class Model {
 
     }
 
-
-
     public void establishConnection(final String ipInput, final int portInput){
-
         final Handler handler = new Handler();
         new Thread(new Runnable() {
             @Override
             public void run() {
                 Looper.prepare();
                 try {
-                    //InetSocketAddress inetSocketAddres = new InetSocketAddress(ipInput, portInput);
                     System.out.println(ipInput + ", " + Integer.toString(portInput));
                     Socket client = new Socket(ipInput, portInput);
                     System.out.println("client created");
-
 
                     handler.post(new Runnable() {
                         public void run() {
                             //MessageListener.BUS.updateMessage(new MessageData(MessageData.MessageType.CONNECTING));
                         }
                     });
-
-                    //socket.connect(inetSocketAddres);
 
                      out = new PrintWriter(client.getOutputStream(), true);
                     BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));{
@@ -89,50 +81,16 @@ public class Model {
                         out.println(json);
                         connected = true;
                         while(true) {
-                            Thread.sleep(35);
-                            //message = msgCreator.getCompleteString();
-                            //System.out.println("looping in big loop");
+                            Thread.sleep(50);
                             response = in.readLine();
                             if(response != null) {
-                                //System.out.println("looping in response loop");
-                                //System.out.println("I received: " + response);
-                                response = null;
+                                System.out.println("From server: " + response);
                             }
 
-                            if(message != null) {
-                                if (!message.equals("empty")) {
-                                    //System.out.println("Sending: " + message);
-                                    out.println(json);
-                                    //message = "empty";
-                                } else {
-                                    out.println(json);
-                                }
-                                System.out.println("sending " + json.toString());
-                            } else {
-                                System.out.println("message is.. null");
-                            }
+                            System.out.println("sending json: " + json.get("Steering"));
+                            out.println(json);
                         }
-                        /*
-                        if (firstResponse.equals("Send over data.")) {
-                            while(true){
-                                //wait(200);
-                                out.println(sendSteeringCommand());
-
-                                if(in.readLine().equals("bye")){
-                                    break;
-                                }
-                            }
-                            out.println("hi from app");
-                            System.out.println("sent hi from app");
-                            String reply = in.readLine();
-                            System.out.println("Reply was " + reply);
-                            //return reply;
-
-                        }*/
                 }
-
-                    //out=new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
-                    //out.println("S0008T0007");
 
                 } catch (Exception e) {
                     connected = false;
@@ -160,13 +118,6 @@ public class Model {
         return connected;
     }
 
-    /*private JSONObject stringToJSON(String string) {
-        JSONObject jsonobj = new JSONObject();
-        jsonobj.put("Steering signal", )
-
-        return jsonobj;
-    }*/
-
     public void stop(){
         SteeringHelper.getInstance().setVelocity(0);
         setCruiseControlState(false);
@@ -174,8 +125,6 @@ public class Model {
     }
 
     public void setCruiseControlState(boolean state) {
-
-
     }
 
     public void changeDirection(int direction){
@@ -199,7 +148,6 @@ public class Model {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
     }
 
     public void setPlatooning(boolean state) {
