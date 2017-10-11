@@ -17,11 +17,11 @@ import java.awt.Dimension;
 public class ImageRecognition {
 
 
-    public static double locateImage(){
+    public static double locateImage(File imgFile){
         //input img
 
         //IplImage orgImg = img;
-        IplImage orgImg = loadImage();
+        IplImage orgImg = imgFile;
 
         IplImage thresholdImage = createThreshold(orgImg);
         thresholdImage = morphImage(thresholdImage);
