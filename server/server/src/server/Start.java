@@ -4,6 +4,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Scanner;
 
+import camera.ImageRecognition;
 import comunication.MopedSteeringHandler;
 import model.FixedDataQueue;
 
@@ -18,7 +19,8 @@ public class Start implements PropertyChangeListener {
 	public MopedDataConnection dataInput;
 	public MopedOutputConnection dataOutput;
 	public InputInterpreter input;
-
+	public ImageRecognition img;
+	
 	public Data mopedData;
 
 	private String mopedIP;
@@ -51,6 +53,7 @@ public class Start implements PropertyChangeListener {
 		dataPublisher = new DataPublisher();
 		dataReader = new DataReader();
 		threadManager = new ThreadManager();
+		img = new ImageRecognition();
 	}
 
 	public static void initConnections() {
@@ -134,6 +137,7 @@ public class Start implements PropertyChangeListener {
 			System.out.println("New data from moped: " + arg.getNewValue());
 			dataHolder.addFirst(new Data(arg.getNewValue().toString()));
 		} else if (arg.getPropertyName().equals("new image")) {
+			img.locateImage(arg.getNewValue());
 			System.out.println("new image received from moped");
 		}
 	}
