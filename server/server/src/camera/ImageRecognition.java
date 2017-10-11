@@ -19,6 +19,8 @@ public class ImageRecognition {
 
     public static double locateImage(){
         //input img
+
+        //IplImage orgImg = img;
         IplImage orgImg = loadImage();
 
         IplImage thresholdImage = createThreshold(orgImg);
@@ -112,7 +114,7 @@ public class ImageRecognition {
 
             int temp = Integer.parseInt(x);
 
-            if(max > temp){
+            if(max < temp){
                 max = temp;
             }
         }
@@ -121,6 +123,7 @@ public class ImageRecognition {
         IplImage orgImg = cvLoadImage("/Users/erikstrid/Desktop/CameraTest/src/main/resources/" + x + ".jpg");
 
         return orgImg;
-
     }
+
+
 }
