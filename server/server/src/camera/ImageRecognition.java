@@ -30,8 +30,8 @@ public class ImageRecognition {
 
         System.out.print(position.getWidth());
 
-        //output x pos
-        return position.getWidth() - 486.0;
+        //output steering signal
+        return calculateSteeringLinear(position.getWidth() - 486.0);
     }
 
     static Dimension getCoordinates(IplImage thresholdImage) {
@@ -123,6 +123,24 @@ public class ImageRecognition {
         IplImage orgImg = cvLoadImage("/Users/erikstrid/Desktop/CameraTest/src/main/resources/" + x + ".jpg");
 
         return orgImg;
+    }
+
+    static double calculateSteeringLinear(){
+        if(position<0){
+            return -2* position/10;
+        }else if(position>0){
+            return 2* position/10;
+        }
+        else
+            return 0;
+    }
+    static double calculateSteeringPotential() {
+        if (position < 0) {
+            return -Math.pow((position), 2) / 1000;
+        } else if (position > 0) {
+            return Math.pow((position), 2) / 1000;
+        } else
+            return 0;
     }
 
 
