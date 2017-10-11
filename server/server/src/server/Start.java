@@ -101,9 +101,9 @@ public class Start implements PropertyChangeListener {
 	 * @param port
 	 * @return
 	 */
-	public boolean validatePort(int port) {
-		int portNumber = port;
-		if (portNumber < 80 && portNumber > 65535) {
+	public boolean validatePort(int portNumber) {
+		
+		if (portNumber < 80 || portNumber > 65535) {
 			System.out.println("Port was not validated");
 			return false;
 		}

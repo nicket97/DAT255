@@ -21,12 +21,14 @@ public class DummyClient {
 				PrintWriter out = new PrintWriter(client.getOutputStream(), true);
 				BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));) {
 			String firstResponse=in.readLine();
-			if (firstResponse.equals("Send over data.")) {
-				out.println(message);
-				System.out.println("sent " + message);
-				String reply = in.readLine();
-				System.out.println("Reply was " + reply);
-				return reply;
+			if(firstResponse.equals(null)){
+				if (firstResponse.equals("Send over data.")) {
+					out.println(message);
+					System.out.println("sent " + message);
+					String reply = in.readLine();
+					System.out.println("Reply was " + reply);
+					return reply;
+				}
 			}
 				
 		} catch (UnknownHostException e) {
