@@ -6,8 +6,8 @@ import org.json.JSONObject;
 public class InputInterpreter {
 
 	private String signal;
-	private static boolean acc;
-	private static boolean platooning;
+	private boolean acc;
+	private boolean platooning;
 	private double speed;
 
 	public InputInterpreter(String input) {
@@ -16,16 +16,16 @@ public class InputInterpreter {
 			this.signal = json.getString("Steering"); // steering signal
 			this.acc = json.getBoolean("ACC"); // is acc active?
 			this.platooning = json.getBoolean("Platooning"); // is platooning active?
-			this.speed = json.getDouble("Speed"); // speed
+			this.speed = json.getDouble("Speed"); // cruise control speed
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public static boolean startACC() {
+	public boolean startACC() {
 		return acc;
 	}
-	public static boolean startPlatooning() {
+	public boolean startPlatooning() {
 		return platooning;
 	}
 	

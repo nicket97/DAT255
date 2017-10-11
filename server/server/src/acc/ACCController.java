@@ -8,7 +8,6 @@ public class ACCController implements Runnable {
 	
 	public int distToCar;
 	public int oldDist;
-	private long oldClock;
 	private int targetSpeed;
 	private int targetDist;
 	
