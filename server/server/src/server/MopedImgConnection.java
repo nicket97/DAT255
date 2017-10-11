@@ -54,8 +54,9 @@ public class MopedImgConnection implements Runnable {
 				data = new String(b, 0, ix);
 
 				filename = data.split(",")[0];
+				File file = new File(filename);
 				fileSize = Integer.valueOf(data.split(",")[1]);
-				fileOut = new FileOutputStream(filename);
+				fileOut = new FileOutputStream(file);
 				System.out.println(data);
 
 				int recievedSize = 0;
@@ -69,6 +70,7 @@ public class MopedImgConnection implements Runnable {
 					;
 					fileOut.close();
 					System.out.println("\nFile downloaded");
+					pcs.firePropertyChange("new image", null, file);
 					out.println("OK");
 				}
 			}
