@@ -4,10 +4,6 @@ package test;
  
  import org.junit.Before;
  import org.junit.Test;
- import org.omg.CORBA.DATA_CONVERSION;
- 
- import acc.ACCController;
- import server.Data;
  import server.Start;
  
  public class ACCSimulationTest {

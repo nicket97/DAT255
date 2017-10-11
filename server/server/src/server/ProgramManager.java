@@ -16,7 +16,7 @@ public class ProgramManager {
 		ACCActive = true;
 	}
 	@SuppressWarnings("deprecation")
-	public void stopACC(){
+	public static void stopACC(){
 		if(accThread.isAlive()){
 			accThread.stop();
 			accThread = null;
@@ -30,7 +30,7 @@ public class ProgramManager {
 		platooningActive = true;
 	}
 	@SuppressWarnings("deprecation")
-	public void stopPlatooning(){
+	public static void stopPlatooning(){
 		if(platoonThread.isAlive()){
 			platoonThread.stop();
 			platoonThread = null;

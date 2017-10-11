@@ -114,10 +114,6 @@ public class Start implements PropertyChangeListener {
 
 	}
 
-	private boolean programsRunning() {
-		return ProgramManager.isProgramActive();
-	}
-
 	@Override
 	public void propertyChange(PropertyChangeEvent arg) {
 		System.out.println("RECEIVED EVENT");
@@ -128,6 +124,10 @@ public class Start implements PropertyChangeListener {
 			else if (input.startPlatooning())
 				ProgramManager.startPlatooning();
 			else
+				if (ProgramManager.ACCActive)
+					ProgramManager.stopACC();
+				else if (ProgramManager.platooningActive)
+					ProgramManager.stopPlatooning();
 				MopedSteeringHandler.setSteeringCommand(input.getSignal());
 			System.out.println("App sent a message: " + arg.getNewValue());
 		} else if (arg.getPropertyName().equals("new data from moped")) {

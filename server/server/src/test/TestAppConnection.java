@@ -10,16 +10,9 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.Arrays;
-import java.util.Collection;
-
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runners.Parameterized;
-
 import server.AppConnection;
-import server.Start;
 
 public class TestAppConnection implements PropertyChangeListener {
 	private AppConnection input;

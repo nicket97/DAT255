@@ -10,29 +10,18 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import server.AppConnection;
 import server.Start;
 
 @RunWith(Parameterized.class)
 public class TestServerProtocol {
 	private String inputLine;
 	private String outputLine;
-	private AppConnection input;
 	private Start start;
 	private Thread serverThread;
-	private boolean alreadySetup;
 
 	@Before
 	public void setup() {
-		if (!alreadySetup) {
-			//input = new AppConnection(8080);
-			start = new Start();
-			
-			//serverThread = new Thread(input);
-			//serverThread.start();
-			alreadySetup = true;
-		}
-		
+		start = new Start();		
 	}
 	
 	//@After
