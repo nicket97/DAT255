@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,7 +21,7 @@ import org.junit.runners.Parameterized;
 import server.AppConnection;
 import server.Start;
 
-public class TestAppConnection {
+public class TestAppConnection implements PropertyChangeListener {
 	private AppConnection input;
 	private PrintWriter out;
 	private BufferedReader in;
@@ -28,7 +30,7 @@ public class TestAppConnection {
 
 	@Before
 	public void setup(){
-		input = new AppConnection(9000);
+		input = new AppConnection(9000, this);
 		Thread t = new Thread(input);
 		t.start();
 		socket = new Socket();
@@ -56,5 +58,13 @@ public class TestAppConnection {
 			e.printStackTrace();
 		}
 	    
+	}
+
+
+
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		// TODO Auto-generated method stub
+		
 	}
 }

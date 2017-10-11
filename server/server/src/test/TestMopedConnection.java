@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,7 +16,7 @@ import org.junit.Test;
 
 import server.MopedDataConnection;
 
-public class TestMopedConnection {
+public class TestMopedConnection implements PropertyChangeListener {
 	
 	private MopedDataConnection output;
 	private ServerSocket socket;
@@ -24,7 +26,7 @@ public class TestMopedConnection {
 
 	@Before
 	public void setup(){
-		output = new MopedDataConnection("localhost", 0);
+		output = new MopedDataConnection("localhost", 0, this);
 		Thread t = new Thread(output);
 		t.start();
 		try {
@@ -67,6 +69,12 @@ public class TestMopedConnection {
 		}
 		assertEquals(s.equalsIgnoreCase("Connected"), true);
 
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 
