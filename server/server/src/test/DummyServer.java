@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
 
 public class DummyServer implements Runnable {
 	Image newimg;
-	static BufferedImage bimg;
+	BufferedImage bimg;
 	byte[] bytes;
 	Socket server;
 	private int port;
