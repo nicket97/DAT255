@@ -1,7 +1,7 @@
 #Stops immediately if something is to close, IF ACC IS NOT ACTIVE?
 
 #Simple stop method
-def SimpleSafety(speed, fsensor):
+def simpleSafety(speed, fsensor):
 
     extraSafety = 10 #Extra safety in cm
 
