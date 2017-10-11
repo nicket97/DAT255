@@ -5,12 +5,12 @@ import platooning.PlatooningController;
 
 public class ProgramManager {
 	static boolean programActive = false;
-	boolean ACCActive = false;
-	boolean platooningActive = false;
-	Thread accThread = null;
-	Thread platoonThread = null;
+	static boolean ACCActive = false;
+	static boolean platooningActive = false;
+	static Thread accThread = null;
+	static Thread platoonThread = null;
 	
-	public void startACC(int dist){
+	public static void startACC(int dist){
 		accThread = new Thread(new ACCController(dist));
 		accThread.start();
 		ACCActive = true;
@@ -24,7 +24,7 @@ public class ProgramManager {
 		}
 	}
 	
-	public void startPlatooning(){
+	public static void startPlatooning(){
 		platoonThread = new Thread(new PlatooningController());
 		platoonThread.start();
 		platooningActive = true;
