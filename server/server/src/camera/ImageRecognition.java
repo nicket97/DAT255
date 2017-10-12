@@ -29,7 +29,7 @@ public class ImageRecognition {
 
         Dimension position = getCoordinates(thresholdImage);
 
-        System.out.print(position.getWidth());
+        System.out.print(position.getWidth() - 486);
 
         //output steering signal
         return calculateSteeringLinear(position.getWidth() - 486.0);
@@ -51,27 +51,18 @@ public class ImageRecognition {
     }
 
     static IplImage createThreshold(IplImage orgImg) {
-        OpenCVFrameConverter fc = new OpenCVFrameConverter.ToMat();
-
         IplImage imgHSV = cvCreateImage(cvGetSize(orgImg), 8, 3);
 
         cvCvtColor(orgImg, imgHSV, CV_BGR2HSV);
         IplImage imgThreshold = cvCreateImage(cvGetSize(orgImg), 8, 1);
 
         //custom range from MyRobotLab
-        cvInRangeS(imgHSV, cvScalar(40, 100, 50, 0), cvScalar(100, 255, 255, 0), imgThreshold);
+        cvInRangeS(imgHSV, cvScalar(36, 66, 20, 0), cvScalar(79, 255, 255, 0), imgThreshold);
 
         cvReleaseImage(imgHSV);
 
         //gaussian blur
         cvSmooth(imgThreshold, imgThreshold);
-
-        //contours
-        CvMemStorage storage = CvMemStorage.create();
-        CvSeq contour = new CvSeq(null);
-
-        cvFindContours(imgThreshold, storage, contour, Loader.sizeof(CvContour.class),
-                CV_RETR_LIST, CV_CHAIN_APPROX_SIMPLE);
 
         return imgThreshold;
     }
@@ -83,7 +74,7 @@ public class ImageRecognition {
         //Morphological operations
         //erode
         Mat test123 = cvarrToMat(img);
-        Mat element = new Mat(12, 12, CV_8U, new opencv_core.Scalar(1d));
+        Mat element = new Mat(9, 9, CV_8U, new opencv_core.Scalar(1d));
         erode(test123, test123, element);
         erode(test123, test123, element);
 
@@ -91,10 +82,12 @@ public class ImageRecognition {
 
         //dilate
         Mat test1234 = cvarrToMat(img);
-        Mat element1 = new Mat(6, 6, CV_8U, new opencv_core.Scalar(1d));
+        Mat element1 = new Mat(10, 10, CV_8U, new opencv_core.Scalar(1d));
         dilate(test123, test1234, element1);
 
         img = fc.convertToIplImage(fc.convert(test1234));
+
+
 
         return img;
     }
