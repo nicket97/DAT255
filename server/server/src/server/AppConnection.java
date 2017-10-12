@@ -13,6 +13,7 @@ public class AppConnection implements Runnable {
 
 	private int appPort;
 	private PropertyChangeSupport pcs;
+	private static boolean connected;
 
 	public AppConnection(int port, PropertyChangeListener mainServer) {
 		this.appPort = port;
@@ -53,5 +54,13 @@ public class AppConnection implements Runnable {
 				System.out.println(e.getMessage());
 			}
 		}
+	}
+
+	public static boolean isMopedConnected() {
+		return connected;
+	}
+
+	public void setMopedConnected(boolean b) {
+		connected = b;
 	}
 }

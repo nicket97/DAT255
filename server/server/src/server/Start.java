@@ -138,7 +138,8 @@ public class Start implements PropertyChangeListener {
 		} else if (arg.getPropertyName().equals("new image")) {
 			img.locateImage(arg.getNewValue());
 			System.out.println("new image received from moped");
-		}
+		} else if (arg.getPropertyName().equals("connection lost")) {
+			appConnection.setMopedConnected(false);
+		}		
 	}
-
 }

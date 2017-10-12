@@ -19,12 +19,15 @@ public class MopedDataConnection implements Runnable {
 	private String hostname;
 	private int port;
 	private PropertyChangeSupport pcs;
+	private PropertyChangeSupport pcsConnected;
 
 	public MopedDataConnection(String hostname, int port, PropertyChangeListener mainServer) {
 		this.hostname = hostname;
 		this.port = port;
 		pcs = new PropertyChangeSupport(this);
 		pcs.addPropertyChangeListener(mainServer);
+		pcsConnected = new PropertyChangeSupport(this);
+		pcsConnected.addPropertyChangeListener(mainServer);
 	}
 
 	@Override
@@ -39,6 +42,7 @@ public class MopedDataConnection implements Runnable {
 				pcs.firePropertyChange("new data from moped", null, inputLine);
 			}
 		} catch (UnknownHostException e) {
+			pcsConnected.firePropertyChange("connection lost", null, "connection lost");
 			System.err.println("Don't know about host " + hostname);
 			System.exit(1);
 		} catch (IOException e) {
