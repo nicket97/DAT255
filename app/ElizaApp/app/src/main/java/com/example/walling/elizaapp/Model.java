@@ -27,7 +27,6 @@ public class Model {
     private Integer port = 9000;
     private PrintWriter out;
     private boolean connected = false;
-    private ServerCommunicator SC;
     private String message;
     private MessageCreator msgCreator = new MessageCreator();
     private JSONObject json = new JSONObject();
