@@ -21,14 +21,9 @@ import org.json.*;
 
 public class Model {
     //TODO add helperclass for translation (ex: "set speed to 50 -> translates to V0050H0000")
-    private boolean isCruiseControlActive = false;
     private static Model instance;
-    private String ip = "10.0.2.2";
-    private Integer port = 9000;
     private PrintWriter out;
     private boolean connected = false;
-    private String message;
-    private MessageCreator msgCreator = new MessageCreator();
     private JSONObject json = new JSONObject();
 
     private Model(){
@@ -65,23 +60,17 @@ public class Model {
                     Socket client = new Socket(ipInput, portInput);
                     System.out.println("client created");
 
-                    handler.post(new Runnable() {
-                        public void run() {
-                            //MessageListener.BUS.updateMessage(new MessageData(MessageData.MessageType.CONNECTING));
-                        }
-                    });
-
                      out = new PrintWriter(client.getOutputStream(), true);
-                    BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));{
+                     BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));{
                         String response=in.readLine();
-                        //TODO set "message" variable on button click from view
-                        message = "V0000H0000";
                         System.out.println("I received: " + response);
                         out.println(json);
                         connected = true;
+
                         while(true) {
                             Thread.sleep(50);
                             response = in.readLine();
+
                             if(response != null) {
                                 System.out.println("From server: " + response);
                             }
@@ -102,13 +91,7 @@ public class Model {
                     else if(e.getMessage().equals("Already Connected")) {
                         MessageListener.BUS.updateMessage(new MessageData(MessageData.MessageType.ALREADY_CONNECTED));
                     }
-
-                } finally { handler.post(new Runnable() {
-                    public void run() {
-                        MessageListener.BUS.updateMessage(new MessageData(MessageData.MessageType.CONNECTION_DONE));                    }
-                });
                 }
-
             }
         }).start();
 
@@ -119,11 +102,7 @@ public class Model {
 
     public void stop(){
         SteeringHelper.getInstance().setVelocity(0);
-        setCruiseControlState(false);
         setSteerString(SteeringHelper.getInstance().getCommandString());
-    }
-
-    public void setCruiseControlState(boolean state) {
     }
 
     public void changeDirection(int direction){
@@ -133,11 +112,6 @@ public class Model {
     public void changeVelocity(int velocity){
         SteeringHelper.getInstance().setVelocity(velocity);
         setSteerString(SteeringHelper.getInstance().getCommandString());
-    }
-
-    public String sendSteeringCommand(){
-        msgCreator.setSteerString(SteeringHelper.getInstance().getCommandString());
-        return (SteeringHelper.getInstance().getCommandString());
     }
 
     public void setACC(boolean state) {
