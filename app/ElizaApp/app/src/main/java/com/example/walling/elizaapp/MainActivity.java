@@ -1,5 +1,6 @@
 package com.example.walling.elizaapp;
 
+import android.app.ActivityManager;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
@@ -11,9 +12,10 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
-public class MainActivity extends AppCompatActivity implements IMainView{
+public class MainActivity extends AppCompatActivity implements IMainView, IMessageListener {
 
     private Controller controller;
     private Button btnStop, btnSwitchScreen, buttonDebug, setSpeedButton;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements IMainView{
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_main);
         controller = new Controller(this);
+        MessageListener.BUS.addListener(this);
 
         initGUI();
     }
@@ -157,5 +160,12 @@ public class MainActivity extends AppCompatActivity implements IMainView{
     @Override
     public void updateResult(String res) {
         //txtView.setText(res);
+    }
+
+    @Override
+    public void update(MessageData msgData) {
+        if (msgData.getMessageType() == MessageData.MessageType.CONNECTION_LOST) {
+            startActivity(new Intent(MainActivity.this, ConnectActivity.class));
+        }
     }
 }

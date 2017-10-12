@@ -3,6 +3,8 @@ package com.example.walling.elizaapp;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -19,8 +21,7 @@ public class ConnectActivity extends AppCompatActivity implements IMainView, IMe
 
     private EditText ipText;
     private EditText portText;
-    private EditText serverTestEditText;
-    private Button connectButton, connectBackButton, checkConnectionButton, testButton;
+    private Button connectButton, checkConnectionButton;
     private Controller controller;
     private TextView connectionStatusTxtView;
     Toast toast;
@@ -40,14 +41,11 @@ public class ConnectActivity extends AppCompatActivity implements IMainView, IMe
         ipText = (EditText) findViewById(R.id.ipText);
         portText = (EditText) findViewById(R.id.portText);
         connectButton = (Button) findViewById(R.id.connectButton);
-        connectBackButton = (Button) findViewById(R.id.connectBackButton);
         connectionStatusTxtView = (TextView) findViewById(R.id.textViewConnectStatus);
         checkConnectionButton = (Button) findViewById(R.id.checkConnectionButton);
-        serverTestEditText = (EditText) findViewById(R.id.serverTestEditText);
 
         checkConnectionButton.setOnClickListener(checkConnectionButtonClick);
         connectButton.setOnClickListener(connectButtonClick);
-        connectBackButton.setOnClickListener(backButtonOnClick);
 
         // set default ip
         ipText.setText("10.0.2.2");
@@ -60,22 +58,58 @@ public class ConnectActivity extends AppCompatActivity implements IMainView, IMe
         ipText.setEnabled(isEnable);
         portText.setEnabled(isEnable);
         connectButton.setEnabled(isEnable);
-        connectBackButton.setEnabled(isEnable);
         connectionStatusTxtView.setEnabled(isEnable);
         checkConnectionButton.setEnabled(isEnable);
     }
 
-    private View.OnClickListener backButtonOnClick = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            startActivity(new Intent(ConnectActivity.this, MainActivity.class));
-        }
-    };
-
     private View.OnClickListener connectButtonClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+
             controller.establishConnection(ipText.getText().toString(), Integer.parseInt(portText.getText().toString()));
+            final Handler handler = new Handler();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Looper.prepare();
+                    handler.post(new Runnable() {
+                        public void run() {
+                            allSetEnable(false);
+                        }
+                    });
+                    try {
+                        Thread.sleep(2000);
+                        if (Model.getInstance().isConnected()) {
+                            startActivity(new Intent(ConnectActivity.this, MainActivity.class));
+
+                            handler.post(new Runnable() {
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Connected.", Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+                        } else {
+                            handler.post(new Runnable() {
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Can't connect.", Toast.LENGTH_LONG).show();
+                                }
+                            });                        }
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                        e.printStackTrace();
+                    }
+                    handler.post(new Runnable() {
+                        public void run() {
+                            try {
+                                Thread.sleep(1000);
+                                allSetEnable(true);
+                            } catch (Exception e) {
+
+                            }
+                        }
+                    });
+                }
+            }).start();
         }
     };
 
@@ -106,7 +140,12 @@ public class ConnectActivity extends AppCompatActivity implements IMainView, IMe
         } else if(msgData.getMessageType() == MessageData.MessageType.CONNECTION_DONE) {
             toast = Toast.makeText(getBaseContext(), "DONE!", Toast.LENGTH_SHORT);
             allSetEnable(true);
+        } else if (msgData.getMessageType() == MessageData.MessageType.CONNECTION_LOST) {
+            toast = Toast.makeText(getBaseContext(), "Connection lost", Toast.LENGTH_SHORT);
         }
-        toast.show();
+
+        if (toast != null) {
+            toast.show();
+        }
     }
 }

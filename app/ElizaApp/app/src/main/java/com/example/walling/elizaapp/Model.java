@@ -2,6 +2,7 @@ package com.example.walling.elizaapp;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -24,6 +25,7 @@ public class Model {
     private static Model instance;
     private PrintWriter out;
     private boolean connected = false;
+    private boolean wasEverConnected = false;
     private JSONObject json = new JSONObject();
 
     private Model(){
@@ -46,7 +48,6 @@ public class Model {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
     }
 
     public void establishConnection(final String ipInput, final int portInput){
@@ -57,7 +58,10 @@ public class Model {
                 Looper.prepare();
                 try {
                     System.out.println(ipInput + ", " + Integer.toString(portInput));
-                    Socket client = new Socket(ipInput, portInput);
+                    Socket client = new Socket();
+                    client.connect(new InetSocketAddress(ipInput, portInput), 1000);
+                    connected = true;
+                    wasEverConnected = true;
                     System.out.println("client created");
 
                      out = new PrintWriter(client.getOutputStream(), true);
@@ -65,14 +69,16 @@ public class Model {
                         String response=in.readLine();
                         System.out.println("I received: " + response);
                         out.println(json);
-                        connected = true;
 
-                        while(true) {
-                            Thread.sleep(50);
+                        while(connected) {
+                            Thread.sleep(200);
                             response = in.readLine();
 
                             if(response != null) {
+                                //Todo if "Connection to moped lost."
                                 System.out.println("From server: " + response);
+                            } else {
+                                connected = false;
                             }
 
                             System.out.println("sending json: " + json.get("Steering"));
@@ -82,8 +88,9 @@ public class Model {
 
                 } catch (Exception e) {
                     connected = false;
-                    e.printStackTrace();
-                    if (e.getMessage().equals("Connection refused") || e.getMessage().equals("Socket closed")){
+                    System.out.println(e.getMessage());
+                    if (e.getMessage().equals("Connection refused") || e.getMessage().equals("Socket closed")
+                            || e.getMessage().equals("connect timed out")){
                         MessageListener.BUS.updateMessage(new MessageData(MessageData.MessageType.PORT_CLOSED));
                     }
 
@@ -91,11 +98,15 @@ public class Model {
                     else if(e.getMessage().equals("Already Connected")) {
                         MessageListener.BUS.updateMessage(new MessageData(MessageData.MessageType.ALREADY_CONNECTED));
                     }
+                } finally {
+                    if (wasEverConnected) {
+                        MessageListener.BUS.updateMessage(new MessageData(MessageData.MessageType.CONNECTION_LOST));
+                    }
                 }
             }
         }).start();
-
     }
+
     public boolean isConnected(){
         return connected;
     }

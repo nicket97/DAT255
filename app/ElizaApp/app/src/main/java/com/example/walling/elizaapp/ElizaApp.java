@@ -10,10 +10,5 @@ public class ElizaApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
-        //Model.getInstance().establishConnection();
-
     }
-
-
 }

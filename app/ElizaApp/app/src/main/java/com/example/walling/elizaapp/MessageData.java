@@ -9,7 +9,8 @@ public class MessageData {
         PORT_CLOSED,
         ALREADY_CONNECTED,
         CONNECTING,
-        CONNECTION_DONE;
+        CONNECTION_DONE,
+        CONNECTION_LOST;
     }
 
     private MessageType msgType;

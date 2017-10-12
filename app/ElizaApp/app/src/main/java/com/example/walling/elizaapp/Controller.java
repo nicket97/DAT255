@@ -23,14 +23,6 @@ public class Controller {
         Model.getInstance().changeVelocity(velocity);
     }
 
-
-    public void activateCruiseControl(){
-        Model.getInstance().setCruiseControlState(true);
-    }
-    public void deActivateCruiseControl(){
-        Model.getInstance().setCruiseControlState(false);
-    }
-
     public void establishConnection(String ip, int port) {
         Model.getInstance().establishConnection(ip, port);
     }
