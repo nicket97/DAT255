@@ -82,5 +82,4 @@ public class Data {
 	public static int getMaxspeed() {
 		return maxSpeed;
 	}
-
 }

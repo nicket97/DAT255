@@ -8,6 +8,10 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import comunication.MopedSteeringHandler;
 
 /***
@@ -20,6 +24,7 @@ public class MopedDataConnection implements Runnable {
 	private int port;
 	private PropertyChangeSupport pcs;
 	private PropertyChangeSupport pcsConnected;
+	private JSONObject data;
 
 	public MopedDataConnection(String hostname, int port, PropertyChangeListener mainServer) {
 		this.hostname = hostname;
@@ -38,7 +43,7 @@ public class MopedDataConnection implements Runnable {
 			while (true) {
 				String inputLine = in.readLine();
 				System.out.println("Server received " + in);
-				out.println(MopedSteeringHandler.getSteeringCommand());
+				out.println(createMopedCommand().toString());
 				pcs.firePropertyChange("new data from moped", null, inputLine);
 			}
 		} catch (UnknownHostException e) {
@@ -49,5 +54,19 @@ public class MopedDataConnection implements Runnable {
 			e.printStackTrace();
 			System.exit(1);
 		}
+	}
+
+	private JSONObject createMopedCommand() {
+		data = new JSONObject();
+		try {
+			data.put("Steering", MopedSteeringHandler.getSteeringCommand());
+			data.put("ACC", false); // TODO set command
+			data.put("Platooning", false); // TODO set command
+			data.put("Speed", 0.0); // TODO set command
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return data;
 	}
 }
