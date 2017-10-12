@@ -12,12 +12,12 @@ public class Start implements PropertyChangeListener {
 	public FixedDataQueue dataHolder;
 	public DataPublisher dataPublisher;
 	public DataReader dataReader;
-	public ImageInput imageInput;
+	public static ImageInput imageInput;
 	public ThreadManager threadManager;
-	public AppConnection appConnection;
+	public static AppConnection appConnection;
 	public MopedImgConnection imgInput;
-	public MopedDataConnection dataInput;
-	public MopedOutputConnection dataOutput;
+	public static MopedDataConnection dataInput;
+	public static MopedOutputConnection dataOutput;
 	public InputInterpreter input;
 	public ImageRecognition img;
 

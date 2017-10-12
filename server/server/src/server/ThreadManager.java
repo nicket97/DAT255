@@ -13,10 +13,10 @@ public class ThreadManager {
 		// Thread dataPublisherThread = new Thread();
 		// Thread dataReaderThread = new Thread();
 		// Thread imageInputThread = new Thread();
-		appThread = new Thread(Start.start.appConnection);
-		imgThread = new Thread(Start.start.imageInput);
-		dataThread = new Thread(Start.start.dataInput);
-		dataOutThread = new Thread(Start.start.dataOutput);
+		appThread = new Thread(Start.appConnection);
+		imgThread = new Thread(Start.imageInput);
+		dataThread = new Thread(Start.dataInput);
+		dataOutThread = new Thread(Start.dataOutput);
 
 		// dataPublisherThread.start();
 		// dataReaderThread.start();
@@ -26,10 +26,10 @@ public class ThreadManager {
 	}
 
 	public void initThreads() {
-		// appThread.start();
+		 appThread.start();
 		// imgThread.start();
 		// dataThread.start();
-		dataOutThread.start();
+		//dataOutThread.start();
 	}
 
 }
