@@ -6,11 +6,14 @@ import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+/***
+ * Responsible for receiving images sent from the moped. Notifies Start when a
+ * new image is received.
+ */
 public class MopedImgConnection implements Runnable {
 
 	private String hostname;
 	private int port;
-	Socket clientSocket;
 	byte[] bytes;
 	private PropertyChangeSupport pcs;
 
@@ -20,20 +23,16 @@ public class MopedImgConnection implements Runnable {
 		pcs = new PropertyChangeSupport(this);
 		pcs.addPropertyChangeListener(mainServer);
 	}
-	
-	//TODO Add socket closing condition.
 
 	@Override
 	public void run() {
 
 		FileOutputStream fileOut;
 
-		try {
-			clientSocket = new Socket(hostname, port);
-			PrintWriter out = new PrintWriter(
-					new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream())), true);
-
-			InputStream is = clientSocket.getInputStream();
+		try (Socket clientSocket = new Socket(hostname, port);
+				PrintWriter out = new PrintWriter(
+						new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream())), true);
+				InputStream is = clientSocket.getInputStream();) {
 
 			String filename;
 			while (true) {

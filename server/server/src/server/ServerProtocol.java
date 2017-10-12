@@ -1,7 +1,8 @@
 package server;
 
 public class ServerProtocol {
-	
+
+	boolean connected = true;
 	private static final int WAITING = 0;
 	private static final int CONNECTED = 1;
 
@@ -14,11 +15,14 @@ public class ServerProtocol {
 			theOutput = "Send over data.";
 			state = CONNECTED;
 		} else if (state == CONNECTED) {
-			theOutput = "Data received.";
+			if (AppConnection.isMopedConnected())
+				theOutput = "Data received.";
+			else
+				theOutput = "Connection to moped lost.";
 		} else {
-				theOutput = "Bye.";
-				state = WAITING;
-			}
+			theOutput = "Bye.";
+			state = WAITING;
+		}
 		return theOutput;
 	}
 }

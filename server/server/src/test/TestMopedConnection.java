@@ -17,7 +17,7 @@ import org.junit.Test;
 import server.MopedDataConnection;
 
 public class TestMopedConnection implements PropertyChangeListener {
-	
+
 	private MopedDataConnection output;
 	private ServerSocket socket;
 	private Socket client;
@@ -25,7 +25,7 @@ public class TestMopedConnection implements PropertyChangeListener {
 	private PrintWriter out;
 
 	@Before
-	public void setup(){
+	public void setup() {
 		output = new MopedDataConnection("localhost", 0, this);
 		Thread t = new Thread(output);
 		t.start();
@@ -36,9 +36,9 @@ public class TestMopedConnection implements PropertyChangeListener {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
-	public void mopedConnectionTest(){
+	public void mopedConnectionTest() {
 		System.out.println("Running moped connection test");
 		try {
 			client = socket.accept();
@@ -46,7 +46,7 @@ public class TestMopedConnection implements PropertyChangeListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		try {
 			in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 		} catch (IOException e) {
@@ -67,15 +67,15 @@ public class TestMopedConnection implements PropertyChangeListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		assertEquals(s.equalsIgnoreCase("Connected"), true);
+		if (s != null)
+			assertEquals(s.equalsIgnoreCase("Connected"), true);
 
 	}
 
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
 
 }

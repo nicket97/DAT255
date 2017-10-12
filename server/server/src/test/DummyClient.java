@@ -20,9 +20,9 @@ public class DummyClient {
 		try (Socket client = new Socket(hostname, port);
 				PrintWriter out = new PrintWriter(client.getOutputStream(), true);
 				BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));) {
-			String firstResponse=in.readLine();
-			if(firstResponse.equals(null)){
-				if (firstResponse.equals("Send over data.")) {
+			while (in.readLine() != null) {
+				String firstResponse = in.readLine();
+				if (firstResponse != null && firstResponse.equals("Send over data.")) {
 					out.println(message);
 					System.out.println("sent " + message);
 					String reply = in.readLine();
@@ -30,8 +30,10 @@ public class DummyClient {
 					return reply;
 				}
 			}
-				
-		} catch (UnknownHostException e) {
+
+		} catch (
+
+		UnknownHostException e) {
 			System.err.println("Don't know about host " + hostname);
 			System.exit(1);
 		} catch (IOException e) {

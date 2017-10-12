@@ -17,16 +17,10 @@ public class TestServerProtocol {
 	private String inputLine;
 	private String outputLine;
 	private Start start;
-	private Thread serverThread;
-
+	
 	@Before
 	public void setup() {
 		start = new Start();		
-	}
-	
-	//@After
-	public void cleanup() {
-		serverThread.interrupt();
 	}
 
 	public TestServerProtocol(String inputLine, String outputLine) {

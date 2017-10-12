@@ -13,15 +13,16 @@ import org.bytedeco.javacv.OpenCVFrameConverter;
 import org.bytedeco.javacpp.opencv_core.Mat;
 
 import java.awt.Dimension;
+import java.io.File;
 
 public class ImageRecognition {
 
 
-    public static double locateImage(){
+    public double locateImage(Object imgFile){
         //input img
+    	File img = (File) imgFile;
 
-        //IplImage orgImg = img;
-        IplImage orgImg = loadImage();
+    	IplImage orgImg = imgFile;
 
         IplImage thresholdImage = createThreshold(orgImg);
         thresholdImage = morphImage(thresholdImage);
@@ -100,6 +101,7 @@ public class ImageRecognition {
 
     static IplImage loadImage(){
 
+        //temp filepath
         File folder = new File("/Users/erikstrid/Desktop/CameraTest/src/main/resources");
         File[] listOfFiles = folder.listFiles();
 
@@ -120,11 +122,13 @@ public class ImageRecognition {
         }
         x = String.valueOf(max);
 
+
         IplImage orgImg = cvLoadImage("/Users/erikstrid/Desktop/CameraTest/src/main/resources/" + x + ".jpg");
 
         return orgImg;
     }
 
+    //simple steering command method for early testing purposes
     static double calculateSteeringLinear(){
         if(position<0){
             return -2* position/10;
@@ -134,6 +138,7 @@ public class ImageRecognition {
         else
             return 0;
     }
+    //simple steering command method 2 for early testing purposes
     static double calculateSteeringPotential() {
         if (position < 0) {
             return -Math.pow((position), 2) / 1000;

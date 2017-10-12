@@ -12,15 +12,15 @@ public class Start implements PropertyChangeListener {
 	public FixedDataQueue dataHolder;
 	public DataPublisher dataPublisher;
 	public DataReader dataReader;
-	public ImageInput imageInput;
+	public static ImageInput imageInput;
 	public ThreadManager threadManager;
-	public AppConnection appConnection;
+	public static AppConnection appConnection;
 	public MopedImgConnection imgInput;
-	public MopedDataConnection dataInput;
-	public MopedOutputConnection dataOutput;
+	public static MopedDataConnection dataInput;
+	public static MopedOutputConnection dataOutput;
 	public InputInterpreter input;
 	public ImageRecognition img;
-	
+
 	public Data mopedData;
 
 	private String mopedIP;
@@ -38,8 +38,8 @@ public class Start implements PropertyChangeListener {
 
 		// imgInput = new MopedImgConnection("192.168.43.183", 3500, this);
 		// imgInput.run();
-		// dataInput = new MopedDataConnection("localhost", 8091, this);
-		dataOutput = new MopedOutputConnection("192.168.43.183", 9000);
+		 dataInput = new MopedDataConnection("192.168.43.230", 9999, this);
+		//dataOutput = new MopedOutputConnection("192.168.43.183", 9000);
 
 		init();
 	}
@@ -105,7 +105,7 @@ public class Start implements PropertyChangeListener {
 	 * @return
 	 */
 	public boolean validatePort(int portNumber) {
-		
+
 		if (portNumber < 80 || portNumber > 65535) {
 			System.out.println("Port was not validated");
 			return false;
@@ -123,15 +123,14 @@ public class Start implements PropertyChangeListener {
 		if (arg.getPropertyName().equals("new message from app")) {
 			input = new InputInterpreter(arg.getNewValue().toString());
 			if (input.startACC())
-				ProgramManager.startACC(10); //TODO Change to proper value after testing
+				ProgramManager.startACC(10); // TODO Change to proper value after testing
 			else if (input.startPlatooning())
 				ProgramManager.startPlatooning();
-			else
-				if (ProgramManager.ACCActive)
-					ProgramManager.stopACC();
-				else if (ProgramManager.platooningActive)
-					ProgramManager.stopPlatooning();
-				MopedSteeringHandler.setSteeringCommand(input.getSignal());
+			else if (ProgramManager.ACCActive)
+				ProgramManager.stopACC();
+			else if (ProgramManager.platooningActive)
+				ProgramManager.stopPlatooning();
+			MopedSteeringHandler.setSteeringCommand(input.getSignal());
 			System.out.println("App sent a message: " + arg.getNewValue());
 		} else if (arg.getPropertyName().equals("new data from moped")) {
 			System.out.println("New data from moped: " + arg.getNewValue());
@@ -139,7 +138,8 @@ public class Start implements PropertyChangeListener {
 		} else if (arg.getPropertyName().equals("new image")) {
 			img.locateImage(arg.getNewValue());
 			System.out.println("new image received from moped");
-		}
+		} else if (arg.getPropertyName().equals("connection lost")) {
+			appConnection.setMopedConnected(false);
+		}		
 	}
-
 }
