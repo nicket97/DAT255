@@ -115,11 +115,6 @@ public class Model {
         setSteerString(SteeringHelper.getInstance().getCommandString());
     }
 
-    public String sendSteeringCommand(){
-        msgCreator.setSteerString(SteeringHelper.getInstance().getCommandString());
-        return (SteeringHelper.getInstance().getCommandString());
-    }
-
     public void setACC(boolean state) {
         try {
             json.put("ACC", state);
