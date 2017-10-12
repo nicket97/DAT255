@@ -16,7 +16,7 @@ import comunication.MopedSteeringHandler;
 
 /***
  * Receives data sent from moped. Notifies Start when a new value is received.
- * Responds with a value set in MopedSteeringHandler.
+ * Responds with a JSON object that contains data from the server.
  */
 public class MopedDataConnection implements Runnable {
 
@@ -60,8 +60,8 @@ public class MopedDataConnection implements Runnable {
 		data = new JSONObject();
 		try {
 			data.put("Steering", MopedSteeringHandler.getSteeringCommand());
-			data.put("ACC", false); // TODO set command
-			data.put("Platooning", false); // TODO set command
+			data.put("ACC", ProgramManager.ACCActive); // TODO set command
+			data.put("Platooning", ProgramManager.platooningActive); // TODO set command
 			data.put("Speed", 0.0); // TODO set command
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

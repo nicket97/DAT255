@@ -38,8 +38,8 @@ public class Start implements PropertyChangeListener {
 
 		// imgInput = new MopedImgConnection("192.168.43.183", 3500, this);
 		// imgInput.run();
-		// dataInput = new MopedDataConnection("localhost", 8091, this);
-		dataOutput = new MopedOutputConnection("192.168.43.183", 9000);
+		 dataInput = new MopedDataConnection("192.168.43.230", 9999, this);
+		//dataOutput = new MopedOutputConnection("192.168.43.183", 9000);
 
 		init();
 	}
