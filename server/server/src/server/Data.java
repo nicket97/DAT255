@@ -3,45 +3,43 @@ package server;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/***
+ * Holds data sent from MOPED to be used in calculations for ACC and platooning.
+ */
 public class Data {
-	
+
 	public static final int maxSpeed = 100;
 	public double dist;
 	public double speed;
 	public double engineSpeed;
 	public int batteryVoltage;
 	public long timeStamp;
-	
-	public Data() {
-		// TODO Auto-generated constructor stub
-	}
-	/**
+
+	/***
+	 * Constructor for the Data class.
 	 * 
-	 * @param dist
-	 * @param speed
-	 * @param engineSpeed
-	 * @param batteryVoltage
-	 * @param timeStamp
+	 * @param data
+	 *            JSON string sent from MOPED.
 	 */
-	public Data(String data){
+	public Data(String data) {
 		try {
-            JSONObject json = new JSONObject(data);
+			JSONObject json = new JSONObject(data);
 
-            this.speed = json.getDouble("inspeed_avg"); //typ speed?
-            //fodometer = json.getDouble("fodometer"); //??
-            //odometer = json.getDouble("odometer"); //avstånd beräkna hastighet
-            this.dist = json.getDouble("can_ultra"); //sensor avstånd i meter
-            this.engineSpeed = json.getDouble("can_speed"); //motorns kraft 0-100
-            //can_steer = json.getDouble("can_steer"); //styrning
-            this.timeStamp = json.getLong("timestamp");
+			this.speed = json.getDouble("inspeed_avg"); // typ speed?
+			// fodometer = json.getDouble("fodometer"); //??
+			// odometer = json.getDouble("odometer"); //avstånd beräkna hastighet
+			this.dist = json.getDouble("can_ultra"); // sensor avstånd i meter
+			this.engineSpeed = json.getDouble("can_speed"); // motorns kraft 0-100
+			// can_steer = json.getDouble("can_steer"); //styrning
+			this.timeStamp = json.getLong("timestamp");
 
-        } catch (JSONException e){
-            e.printStackTrace();
-        }
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public long getTime() {
-		
+
 		return timeStamp;
 	}
 
@@ -77,7 +75,6 @@ public class Data {
 		this.batteryVoltage = batteryVoltage;
 	}
 
-
 	public void setTimeStamp(int timeStamp) {
 		this.timeStamp = timeStamp;
 	}
@@ -85,5 +82,5 @@ public class Data {
 	public static int getMaxspeed() {
 		return maxSpeed;
 	}
-	
+
 }

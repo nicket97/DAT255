@@ -3,6 +3,10 @@ package server;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/***
+ * This class interprets the JSON object sent from the app that contains
+ * steering signal and whether ACC and platooning are active or not.
+ */
 public class InputInterpreter {
 
 	private String signal;
@@ -25,11 +29,16 @@ public class InputInterpreter {
 	public boolean startACC() {
 		return acc;
 	}
+
 	public boolean startPlatooning() {
 		return platooning;
 	}
-	
+
 	public String getSignal() {
-		return this.signal;
+		return signal;
+	}
+
+	public double getSpeed() {
+		return speed;
 	}
 }
