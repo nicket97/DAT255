@@ -24,7 +24,6 @@ public class Model {
     private static Model instance;
     private PrintWriter out;
     private boolean connected = false;
-    private MessageCreator msgCreator = new MessageCreator();
     private JSONObject json = new JSONObject();
 
     private Model(){
