@@ -34,7 +34,7 @@ def setupServer():
     # bind to the port
     serversocket.bind(("", port))
 	
-    print ("Starting sever " + host)
+    print ("Starting sensor server " + host)
 
     # queue up to 5 requests
     serversocket.listen(5)
@@ -44,9 +44,13 @@ def setupServer():
         clientsocket, addr = serversocket.accept()
 	
         print("Got a connection from %s" % str(addr))
-        while True:            
-            time.sleep(1)
-            if myG!=None:
-                msg =filter(myG,["inspeed_avg","fodometer","odometer","can_ultra","can_speed","can_steer"])+ "\r\n"
-                clientsocket.send(msg.encode('ascii'))
-        clientsocket.close()
+        try:
+            while True:            
+                time.sleep(1)
+                if myG!=None:
+                    msg =filter(myG,["inspeed_avg","fodometer","odometer","can_ultra","can_speed","can_steer"])+ "\r\n"
+                    clientsocket.send(msg.encode('ascii'))
+        except socket.error as e:
+            print ("Client disconnected")
+            ##Call stop moped
+            clientsocket.close()
