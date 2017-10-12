@@ -45,8 +45,12 @@ def setupServer():
 	
         print("Got a connection from %s" % str(addr))
         try:
-            while True:            
-                time.sleep(1)
+            while True:  
+            	msg=clientsocket.recv();
+            	msg=msg.decode('utf-8')
+
+            	msg = json.loads(msg)
+
                 if myG!=None:
                     msg =filter(myG,["inspeed_avg","fodometer","odometer","can_ultra","can_speed","can_steer"])+ "\r\n"
                     clientsocket.send(msg.encode('ascii'))
