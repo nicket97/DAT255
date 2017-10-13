@@ -3,6 +3,8 @@ package server;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import comunication.MopedSteeringHandler;
+
 /***
  * This class interprets the JSON object sent from the app that contains
  * steering signal and whether ACC and platooning are active or not.
@@ -23,6 +25,9 @@ public class InputInterpreter {
 			this.acc = json.getBoolean("ACC"); // is acc active?
 			this.platooning = json.getBoolean("Platooning"); // is platooning active?
 			this.speed = json.getDouble("Speed"); // cruise control speed
+			
+			MopedSteeringHandler.setHandling(handling);
+			MopedSteeringHandler.setVelocity(velocity);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
