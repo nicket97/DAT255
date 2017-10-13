@@ -152,7 +152,7 @@ public class Model {
             int vel = Integer.parseInt(steerString.substring(1, 5));
             int handling = Integer.parseInt(steerString.substring(6,10));
             json.put("Velocity", vel);
-            json.put("Handling", handling);
+            json.put("Handling", -handling);
             System.out.println(json.get("Velocity"));
             System.out.println(json.get("Handling"));
         } catch (Exception e) {
