@@ -131,8 +131,9 @@ public class Start implements PropertyChangeListener {
 				ProgramManager.stopACC();
 			else if (ProgramManager.platooningActive)
 				ProgramManager.stopPlatooning();
-			MopedSteeringHandler.setVelocity(input.getVelocity());
-			MopedSteeringHandler.setHandling(input.getHandling());
+			if (!ProgramManager.ACCActive || !ProgramManager.platooningActive)
+				MopedSteeringHandler.setVelocity(input.getVelocity());
+				MopedSteeringHandler.setHandling(input.getHandling());
 			System.out.println("App sent a message: " + arg.getNewValue());
 		} else if (arg.getPropertyName().equals("new data from moped")) {
 			System.out.println("New data from moped: " + arg.getNewValue());
