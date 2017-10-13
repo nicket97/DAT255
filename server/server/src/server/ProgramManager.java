@@ -11,9 +11,11 @@ public class ProgramManager {
 	static Thread platoonThread = null;
 	
 	public static void startACC(int dist){
+		if(!ACCActive){
 		accThread = new Thread(new ACCController(dist));
 		accThread.start();
 		ACCActive = true;
+		}
 	}
 	@SuppressWarnings("deprecation")
 	public static void stopACC(){
@@ -25,9 +27,11 @@ public class ProgramManager {
 	}
 	
 	public static void startPlatooning(){
+		if(!platooningActive){
 		platoonThread = new Thread(new PlatooningController());
 		platoonThread.start();
 		platooningActive = true;
+		}
 	}
 	@SuppressWarnings("deprecation")
 	public static void stopPlatooning(){

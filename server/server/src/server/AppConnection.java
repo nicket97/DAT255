@@ -60,7 +60,7 @@ public class AppConnection implements Runnable {
 		return connected;
 	}
 
-	public void setMopedConnected(boolean b) {
+	public static void setMopedConnected(boolean b) {
 		connected = b;
 	}
 }
