@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity implements IMainView, IMessageListener {
@@ -18,7 +19,6 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
     private ToggleButton cruiseControlButton, platooningButton;
     private SeekBar speedBar, steerBar;
     private EditText setSpeedEditText;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +66,23 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
         speedBar.setProgress(newValue, true);
     }
 
+    private void ableUI(boolean state) {
+        btnStop.setEnabled(state);
+        dcButton.setEnabled(state);
+        setSpeedButton.setEnabled(state);
+        setSpeedEditText.setEnabled(state);
+        centerButton.setEnabled(state);
+        speedBar.setEnabled(state);
+        steerBar.setEnabled(state);
+    }
+
+    private void zeroUI() {
+        steerBar.setProgress(100, true);
+        speedBar.setProgress(100, true);
+        controller.setSpeed(0);
+        setSpeedEditText.setText("");
+    }
+
 
     // Here we initalize listeners
 
@@ -88,6 +105,8 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
+            controller.setSpeed(0);
+            setSpeedEditText.setText("");
         }
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
@@ -105,8 +124,25 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
     private View.OnClickListener setSpeedOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            System.out.println("Set speed to " + setSpeedEditText.getText().toString() + " cm/s.");
-            controller.setSpeed(Double.parseDouble(setSpeedEditText.getText().toString()));
+            String str = setSpeedEditText.getText().toString();
+            if (!str.equals("")) {
+                if (str.contains(",")) {
+                    str = str.replace(",", ".");
+                }
+
+                try {
+                    controller.setSpeed(Double.parseDouble(str));
+                    speedBar.setProgress(100, true);
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "Speed not provided correctly.",
+                            Toast.LENGTH_LONG).show();
+                }
+
+            } else {
+                Toast.makeText(getApplicationContext(), "You must provide a speed.",
+                        Toast.LENGTH_LONG).show();
+            }
+
         }
     };
 
@@ -114,11 +150,14 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
             new CompoundButton.OnCheckedChangeListener() {
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             if (isChecked) {
-                System.out.println("Platooning ON");
+                zeroUI();
                 controller.setPlatooning(true);
+                ableUI(false);
+                cruiseControlButton.setEnabled(false);
             } else {
-                System.out.println("Platooning OFF");
                 controller.setPlatooning(false);
+                ableUI(true);
+                cruiseControlButton.setEnabled(true);
             }
         }
     };
@@ -127,11 +166,14 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
             new CompoundButton.OnCheckedChangeListener() {
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (isChecked) {
-                        System.out.println("Cruise control ON");
+                        zeroUI();
                         controller.setACC(true);
+                        ableUI(false);
+                        platooningButton.setEnabled(false);
                     } else {
-                        System.out.println("Cruise control OFF");
                         controller.setACC(false);
+                        ableUI(true);
+                        platooningButton.setEnabled(true);
                     }
                 }
             };
@@ -153,16 +195,9 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
         }
     };
 
-    private View.OnClickListener btnOnDebugClick = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            startActivity(new Intent(MainActivity.this, DebugActivity.class));
-        }
-    };
-
     @Override
     public void updateResult(String res) {
-        //txtView.setText(res);
+
     }
 
     @Override
