@@ -76,6 +76,9 @@ public class Model {
                             response = in.readLine();
 
                             if(response != null) {
+                                if (response.equals("Connection to moped lost.")) {
+                                    connected = false;
+                                }
                                 //Todo if "Connection to moped lost."
                                 System.out.println("From server: " + response);
                             } else {
