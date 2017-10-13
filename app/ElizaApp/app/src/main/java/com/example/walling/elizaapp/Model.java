@@ -41,7 +41,8 @@ public class Model {
 
     private void initJSON() {
         try {
-            json.put("Steering", "V0000H0000");
+            json.put("Velocity", 0000);
+            json.put("Handling", 0000);
             json.put("ACC", false);
             json.put("Platooning", false);
             json.put("Speed", 0.0);
@@ -81,7 +82,7 @@ public class Model {
                                 connected = false;
                             }
 
-                            System.out.println("sending json: " + json.get("Steering"));
+                            System.out.println("sending json");
                             out.println(json);
                         }
                 }
@@ -145,8 +146,12 @@ public class Model {
 
     public void setSteerString(String steerString) {
         try {
-            json.put("Steering", steerString);
-            System.out.println(json.get("Steering").toString());
+            int vel = Integer.parseInt(steerString.substring(1, 5));
+            int handling = Integer.parseInt(steerString.substring(6,10));
+            json.put("Velocity", vel);
+            json.put("Handling", handling);
+            System.out.println(json.get("Velocity"));
+            System.out.println(json.get("Handling"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
