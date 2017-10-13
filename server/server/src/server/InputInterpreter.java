@@ -28,6 +28,7 @@ public class InputInterpreter {
 			
 			MopedSteeringHandler.setHandling(handling);
 			MopedSteeringHandler.setVelocity(velocity);
+			System.out.println("Setting vel to " + velocity);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

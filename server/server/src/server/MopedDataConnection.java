@@ -24,7 +24,7 @@ public class MopedDataConnection implements Runnable {
 	private int port;
 	private PropertyChangeSupport pcs;
 	private PropertyChangeSupport pcsConnected;
-	private JSONObject data;
+	//private JSONObject data;
 
 	public MopedDataConnection(String hostname, int port, PropertyChangeListener mainServer) {
 		this.hostname = hostname;
@@ -44,6 +44,7 @@ public class MopedDataConnection implements Runnable {
 				String inputLine = in.readLine();
 				System.out.println("Server received " + in);
 				out.println(createMopedCommand().toString());
+				//System.out.println(createMopedCommand().toString());
 				pcs.firePropertyChange("new data from moped", null, inputLine);
 			}
 		} catch (UnknownHostException e) {
@@ -57,7 +58,7 @@ public class MopedDataConnection implements Runnable {
 	}
 
 	private JSONObject createMopedCommand() {
-		data = new JSONObject();
+		JSONObject data = new JSONObject();
 		try {
 			data.put("Velocity", MopedSteeringHandler.getVelocity());
 			data.put("Handling", MopedSteeringHandler.getHandling());
