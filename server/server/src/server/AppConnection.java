@@ -13,7 +13,7 @@ public class AppConnection implements Runnable {
 
 	private int appPort;
 	private PropertyChangeSupport pcs;
-	private static boolean connected;
+	private static boolean connected = true;
 
 	public AppConnection(int port, PropertyChangeListener mainServer) {
 		this.appPort = port;
