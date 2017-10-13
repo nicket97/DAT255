@@ -6,20 +6,21 @@ import time
 import threading
 import sys
 
+
+
 sys.path.insert(0,"./BraishScripts")
-sys.path.insert(0,"./ImagesSendingUnit")
+sys.path.insert(1,"./ImagesSendingUnit")
 import PythonServer
 import FileServer
 
-dataServerThread = threading.Thread(target=PythonServer.setupServer())
-imagesServerThread = threading.Thread(target=FileServer.setupImageServer())
-
+dataServerThread = threading.Thread(target=PythonServer.setupServer,args=(driving.dodrive,))
+imagesServerThread = threading.Thread(target=FileServer.setupImageServer)
 
 init()
 
 dataServerThread.start()
 imagesServerThread.start()
 
-
+#time.sleep(21)
 while True:
 	PythonServer.update(g)
