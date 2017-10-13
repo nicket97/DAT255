@@ -21,9 +21,8 @@ public class ConnectActivity extends AppCompatActivity implements IMainView, IMe
 
     private EditText ipText;
     private EditText portText;
-    private Button connectButton, checkConnectionButton;
+    private Button connectButton;
     private Controller controller;
-    private TextView connectionStatusTxtView;
     Toast toast;
 
     @Override
@@ -41,25 +40,18 @@ public class ConnectActivity extends AppCompatActivity implements IMainView, IMe
         ipText = (EditText) findViewById(R.id.ipText);
         portText = (EditText) findViewById(R.id.portText);
         connectButton = (Button) findViewById(R.id.connectButton);
-        connectionStatusTxtView = (TextView) findViewById(R.id.textViewConnectStatus);
-        checkConnectionButton = (Button) findViewById(R.id.checkConnectionButton);
 
-        checkConnectionButton.setOnClickListener(checkConnectionButtonClick);
         connectButton.setOnClickListener(connectButtonClick);
 
         // set default ip
         ipText.setText("10.0.2.2");
         portText.setText("8080");
-
-        connectionStatusTxtView.setText("Connection status: " + controller.getConnectionStatus());
     }
 
     private void allSetEnable(boolean isEnable) {
         ipText.setEnabled(isEnable);
         portText.setEnabled(isEnable);
         connectButton.setEnabled(isEnable);
-        connectionStatusTxtView.setEnabled(isEnable);
-        checkConnectionButton.setEnabled(isEnable);
     }
 
     private View.OnClickListener connectButtonClick = new View.OnClickListener() {
@@ -110,13 +102,6 @@ public class ConnectActivity extends AppCompatActivity implements IMainView, IMe
                     });
                 }
             }).start();
-        }
-    };
-
-    private View.OnClickListener checkConnectionButtonClick = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            connectionStatusTxtView.setText("Connection status: " + controller.getConnectionStatus());
         }
     };
 
