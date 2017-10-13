@@ -38,8 +38,8 @@ public class Start implements PropertyChangeListener {
 
 		// imgInput = new MopedImgConnection("192.168.43.183", 3500, this);
 		// imgInput.run();
-		 dataInput = new MopedDataConnection("192.168.43.230", 9999, this);
-		//dataOutput = new MopedOutputConnection("192.168.43.183", 9000);
+		dataInput = new MopedDataConnection("192.168.43.230", 9999, this);
+		// dataOutput = new MopedOutputConnection("192.168.43.183", 9000);
 
 		init();
 	}
@@ -117,6 +117,7 @@ public class Start implements PropertyChangeListener {
 
 	}
 
+	// TODO Fix this logic
 	@Override
 	public void propertyChange(PropertyChangeEvent arg) {
 		System.out.println("RECEIVED EVENT");
@@ -130,7 +131,8 @@ public class Start implements PropertyChangeListener {
 				ProgramManager.stopACC();
 			else if (ProgramManager.platooningActive)
 				ProgramManager.stopPlatooning();
-			MopedSteeringHandler.setSteeringCommand(input.getSignal());
+			MopedSteeringHandler.setVelocity(input.getVelocity());
+			MopedSteeringHandler.setHandling(input.getHandling());
 			System.out.println("App sent a message: " + arg.getNewValue());
 		} else if (arg.getPropertyName().equals("new data from moped")) {
 			System.out.println("New data from moped: " + arg.getNewValue());
@@ -140,6 +142,6 @@ public class Start implements PropertyChangeListener {
 			System.out.println("new image received from moped");
 		} else if (arg.getPropertyName().equals("connection lost")) {
 			appConnection.setMopedConnected(false);
-		}		
+		}
 	}
 }

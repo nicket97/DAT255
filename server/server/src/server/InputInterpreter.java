@@ -9,7 +9,8 @@ import org.json.JSONObject;
  */
 public class InputInterpreter {
 
-	private String signal;
+	private int velocity;
+	private int handling;
 	private boolean acc;
 	private boolean platooning;
 	private double speed;
@@ -17,7 +18,8 @@ public class InputInterpreter {
 	public InputInterpreter(String input) {
 		try {
 			JSONObject json = new JSONObject(input);
-			this.signal = json.getString("Steering"); // steering signal
+			this.velocity = json.getInt("Velocity"); // speed
+			this.handling = json.getInt("Handling"); // horizontal steering
 			this.acc = json.getBoolean("ACC"); // is acc active?
 			this.platooning = json.getBoolean("Platooning"); // is platooning active?
 			this.speed = json.getDouble("Speed"); // cruise control speed
@@ -34,8 +36,12 @@ public class InputInterpreter {
 		return platooning;
 	}
 
-	public String getSignal() {
-		return signal;
+	public int getVelocity() {
+		return velocity;
+	}
+	
+	public int getHandling() {
+		return handling;
 	}
 
 	public double getSpeed() {
