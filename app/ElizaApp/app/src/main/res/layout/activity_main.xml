@@ -45,13 +45,16 @@
         android:text="Stop"
         android:layout_marginStart="98dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="98dp"
+        android:layout_marginLeft="67dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
-        app:layout_constraintVertical_bias="0.498" />
+        app:layout_constraintVertical_bias="0.498"
+        app:layout_constraintRight_toLeftOf="@+id/steerBar"
+        android:layout_marginRight="8dp"
+        app:layout_constraintHorizontal_bias="0.0" />
 
 
     <ToggleButton
@@ -86,8 +89,8 @@
 
     <SeekBar
         android:id="@+id/speedBar"
-        android:layout_width="259dp"
-        android:layout_height="54dp"
+        android:layout_width="250dp"
+        android:layout_height="20dp"
         android:rotation="270"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
@@ -145,6 +148,19 @@
         app:layout_constraintTop_toBottomOf="@+id/steerBar"
         app:layout_constraintHorizontal_bias="0.561"
         app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/centerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="33dp"
+        android:layout_marginRight="33dp"
+        android:layout_marginTop="60dp"
+        android:text="center"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintLeft_toLeftOf="@+id/steerBar"
+        app:layout_constraintRight_toRightOf="@+id/steerBar"
+        app:layout_constraintTop_toBottomOf="@+id/switchScreen" />
 
 
 </android.support.constraint.ConstraintLayout>

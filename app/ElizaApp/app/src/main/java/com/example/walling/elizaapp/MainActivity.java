@@ -18,7 +18,7 @@ import android.widget.ToggleButton;
 public class MainActivity extends AppCompatActivity implements IMainView, IMessageListener {
 
     private Controller controller;
-    private Button btnStop, btnSwitchScreen, buttonDebug, setSpeedButton;
+    private Button btnStop, btnSwitchScreen, buttonDebug, setSpeedButton, centerButton;
     private ToggleButton cruiseControlButton, platooningButton;
     private SeekBar speedBar, steerBar;
     private EditText setSpeedEditText;
@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
         cruiseControlButton = (ToggleButton) findViewById(R.id.cruiseControlButton);
         platooningButton = (ToggleButton) findViewById(R.id.platooningButton);
         setSpeedEditText = (EditText) findViewById(R.id.setSpeedEditText);
+        centerButton = (Button) findViewById(R.id.centerButton);
 
         btnStop.setOnClickListener(btnStopOnClick);
         btnSwitchScreen.setOnClickListener(btnSwitchScreenOnClick);
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
         setSpeedButton.setOnClickListener(setSpeedOnClick);
         platooningButton.setOnCheckedChangeListener(platooningButtonListener);
         cruiseControlButton.setOnCheckedChangeListener(cruiseControlButtonListener);
+        centerButton.setOnClickListener(centerButtonOnClick);
         initSpeedBar();
         initSteerBar();
     }
@@ -67,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
     }
 
     private void setSpeedBarValue(int newValue){
-        speedBar.setProgress(newValue);
+        speedBar.setProgress(newValue, true);
     }
 
 
@@ -98,6 +100,13 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
         }
     };
 
+
+    private View.OnClickListener centerButtonOnClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            steerBar.setProgress(100, true);
+        }
+    };
 
     private View.OnClickListener setSpeedOnClick = new View.OnClickListener() {
         @Override
