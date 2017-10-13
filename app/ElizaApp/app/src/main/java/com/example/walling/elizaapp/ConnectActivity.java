@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ public class ConnectActivity extends AppCompatActivity implements IMainView, IMe
     private Button connectButton;
     private Controller controller;
     Toast toast;
+    private ImageView raspPiImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +42,14 @@ public class ConnectActivity extends AppCompatActivity implements IMainView, IMe
         ipText = (EditText) findViewById(R.id.ipText);
         portText = (EditText) findViewById(R.id.portText);
         connectButton = (Button) findViewById(R.id.connectButton);
+        raspPiImage = (ImageView) findViewById(R.id.imageView);
 
         connectButton.setOnClickListener(connectButtonClick);
 
         // set default ip
         ipText.setText("10.0.2.2");
         portText.setText("8080");
+        raspPiImage.setRotation(348);
     }
 
     private void allSetEnable(boolean isEnable) {

@@ -49,12 +49,14 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
         initSpeedBar();
         initSteerBar();
     }
+
     private void initSteerBar(){
         steerBar = (SeekBar) findViewById(R.id.steerBar);
         steerBar.setMax(200);
         steerBar.setProgress(steerBar.getMax() / 2);
         steerBar.setOnSeekBarChangeListener(changeSteerListener);
     }
+
     private void initSpeedBar(){
         speedBar = (SeekBar) findViewById(R.id.speedBar);
         speedBar.setMax(200);
@@ -83,9 +85,7 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
         setSpeedEditText.setText("");
     }
 
-
     // Here we initalize listeners
-
     private SeekBar.OnSeekBarChangeListener changeSteerListener= new SeekBar.OnSeekBarChangeListener(){
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
         public void onStopTrackingTouch(SeekBar seekBar) {
         }
     };
+
     private SeekBar.OnSeekBarChangeListener changeSpeedListener= new SeekBar.OnSeekBarChangeListener(){
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -112,8 +113,7 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
         public void onStopTrackingTouch(SeekBar seekBar) {
         }
     };
-
-
+    
     private View.OnClickListener centerButtonOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
