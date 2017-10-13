@@ -10,7 +10,7 @@ import org.junit.Test;
 import comunication.MopedSteeringHandler;
 import server.InputInterpreter;
 
-public class SteeringComandTest {
+public class SteeringCommandTest {
 	
 	@Before
 	public void setup(){
@@ -32,6 +32,8 @@ public class SteeringComandTest {
 		}
 		
 		InputInterpreter in = new InputInterpreter(json.toString());
+		MopedSteeringHandler.setHandling(in.getHandling());
+		MopedSteeringHandler.setVelocity(in.getVelocity());
 		assertEquals(in.getHandling() == 36, true);
 		assertEquals(in.getVelocity() == 49, true);
 		assertEquals(MopedSteeringHandler.getHandling() == 36, true);

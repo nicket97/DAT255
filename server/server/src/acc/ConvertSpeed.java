@@ -7,6 +7,8 @@ public class ConvertSpeed {
 	String value;
 
 	public String convertSpeedToESCValue(int speed) {
+		//value = speed >= 15 ? "" + (speed-15) / 2 : null;
+		//return value;
 		if (speed >= 15) {
 			value = "" + (speed - 15) / 2;
 
