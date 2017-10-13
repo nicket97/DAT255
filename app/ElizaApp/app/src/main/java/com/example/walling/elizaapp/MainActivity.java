@@ -1,6 +1,5 @@
 package com.example.walling.elizaapp;
 
-import android.app.ActivityManager;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
@@ -10,15 +9,12 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.SeekBar;
-import android.widget.Switch;
-import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity implements IMainView, IMessageListener {
 
     private Controller controller;
-    private Button btnStop, btnSwitchScreen, buttonDebug, setSpeedButton, centerButton;
+    private Button btnStop, dcButton, setSpeedButton, centerButton;
     private ToggleButton cruiseControlButton, platooningButton;
     private SeekBar speedBar, steerBar;
     private EditText setSpeedEditText;
@@ -37,8 +33,7 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
 
     private void initGUI(){
         btnStop = (Button) findViewById(R.id.btnStop);
-        btnSwitchScreen = (Button) findViewById(R.id.switchScreen);
-        buttonDebug = (Button) findViewById(R.id.buttonDebug);
+        dcButton = (Button) findViewById(R.id.dcButton);
         setSpeedButton = (Button) findViewById(R.id.setSpeedButton);
         cruiseControlButton = (ToggleButton) findViewById(R.id.cruiseControlButton);
         platooningButton = (ToggleButton) findViewById(R.id.platooningButton);
@@ -46,8 +41,7 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
         centerButton = (Button) findViewById(R.id.centerButton);
 
         btnStop.setOnClickListener(btnStopOnClick);
-        btnSwitchScreen.setOnClickListener(btnSwitchScreenOnClick);
-        buttonDebug.setOnClickListener(btnOnDebugClick);
+        dcButton.setOnClickListener(dcButtonOnClick);
         setSpeedButton.setOnClickListener(setSpeedOnClick);
         platooningButton.setOnCheckedChangeListener(platooningButtonListener);
         cruiseControlButton.setOnCheckedChangeListener(cruiseControlButtonListener);
@@ -152,10 +146,10 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
         }
     };
 
-    private View.OnClickListener btnSwitchScreenOnClick = new View.OnClickListener() {
+    private View.OnClickListener dcButtonOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            startActivity(new Intent(MainActivity.this, ConnectActivity.class));
+            controller.disconnect();
         }
     };
 

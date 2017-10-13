@@ -147,6 +147,10 @@ public class Model {
         }
     }
 
+    public void disconnect() {
+        connected = false;
+    }
+
     public void setSteerString(String steerString) {
         try {
             int vel = Integer.parseInt(steerString.substring(1, 5));
