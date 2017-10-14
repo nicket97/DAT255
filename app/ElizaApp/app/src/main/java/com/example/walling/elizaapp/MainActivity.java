@@ -135,7 +135,10 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
                 }
 
                 try {
-                    controller.setSpeed(Double.parseDouble(str));
+                    double speed = Double.parseDouble(str);
+                    if (speed >= -100 && speed <= 100) {
+                        controller.setSpeed(speed);
+                    }
                     speedBar.setProgress(100, true);
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), "Speed not provided correctly.",

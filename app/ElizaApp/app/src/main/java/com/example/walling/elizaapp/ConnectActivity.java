@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 /**
  * Created by olofenstrom on 2017-09-18.
+ *
+ *
  */
 
 public class ConnectActivity extends AppCompatActivity implements IMainView, IMessageListener {

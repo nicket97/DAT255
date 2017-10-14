@@ -18,6 +18,9 @@ import org.json.*;
  * Created by walling on 2017-09-13.
  *
  * Singleton class for our Model
+ * Establishes connection to server and continuously sends JSON objects
+ * Notifies views via Listeners if a change happens in model e.g. connection lost
+ * Views notify the model of changes via controller class
  */
 
 public class Model {
@@ -32,6 +35,11 @@ public class Model {
         initJSON();
     }
 
+
+    /**
+     * Gives the instance of the Model
+     * @return the instance of the Model
+     */
     public static Model getInstance(){
         if(instance == null){
             instance = new Model();
@@ -51,6 +59,11 @@ public class Model {
         }
     }
 
+    /**
+     * Establishes connection to server. Repeatedly sends JSON Objects to server.
+     * @param ipInput IP to connect to
+     * @param portInput Port to connect to
+     */
     public void establishConnection(final String ipInput, final int portInput){
         final Handler handler = new Handler();
         new Thread(new Runnable() {
@@ -122,28 +135,51 @@ public class Model {
         }).start();
     }
 
+    /**
+     * Checks if the app is connected to server
+     * @return Returns boolean state of connection
+     */
     public boolean isConnected(){
         return connected;
     }
 
+    /**
+     * Stops the MOPED
+     */
     public void stop(){
         SteeringHelper.getInstance().setVelocity(0);
         setSteerString(SteeringHelper.getInstance().getCommandString());
     }
 
+    /**
+     * Checks if the app ever was connected to the server since last start of app
+     * @return Returns boolean, true if ever was connected, false if not
+     */
     public boolean wasEverConnected() {
         return wasEverConnected;
     }
 
+    /**
+     * Changes the direction of the MOPED
+     * @param direction a direction as integer, -100 to 100
+     */
     public void changeDirection(int direction){
         SteeringHelper.getInstance().setDirection(direction);
         setSteerString(SteeringHelper.getInstance().getCommandString());
     }
+
+    /**
+     * Changes the velocity of the MOPED
+     * @param velocity velocity, given as integer, -100 to 100
+     */
     public void changeVelocity(int velocity){
         SteeringHelper.getInstance().setVelocity(velocity);
         setSteerString(SteeringHelper.getInstance().getCommandString());
     }
 
+    /*
+    Set state of Adaptive Cruise Control
+     */
     public void setACC(boolean state) {
         try {
             json.put("ACC", state);
@@ -153,6 +189,9 @@ public class Model {
         }
     }
 
+    /*
+    Set state of Platooning
+     */
     public void setPlatooning(boolean state) {
         try {
             json.put("Platooning", state);
@@ -162,10 +201,16 @@ public class Model {
         }
     }
 
+    /*
+    Disconnect from the server
+     */
     public void disconnect() {
         connected = false;
     }
 
+    /*
+    Set the steer-string which later is sent to the server
+     */
     public void setSteerString(String steerString) {
         try {
             int vel = Integer.parseInt(steerString.substring(1, 5));
@@ -179,6 +224,9 @@ public class Model {
         }
     }
 
+    /*
+    Set the speed of the MOPED
+     */
     public void setSpeed(double speed) {
         try {
             json.put("Speed", speed);
