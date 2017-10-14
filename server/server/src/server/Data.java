@@ -38,6 +38,13 @@ public class Data {
 		}
 	}
 
+	public Data(int dist, int speed, int engineSpeed, int batteryVoltage, long timeStamp){
+  		this.dist = dist;
+  		this.speed = speed;
+  		this.engineSpeed = engineSpeed;
+  		this.batteryVoltage = batteryVoltage;
+  		this.timeStamp = timeStamp;
+  	}
 	public long getTime() {
 
 		return timeStamp;
