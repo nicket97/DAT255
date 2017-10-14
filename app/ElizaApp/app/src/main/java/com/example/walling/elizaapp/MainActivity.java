@@ -20,13 +20,17 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
     private SeekBar speedBar, steerBar;
     private EditText setSpeedEditText;
 
+    private boolean alreadyCreated = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_main);
         controller = new Controller(this);
-        MessageListener.BUS.addListener(this);
+        if (Model.getInstance().wasEverConnected()) {
+            MessageListener.BUS.addListener(this);
+        }
 
         initGUI();
     }
@@ -113,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
         public void onStopTrackingTouch(SeekBar seekBar) {
         }
     };
-    
+
     private View.OnClickListener centerButtonOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {

@@ -18,8 +18,13 @@ public enum MessageListener {
     }
 
     public void updateMessage(MessageData msgData) {
-        for (IMessageListener messageUpdater : listeners) {
-            messageUpdater.update(msgData);
+        try {
+            for (IMessageListener messageUpdater : listeners) {
+                messageUpdater.update(msgData);
+            }
+        } catch (Exception e) {
+
         }
+
     }
 }

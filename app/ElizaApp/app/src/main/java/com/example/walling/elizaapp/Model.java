@@ -120,6 +120,10 @@ public class Model {
         setSteerString(SteeringHelper.getInstance().getCommandString());
     }
 
+    public boolean wasEverConnected() {
+        return wasEverConnected;
+    }
+
     public void changeDirection(int direction){
         SteeringHelper.getInstance().setDirection(direction);
         setSteerString(SteeringHelper.getInstance().getCommandString());
