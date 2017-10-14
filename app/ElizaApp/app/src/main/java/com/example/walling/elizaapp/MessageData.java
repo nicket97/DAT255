@@ -10,7 +10,8 @@ public class MessageData {
         ALREADY_CONNECTED,
         CONNECTING,
         CONNECTION_DONE,
-        CONNECTION_LOST;
+        CONNECTION_LOST1,
+        CONNECTION_LOST2;
     }
 
     private MessageType msgType;

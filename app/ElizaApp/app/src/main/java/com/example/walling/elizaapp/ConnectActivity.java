@@ -33,7 +33,10 @@ public class ConnectActivity extends AppCompatActivity implements IMainView, IMe
         setContentView(R.layout.activity_connect);
         controller = new Controller(this);
 
-        MessageListener.BUS.addListener(this);
+
+        if (!Model.getInstance().wasEverConnected()) {
+            MessageListener.BUS.addListener(this);
+        }
 
         initGUI();
     }
@@ -129,8 +132,6 @@ public class ConnectActivity extends AppCompatActivity implements IMainView, IMe
         } else if(msgData.getMessageType() == MessageData.MessageType.CONNECTION_DONE) {
             toast = Toast.makeText(getBaseContext(), "DONE!", Toast.LENGTH_SHORT);
             allSetEnable(true);
-        } else if (msgData.getMessageType() == MessageData.MessageType.CONNECTION_LOST) {
-            toast = Toast.makeText(getBaseContext(), "Connection lost", Toast.LENGTH_SHORT);
         }
 
         if (toast != null) {

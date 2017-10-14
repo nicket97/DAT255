@@ -206,7 +206,14 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
 
     @Override
     public void update(MessageData msgData) {
-        if (msgData.getMessageType() == MessageData.MessageType.CONNECTION_LOST) {
+        if (msgData.getMessageType() == MessageData.MessageType.CONNECTION_LOST1) {
+            Toast.makeText(getApplicationContext(), "Connection lost", Toast.LENGTH_LONG).show();
+            ableUI(false);
+            platooningButton.setEnabled(false);
+            cruiseControlButton.setEnabled(false);
+        }
+
+        if (msgData.getMessageType() == MessageData.MessageType.CONNECTION_LOST2) {
             startActivity(new Intent(MainActivity.this, ConnectActivity.class));
         }
     }

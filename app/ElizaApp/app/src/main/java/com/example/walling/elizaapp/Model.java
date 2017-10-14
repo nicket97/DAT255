@@ -104,7 +104,18 @@ public class Model {
                     }
                 } finally {
                     if (wasEverConnected) {
-                        MessageListener.BUS.updateMessage(new MessageData(MessageData.MessageType.CONNECTION_LOST));
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                MessageListener.BUS.updateMessage(new MessageData(MessageData.MessageType.CONNECTION_LOST1));
+                                try {
+                                    Thread.sleep(2500);
+                                } catch (Exception e) {
+                                    System.out.println(e.getMessage());
+                                }
+                                MessageListener.BUS.updateMessage(new MessageData(MessageData.MessageType.CONNECTION_LOST2));
+                            }
+                        });
                     }
                 }
             }
