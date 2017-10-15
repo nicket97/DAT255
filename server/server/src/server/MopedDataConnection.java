@@ -42,7 +42,7 @@ public class MopedDataConnection implements Runnable {
 				BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));) {
 			while (true) {
 				String inputLine = in.readLine();
-				System.out.println("Server received " + in);
+				//System.out.println("Server received " + in);
 				out.println(createMopedCommand().toString());
 				pcs.firePropertyChange("new data from moped", null, inputLine);
 			}

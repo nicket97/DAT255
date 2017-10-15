@@ -19,6 +19,12 @@ public class ACCController implements Runnable {
 	@Override
 	public void run() {
 		while(true){
+			try {
+				Thread.sleep(20);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		this.targetSpeed = detreminLeadSpeed();
 		this.updateMopedSpeed();
 		}
@@ -28,18 +34,18 @@ public class ACCController implements Runnable {
 	}
 	public void updateMopedSpeed(){
 		
-		MopedSteeringHandler.enginePercentage = this.getACCSpeed(Start.start.dataHolder.getFirst().getDist(), targetSpeed, targetDist);
+		MopedSteeringHandler.velocity = this.getACCSpeed(Start.start.dataHolder.getFirst().getDist(), targetSpeed, targetDist);
 		
 		
 	
 	}
 
 	public int getACCSpeed(double dist, int targetSpeed, int targetDist) {
-		//dist *= 100;
+		dist *= 100;
 		int speed = 0;
 		//TODO update max speed
 		if(dist > 200){
-			speed = 100;
+			speed = 50;
 		}
 		// TODO uppdate safe distance
 		else if(dist < 20){

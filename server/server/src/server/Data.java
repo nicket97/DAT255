@@ -32,7 +32,7 @@ public class Data {
 			this.engineSpeed = json.getDouble("can_speed"); // motorns kraft 0-100
 			// can_steer = json.getDouble("can_steer"); //styrning
 			this.timeStamp = json.getLong("timestamp");
-
+			System.out.println("Dist = " + dist);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

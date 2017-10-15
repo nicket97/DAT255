@@ -23,7 +23,7 @@ public class ACCSimulation implements Runnable {
 				e.printStackTrace();
 			}
 			posx += leadSpeed/10;
-			moped.setSensors();
+			//moped.setSensors();
 		}
 		
 	}

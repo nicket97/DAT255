@@ -1,5 +1,6 @@
 package main;
 
+import core.Conection;
 import core.Moped;
 
 public class Start {
@@ -12,5 +13,6 @@ public class Start {
 	
 	public Start(){
 		moped = new Moped();
+		Conection c = new Conection();
 	}
 }
