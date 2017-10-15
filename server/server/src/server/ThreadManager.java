@@ -29,7 +29,7 @@ public class ThreadManager {
 		 appThread.start();
 		// imgThread.start();
 		dataThread.start();
-		//dataOutThread.start();
+		dataOutThread.start();
 	}
 
 }

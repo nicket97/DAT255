@@ -41,7 +41,7 @@ public class Start implements PropertyChangeListener {
 
 		dataInput = new MopedDataConnection("192.168.43.173", 9999, this);
 
-		// dataOutput = new MopedOutputConnection("192.168.43.183", 9000);
+		dataOutput = new MopedOutputConnection("192.168.43.183", 9000);
 
 		init();
 	}
