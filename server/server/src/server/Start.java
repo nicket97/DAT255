@@ -53,7 +53,7 @@ public class Start implements PropertyChangeListener {
 		dataPublisher = new DataPublisher();
 		dataReader = new DataReader();
 		threadManager = new ThreadManager();
-		img = new ImageRecognition();
+		//img = new ImageRecognition();
 	}
 
 	public static void initConnections() {

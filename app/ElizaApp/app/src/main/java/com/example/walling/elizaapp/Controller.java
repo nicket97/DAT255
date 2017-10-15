@@ -43,6 +43,10 @@ public class Controller {
         Model.getInstance().setPlatooning(state);
     }
 
+    public void disconnect() {
+        Model.getInstance().disconnect();
+    }
+
     public boolean getConnectionStatus() {
         return Model.getInstance().isConnected();
     }

@@ -58,8 +58,9 @@ public class MopedDataConnection implements Runnable {
 	}
 
 	private JSONObject createMopedCommand() {
-		JSONObject data = new JSONObject();
-		try {
+		data = new JSONObject();
+		
+        try {
 			data.put("Velocity", MopedSteeringHandler.getVelocity());
 			data.put("Handling", MopedSteeringHandler.getHandling());
 			data.put("ACC", ProgramManager.ACCActive); // TODO set command

@@ -1,6 +1,5 @@
 package com.example.walling.elizaapp;
 
-import android.app.ActivityManager;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
@@ -10,19 +9,16 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.SeekBar;
-import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity implements IMainView, IMessageListener {
 
     private Controller controller;
-    private Button btnStop, btnSwitchScreen, buttonDebug, setSpeedButton;
+    private Button btnStop, dcButton, setSpeedButton, centerButton;
     private ToggleButton cruiseControlButton, platooningButton;
     private SeekBar speedBar, steerBar;
     private EditText setSpeedEditText;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,28 +33,30 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
 
     private void initGUI(){
         btnStop = (Button) findViewById(R.id.btnStop);
-        btnSwitchScreen = (Button) findViewById(R.id.switchScreen);
-        buttonDebug = (Button) findViewById(R.id.buttonDebug);
+        dcButton = (Button) findViewById(R.id.dcButton);
         setSpeedButton = (Button) findViewById(R.id.setSpeedButton);
         cruiseControlButton = (ToggleButton) findViewById(R.id.cruiseControlButton);
         platooningButton = (ToggleButton) findViewById(R.id.platooningButton);
         setSpeedEditText = (EditText) findViewById(R.id.setSpeedEditText);
+        centerButton = (Button) findViewById(R.id.centerButton);
 
         btnStop.setOnClickListener(btnStopOnClick);
-        btnSwitchScreen.setOnClickListener(btnSwitchScreenOnClick);
-        buttonDebug.setOnClickListener(btnOnDebugClick);
+        dcButton.setOnClickListener(dcButtonOnClick);
         setSpeedButton.setOnClickListener(setSpeedOnClick);
         platooningButton.setOnCheckedChangeListener(platooningButtonListener);
         cruiseControlButton.setOnCheckedChangeListener(cruiseControlButtonListener);
+        centerButton.setOnClickListener(centerButtonOnClick);
         initSpeedBar();
         initSteerBar();
     }
+
     private void initSteerBar(){
         steerBar = (SeekBar) findViewById(R.id.steerBar);
         steerBar.setMax(200);
         steerBar.setProgress(steerBar.getMax() / 2);
         steerBar.setOnSeekBarChangeListener(changeSteerListener);
     }
+
     private void initSpeedBar(){
         speedBar = (SeekBar) findViewById(R.id.speedBar);
         speedBar.setMax(200);
@@ -67,12 +65,27 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
     }
 
     private void setSpeedBarValue(int newValue){
-        speedBar.setProgress(newValue);
+        speedBar.setProgress(newValue, true);
     }
 
+    private void ableUI(boolean state) {
+        btnStop.setEnabled(state);
+        dcButton.setEnabled(state);
+        setSpeedButton.setEnabled(state);
+        setSpeedEditText.setEnabled(state);
+        centerButton.setEnabled(state);
+        speedBar.setEnabled(state);
+        steerBar.setEnabled(state);
+    }
+
+    private void zeroUI() {
+        steerBar.setProgress(100, true);
+        speedBar.setProgress(100, true);
+        controller.setSpeed(0);
+        setSpeedEditText.setText("");
+    }
 
     // Here we initalize listeners
-
     private SeekBar.OnSeekBarChangeListener changeSteerListener= new SeekBar.OnSeekBarChangeListener(){
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -85,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
         public void onStopTrackingTouch(SeekBar seekBar) {
         }
     };
+
     private SeekBar.OnSeekBarChangeListener changeSpeedListener= new SeekBar.OnSeekBarChangeListener(){
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -92,18 +106,43 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
+            controller.setSpeed(0);
+            setSpeedEditText.setText("");
         }
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
         }
     };
-
+    
+    private View.OnClickListener centerButtonOnClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            steerBar.setProgress(100, true);
+        }
+    };
 
     private View.OnClickListener setSpeedOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            System.out.println("Set speed to " + setSpeedEditText.getText().toString() + " cm/s.");
-            controller.setSpeed(Double.parseDouble(setSpeedEditText.getText().toString()));
+            String str = setSpeedEditText.getText().toString();
+            if (!str.equals("")) {
+                if (str.contains(",")) {
+                    str = str.replace(",", ".");
+                }
+
+                try {
+                    controller.setSpeed(Double.parseDouble(str));
+                    speedBar.setProgress(100, true);
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "Speed not provided correctly.",
+                            Toast.LENGTH_LONG).show();
+                }
+
+            } else {
+                Toast.makeText(getApplicationContext(), "You must provide a speed.",
+                        Toast.LENGTH_LONG).show();
+            }
+
         }
     };
 
@@ -111,11 +150,14 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
             new CompoundButton.OnCheckedChangeListener() {
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             if (isChecked) {
-                System.out.println("Platooning ON");
+                zeroUI();
                 controller.setPlatooning(true);
+                ableUI(false);
+                cruiseControlButton.setEnabled(false);
             } else {
-                System.out.println("Platooning OFF");
                 controller.setPlatooning(false);
+                ableUI(true);
+                cruiseControlButton.setEnabled(true);
             }
         }
     };
@@ -124,11 +166,14 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
             new CompoundButton.OnCheckedChangeListener() {
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (isChecked) {
-                        System.out.println("Cruise control ON");
+                        zeroUI();
                         controller.setACC(true);
+                        ableUI(false);
+                        platooningButton.setEnabled(false);
                     } else {
-                        System.out.println("Cruise control OFF");
                         controller.setACC(false);
+                        ableUI(true);
+                        platooningButton.setEnabled(true);
                     }
                 }
             };
@@ -143,23 +188,16 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
         }
     };
 
-    private View.OnClickListener btnSwitchScreenOnClick = new View.OnClickListener() {
+    private View.OnClickListener dcButtonOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            startActivity(new Intent(MainActivity.this, ConnectActivity.class));
-        }
-    };
-
-    private View.OnClickListener btnOnDebugClick = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            startActivity(new Intent(MainActivity.this, DebugActivity.class));
+            controller.disconnect();
         }
     };
 
     @Override
     public void updateResult(String res) {
-        //txtView.setText(res);
+
     }
 
     @Override

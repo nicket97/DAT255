@@ -35,7 +35,7 @@ public class ACCController implements Runnable {
 	}
 
 	public int getACCSpeed(double dist, int targetSpeed, int targetDist) {
-		dist *= 100;
+		//dist *= 100;
 		int speed = 0;
 		//TODO update max speed
 		if(dist > 200){

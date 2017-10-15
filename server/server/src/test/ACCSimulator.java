@@ -12,9 +12,10 @@ public class ACCSimulator implements Runnable {
 	public int mopedDist = 0;
 	public int targetDist;
 	ProgramManager pm;
-	Start start = new Start(true);
+	
 	
 	public ACCSimulator(int leadSpeed, int leadDist, int targetDist){
+		Start.start = new Start(true);
 		this.leadCarSpeed = leadSpeed;
 		this.leadCarDist = leadDist;
 		this.targetDist = targetDist;
@@ -24,10 +25,11 @@ public class ACCSimulator implements Runnable {
 	}
 	@Override
 	public void run() {
-		ACCController acc = new ACCController(50);
-		start.dataHolder.addFirst(new Data(leadCarDist - mopedDist,0 , 0, 0,System.currentTimeMillis()-1000));
-		start.dataHolder.addFirst(new Data(leadCarDist + 50 - mopedDist,0, 0, 0,System.currentTimeMillis()));
+		ACCController acc = new ACCController(targetDist);
+		Start.start.dataHolder.addFirst(new Data(leadCarDist - mopedDist,0 , 0, 0,System.currentTimeMillis()-1000));
+		Start.start.dataHolder.addFirst(new Data(leadCarDist + leadCarSpeed - mopedDist,0, 0, 0,System.currentTimeMillis()));
 		while(true){
+			System.out.println(Start.start.dataHolder.getFirst().toString());
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -40,7 +42,7 @@ public class ACCSimulator implements Runnable {
 			
 			
 			
-			int targetSpeed = d.speed + acc.detreminLeadSpeed();
+			int targetSpeed = (int) (d.speed + acc.detreminLeadSpeed());
 			//targetSpeed = 50;
 			System.out.println(targetSpeed + "           " + d.getSpeed() + "             " + d.dist);
 			
@@ -49,8 +51,8 @@ public class ACCSimulator implements Runnable {
 			System.out.println("leadDist = " + leadCarDist + "  mopedDist = " + mopedDist  + " Dist = " + (leadCarDist - mopedDist) + " Speed = " + speed);
 			leadCarDist += leadCarSpeed;
 			mopedDist += speed;
-			start.dataHolder.addFirst(new Data(leadCarDist - mopedDist,speed , 0, 0,System.currentTimeMillis()));
-			
+			Start.start.dataHolder.addFirst(new Data(leadCarDist - mopedDist,speed , 0, 0,System.currentTimeMillis()));
+
 			
 		}
 

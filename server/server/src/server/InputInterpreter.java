@@ -25,10 +25,9 @@ public class InputInterpreter {
 			this.acc = json.getBoolean("ACC"); // is acc active?
 			this.platooning = json.getBoolean("Platooning"); // is platooning active?
 			this.speed = json.getDouble("Speed"); // cruise control speed
-			
-			MopedSteeringHandler.setHandling(handling);
-			MopedSteeringHandler.setVelocity(velocity);
-			System.out.println("Setting vel to " + velocity);
+
+			//MopedSteeringHandler.setHandling(handling);
+			//MopedSteeringHandler.setVelocity(velocity);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

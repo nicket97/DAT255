@@ -122,7 +122,7 @@ public class ImageRecognition {
     }
 
     //simple steering command method for early testing purposes
-    static double calculateSteeringLinear(){
+    static double calculateSteeringLinear(double position){
         if(position<0){
             return -2* position/10;
         }else if(position>0){
@@ -132,7 +132,7 @@ public class ImageRecognition {
             return 0;
     }
     //simple steering command method 2 for early testing purposes
-    static double calculateSteeringPotential() {
+    static double calculateSteeringPotential(double position) {
         if (position < 0) {
             return -Math.pow((position), 2) / 1000;
         } else if (position > 0) {
@@ -140,6 +140,14 @@ public class ImageRecognition {
         } else
             return 0;
     }
+    static double calculateAngle(double posX, double dist){
+        if(posX<0){
+            return -(Math.atan(dist/(-posX)));
+        }
+        else{
+            return (Math.atan(dist/(posX)));
+        }
+
 
 
 }
