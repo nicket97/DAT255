@@ -22,7 +22,7 @@ public class ACCSimulation implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			posx += leadSpeed/10;
+			posx += leadSpeed*100/1000;
 			//moped.setSensors();
 		}
 		
