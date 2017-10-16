@@ -1,6 +1,4 @@
-package model;
-
-import server.Data;
+package server;
 
 public class FixedDataQueue {
 		private final Data[] dataQue;

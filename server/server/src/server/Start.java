@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 import camera.ImageRecognition;
 import comunication.MopedSteeringHandler;
-import model.FixedDataQueue;
 
 public class Start implements PropertyChangeListener {
 	public FixedDataQueue dataHolder;
@@ -145,5 +144,10 @@ public class Start implements PropertyChangeListener {
 		} else if (arg.getPropertyName().equals("connection lost")) {
 			appConnection.setMopedConnected(false);
 		}
+	}
+
+	public static void setStart(Start start2) {
+		start = start2;
+		
 	}
 }

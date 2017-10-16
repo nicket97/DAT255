@@ -1,8 +1,8 @@
 package test;
 
 import acc.ACCController;
-import model.FixedDataQueue;
 import server.Data;
+import server.FixedDataQueue;
 import server.ProgramManager;
 import server.Start;
 
@@ -15,7 +15,7 @@ public class ACCSimulator implements Runnable {
 	
 	
 	public ACCSimulator(int leadSpeed, int leadDist, int targetDist){
-		Start.start = new Start(true);
+		Start.setStart(new Start(true));
 		this.leadCarSpeed = leadSpeed;
 		this.leadCarDist = leadDist;
 		this.targetDist = targetDist;
