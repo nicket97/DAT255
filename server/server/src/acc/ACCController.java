@@ -20,7 +20,7 @@ public class ACCController implements Runnable {
 	public void run() {
 		while(true){
 			try {
-				Thread.sleep(20);
+				Thread.sleep(200);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

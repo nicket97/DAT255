@@ -14,5 +14,7 @@ public class Start {
 	public Start(){
 		moped = new Moped();
 		Conection c = new Conection();
+		Thread t = new Thread(c);
+		t.start();
 	}
 }
