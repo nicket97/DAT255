@@ -35,7 +35,7 @@ public class ACCController implements Runnable {
 	public void updateMopedSpeed(){
 		
 		MopedSteeringHandler.velocity = this.getACCSpeed(Start.start.dataHolder.getFirst().getDist(), targetSpeed, targetDist);
-		
+		//MopedSteeringHandler.handling = -50;
 		
 	
 	}
@@ -45,7 +45,7 @@ public class ACCController implements Runnable {
 		int speed = 0;
 		//TODO update max speed
 		if(dist > 200){
-			speed = 50;
+			speed = 5;
 		}
 		// TODO uppdate safe distance
 		else if(dist < 20){
@@ -64,7 +64,7 @@ public class ACCController implements Runnable {
 			}
 			
 		}
-		
+		if (speed > 20) speed = 20;
 		return speed;
 	}
 	public void setTargetSpeed(int targetSpeed){

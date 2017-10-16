@@ -24,7 +24,7 @@ public class MopedDataConnection implements Runnable {
 	private int port;
 	private PropertyChangeSupport pcs;
 	private PropertyChangeSupport pcsConnected;
-	//private JSONObject data;
+	private JSONObject data;
 
 	public MopedDataConnection(String hostname, int port, PropertyChangeListener mainServer) {
 		this.hostname = hostname;
