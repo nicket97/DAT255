@@ -35,19 +35,9 @@ public class Start implements PropertyChangeListener {
 	public Start() {
 		// this.getConnectionDetails();
 		appConnection = new AppConnection(8080, this);
-<<<<<<< HEAD
 		imgInput = new MopedImgConnection("192.168.43.61", 3000, this);
 		dataInput = new MopedDataConnection("192.168.43.61", 9999, this);
 		dataOutput = new MopedOutputConnection("192.168.43.61", 9000);
-=======
-
-		// imgInput = new MopedImgConnection("192.168.43.183", 3500, this);
-		// imgInput.run();
-
-		dataInput = new MopedDataConnection("192.168.43.61", 9999, this);
-
-		dataOutput = new MopedOutputConnection("192.168.43.183", 9000);
->>>>>>> 7f20b0a0ada982de8560f1c7734d218aa877e72e
 
 		init();
 	}
