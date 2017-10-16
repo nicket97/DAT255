@@ -111,7 +111,6 @@ public class Start implements PropertyChangeListener {
 
 	}
 
-	// TODO Fix this logic
 	@Override
 	public void propertyChange(PropertyChangeEvent arg) {
 		System.out.println("RECEIVED EVENT");
@@ -148,6 +147,6 @@ public class Start implements PropertyChangeListener {
 
 	public static void setStart(Start start2) {
 		start = start2;
-		
+
 	}
 }
