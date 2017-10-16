@@ -154,6 +154,7 @@ public class Model {
     public void setSteerString(String steerString) {
         try {
             int vel = Integer.parseInt(steerString.substring(1, 5));
+            vel = adjustVel(vel);
             int handling = Integer.parseInt(steerString.substring(6,10));
             json.put("Velocity", vel);
             json.put("Handling", -handling);
@@ -171,5 +172,61 @@ public class Model {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private int adjustVel(int vel) {
+        if (vel > 0) {
+            if (vel < 5) {
+                vel = 1;
+            } else if (vel < 10) {
+                vel = 3;
+            } else if (vel < 15) {
+                vel = 5;
+            } else if (vel < 20) {
+                vel = 7;
+            } else if (vel < 25) {
+                vel = 10;
+            } else if (vel < 30) {
+                vel = 15;
+            } else if (vel < 35) {
+                vel = 23;
+            } else if (vel < 40) {
+                vel = 30;
+            } else if (vel < 45) {
+                vel = 40;
+            } else if (vel < 50) {
+                vel = 45;
+            } else {
+                //do nothing
+            }
+        } else if (vel < 0) {
+            if (vel < -5) {
+                vel = -1;
+            } else if (vel < -10) {
+                vel = -3;
+            } else if (vel < -15) {
+                vel = -5;
+            } else if (vel < -20) {
+                vel = -7;
+            } else if (vel < -25) {
+                vel = -10;
+            } else if (vel < -30) {
+                vel = -15;
+            } else if (vel < -35) {
+                vel = -23;
+            } else if (vel < -40) {
+                vel = -30;
+            } else if (vel < -45) {
+                vel = -40;
+            } else if (vel < -50) {
+                vel = -45;
+            } else {
+                //do nthing
+            }
+        } else {
+            //nothing
+        }
+
+        return vel;
     }
 }
