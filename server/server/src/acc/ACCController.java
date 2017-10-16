@@ -47,20 +47,15 @@ public class ACCController implements Runnable {
 	public int getACCSpeed(double dist, int targetSpeed, int targetDist) {
 		// dist *= 100;
 		int speed = 0;
-<<<<<<< HEAD
+
 		// TODO update max speed
 		if (dist > 200) {
 			speed = 100;
-=======
-		//TODO update max speed
-		if(dist > 200){
-			speed = 25;
->>>>>>> f6971343f398457b9e4d492c7714a65edb7d4775
+
 		}
 		// TODO uppdate safe distance
 		else if (dist < 20) {
-			speed = 0;
-<<<<<<< HEAD
+
 		} else {
 			double k = (double) (200 - targetDist) / (double) (100 - targetSpeed);
 			if ((100 + (dist - 200) / k) > targetSpeed) {
@@ -68,18 +63,9 @@ public class ACCController implements Runnable {
 			} else if ((100 + (dist - 200) / k) < targetSpeed) {
 				speed = (int) Math.round((100 + (dist - 200) / k));
 			} else {
-=======
-		}
-		else{
-			double k = (double)(200-targetDist)/(double)(230-targetSpeed);
-			if((100 + (dist - 200)/k) > targetSpeed){
-				speed = (int) Math.ceil((100 + (dist - 200)/k)) ;
-			}
-			else if ((100 + (dist - 200)/k) < targetSpeed){
-				speed = (int) Math.round((100 + (dist - 200)/k)) ;
-			}
-			else{
->>>>>>> f6971343f398457b9e4d492c7714a65edb7d4775
+
+		
+
 				speed = targetSpeed;
 			}
 
