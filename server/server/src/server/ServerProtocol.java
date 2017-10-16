@@ -1,5 +1,9 @@
 package server;
 
+/**
+ * Protocol that sends echo messages to the app. If the connection with the
+ * moped is lost it sends the app an error message.
+ */
 public class ServerProtocol {
 
 	boolean connected = true;
@@ -19,9 +23,6 @@ public class ServerProtocol {
 				theOutput = "Data received.";
 			else
 				theOutput = "Connection to moped lost.";
-		} else {
-			theOutput = "Bye.";
-			state = WAITING;
 		}
 		return theOutput;
 	}
