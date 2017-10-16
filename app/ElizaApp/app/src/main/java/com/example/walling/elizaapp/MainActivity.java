@@ -77,13 +77,13 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
         dcButton.setEnabled(state);
         setSpeedButton.setEnabled(state);
         setSpeedEditText.setEnabled(state);
-        centerButton.setEnabled(state);
+        //centerButton.setEnabled(state);
         speedBar.setEnabled(state);
-        steerBar.setEnabled(state);
+        //steerBar.setEnabled(state);
     }
 
     private void zeroUI() {
-        steerBar.setProgress(100, true);
+        //steerBar.setProgress(100, true);
         speedBar.setProgress(100, true);
         controller.setSpeed(0);
         setSpeedEditText.setText("");

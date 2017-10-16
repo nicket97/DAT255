@@ -56,21 +56,22 @@ public class MopedImgConnection implements Runnable {
 				File file = new File(filename);
 				fileSize = Integer.valueOf(data.split(",")[1]);
 				fileOut = new FileOutputStream(file);
-				System.out.println(data);
+				//System.out.println(data);
 
 				int recievedSize = 0;
 				if (fileSize != 0) {
-					byte[] buffer = new byte[1024];
+					byte[] buffer = new byte[1];
 					while (recievedSize < fileSize) {
 						int byteread = is.read(buffer);
 						fileOut.write(buffer);
 						recievedSize += byteread;
 					}
 					;
-					fileOut.close();
-					System.out.println("\nFile downloaded");
+					
+					//System.out.println("\nFile downloaded");
 					pcs.firePropertyChange("new image", null, file);
 					out.println("OK");
+					fileOut.close();
 				}
 			}
 

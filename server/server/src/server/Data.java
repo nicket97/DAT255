@@ -32,12 +32,20 @@ public class Data {
 			this.engineSpeed = json.getDouble("can_speed"); // motorns kraft 0-100
 			// can_steer = json.getDouble("can_steer"); //styrning
 			this.timeStamp = json.getLong("timestamp");
-
+			//System.out.println("Dist = " + dist);
+			//System.out.println(this.timeStamp);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 	}
 
+	public Data(int dist, int speed, int engineSpeed, int batteryVoltage, long timeStamp){
+  		this.dist = dist;
+  		this.speed = speed;
+  		this.engineSpeed = engineSpeed;
+  		this.batteryVoltage = batteryVoltage;
+  		this.timeStamp = timeStamp;
+  	}
 	public long getTime() {
 
 		return timeStamp;

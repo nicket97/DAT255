@@ -16,10 +16,15 @@ public class MopedSteeringHandler {
 	}
 
 	public static int getVelocity() {
-		return velocity;
+		return MopedSteeringHandler.velocity;
 	}
 
 	public static int getHandling() {
-		return handling;
+		return MopedSteeringHandler.handling;
+	}
+
+	public static char[] getSteeringCommand() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

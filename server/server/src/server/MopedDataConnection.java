@@ -42,8 +42,9 @@ public class MopedDataConnection implements Runnable {
 				BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));) {
 			while (true) {
 				String inputLine = in.readLine();
-				System.out.println("Server received " + in);
+				//System.out.println("Server received " + in);
 				out.println(createMopedCommand().toString());
+				//System.out.println(createMopedCommand().toString());
 				pcs.firePropertyChange("new data from moped", null, inputLine);
 			}
 		} catch (UnknownHostException e) {
@@ -58,7 +59,8 @@ public class MopedDataConnection implements Runnable {
 
 	private JSONObject createMopedCommand() {
 		data = new JSONObject();
-		try {
+		
+        try {
 			data.put("Velocity", MopedSteeringHandler.getVelocity());
 			data.put("Handling", MopedSteeringHandler.getHandling());
 			data.put("ACC", ProgramManager.ACCActive); // TODO set command
