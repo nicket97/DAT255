@@ -22,4 +22,9 @@ public class MopedSteeringHandler {
 	public static int getHandling() {
 		return MopedSteeringHandler.handling;
 	}
+
+	public static char[] getSteeringCommand() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

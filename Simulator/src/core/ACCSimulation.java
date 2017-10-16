@@ -26,7 +26,7 @@ public class ACCSimulation implements Runnable {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			posx += leadSpeed/10;
+			posx += leadSpeed*100/1000;
 			//moped.setSensors();
 		}
 		
