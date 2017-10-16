@@ -18,21 +18,52 @@ import java.io.File;
 public class ImageRecognition {
 
 
-    public double locateImage(Object imgFile){
+    public int locateImage(Object imgFile){
         //input img
     	File img = (File) imgFile;
-
-    	IplImage orgImg = imgFile;
+    	
+    	
+    	IplImage orgImg = cvLoadImage(img.getAbsolutePath());
 
         IplImage thresholdImage = createThreshold(orgImg);
         thresholdImage = morphImage(thresholdImage);
 
         Dimension position = getCoordinates(thresholdImage);
+        
+        int posX1 = (int)(position.getWidth()-150);
+        
+        System.out.print("IMG RCGÖ    ");
+        System.out.print(position.getWidth() - 150);
+        
 
-        System.out.print(position.getWidth() - 486);
-
+        img.delete();
+        
+        
+        
         //output steering signal
-        return calculateSteeringLinear(position.getWidth() - 486.0);
+        return toSteering(posX1);
+    }
+    
+    private int toSteering(int posX) {
+    	int steerInt = 0;
+    	if (posX > 50) {
+    		steerInt = -100;
+    	} else if (posX < -50) {
+    		steerInt = 100;
+    	} else {
+    		// here posx is between -50 and 50
+    		//multiply by two, making steerint inbetween -100, 100
+    		steerInt = posX * 2;
+    		//invert steering because camera is upside down
+    		steerInt = -steerInt;
+    	}
+    	if (steerInt > 50) {
+    		steerInt = 50;
+    	} if (steerInt < -50) {
+    		steerInt = -50;
+    	}
+    	return steerInt;
+    	
     }
 
     static Dimension getCoordinates(IplImage thresholdImage) {
@@ -149,5 +180,5 @@ public class ImageRecognition {
         }
 
 
-
+    }
 }

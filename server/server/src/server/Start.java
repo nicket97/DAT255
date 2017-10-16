@@ -12,12 +12,10 @@ public class Start implements PropertyChangeListener {
 	public FixedDataQueue dataHolder;
 	public DataPublisher dataPublisher;
 	public DataReader dataReader;
-	public static ImageInput imageInput;
 	public ThreadManager threadManager;
+	public static MopedImgConnection imgInput;
 	public static AppConnection appConnection;
-	public MopedImgConnection imgInput;
-	public static MopedDataConnection dataInput;
-	public static MopedOutputConnection dataOutput;
+	public static MopedDataConnection mopedDataInput;
 	public InputInterpreter input;
 	public ImageRecognition img;
 
@@ -35,13 +33,8 @@ public class Start implements PropertyChangeListener {
 	public Start() {
 		// this.getConnectionDetails();
 		appConnection = new AppConnection(8080, this);
-
-		// imgInput = new MopedImgConnection("192.168.43.183", 3500, this);
-		// imgInput.run();
-
-		dataInput = new MopedDataConnection("192.168.43.61", 9999, this);
-
-		dataOutput = new MopedOutputConnection("192.168.43.183", 9000);
+		imgInput = new MopedImgConnection("192.168.43.61", 3000, this);
+		mopedDataInput = new MopedDataConnection("192.168.43.61", 9999, this);
 
 		init();
 	}
@@ -51,12 +44,11 @@ public class Start implements PropertyChangeListener {
 	}
 
 	public void init() {
+		img = new ImageRecognition();
 		dataHolder = new FixedDataQueue(10);
 		dataPublisher = new DataPublisher();
 		dataReader = new DataReader();
 		threadManager = new ThreadManager();
-		
-		//img = new ImageRecognition();
 	}
 
 	public static void initConnections() {
@@ -136,19 +128,19 @@ public class Start implements PropertyChangeListener {
 				ProgramManager.stopPlatooning();
 			if (!ProgramManager.ACCActive || !ProgramManager.platooningActive)
 				MopedSteeringHandler.setVelocity(input.getVelocity());
-				MopedSteeringHandler.setHandling(input.getHandling());
+			MopedSteeringHandler.setHandling(input.getHandling());
 			System.out.println("App sent a message: " + arg.getNewValue());
 		} else if (arg.getPropertyName().equals("new data from moped")) {
 			System.out.println("New data from moped: " + arg.getNewValue());
 			Data d = new Data(arg.getNewValue().toString());
-					if(d.dist < 6){
-					dataHolder.addFirst(d);
-					}
-					else{
-						System.out.println("Wrong Data");
-					}
+			if (d.dist < 6) {
+				dataHolder.addFirst(d);
+			} else {
+				System.out.println("Wrong Data");
+			}
 		} else if (arg.getPropertyName().equals("new image")) {
-			img.locateImage(arg.getNewValue());
+			System.out.println("started!!!");
+			MopedSteeringHandler.setHandling(new ImageRecognition().locateImage(arg.getNewValue()));
 			System.out.println("new image received from moped");
 		} else if (arg.getPropertyName().equals("connection lost")) {
 			appConnection.setMopedConnected(false);
