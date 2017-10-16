@@ -183,7 +183,6 @@ public class Model {
     public void setACC(boolean state) {
         try {
             json.put("ACC", state);
-            System.out.println(json.get("ACC").toString());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -195,7 +194,6 @@ public class Model {
     public void setPlatooning(boolean state) {
         try {
             json.put("Platooning", state);
-            System.out.println(json.get("Platooning").toString());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -218,8 +216,6 @@ public class Model {
             int handling = Integer.parseInt(steerString.substring(6,10));
             json.put("Velocity", vel);
             json.put("Handling", -handling);
-            System.out.println(json.get("Velocity"));
-            System.out.println(json.get("Handling"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -231,65 +227,27 @@ public class Model {
     public void setSpeed(double speed) {
         try {
             json.put("Speed", speed);
-            System.out.println(json.get("Speed").toString());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
     private int adjustVel(int vel) {
-        if (vel > 0) {
-            if (vel < 5) {
-                vel = 1;
-            } else if (vel < 10) {
-                vel = 3;
-            } else if (vel < 15) {
-                vel = 5;
-            } else if (vel < 20) {
-                vel = 7;
-            } else if (vel < 25) {
-                vel = 10;
-            } else if (vel < 30) {
-                vel = 15;
-            } else if (vel < 35) {
-                vel = 23;
-            } else if (vel < 40) {
-                vel = 30;
-            } else if (vel < 45) {
-                vel = 40;
-            } else if (vel < 50) {
-                vel = 45;
-            } else {
-                //do nothing
-            }
-        } else if (vel < 0) {
-            if (vel < -5) {
-                vel = -1;
-            } else if (vel < -10) {
-                vel = -3;
-            } else if (vel < -15) {
-                vel = -5;
-            } else if (vel < -20) {
-                vel = -7;
-            } else if (vel < -25) {
-                vel = -10;
-            } else if (vel < -30) {
-                vel = -15;
-            } else if (vel < -35) {
-                vel = -23;
-            } else if (vel < -40) {
-                vel = -30;
-            } else if (vel < -45) {
-                vel = -40;
-            } else if (vel < -50) {
-                vel = -45;
-            } else {
-                //do nthing
-            }
-        } else {
-            //nothing
+        vel = vel + 50;
+
+        if (vel > 0 && vel <= 25) {
+            vel = vel / 8;
+        } else if (vel > 25 && vel <= 50) {
+            vel = vel / 6;
+        } else if (vel > 50 && vel <= 75) {
+            vel = vel / 4;
+        } else if (vel > 75 && vel <= 100) {
+            vel = vel / 2;
+        } else if (vel > 100) {
+            vel = vel - 50;
         }
 
+        System.out.println("VEL: " + vel);
         return vel;
     }
 }

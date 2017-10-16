@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
     private void initSpeedBar(){
         speedBar = (SeekBar) findViewById(R.id.speedBar);
         speedBar.setMax(200);
-        speedBar.setProgress(speedBar.getMax() / 2);
+        speedBar.setProgress(speedBar.getMax() / 2 -50);
         speedBar.setOnSeekBarChangeListener(changeSpeedListener);
     }
 
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
 
     private void zeroUI() {
         //steerBar.setProgress(100, true);
-        speedBar.setProgress(100, true);
+        speedBar.setProgress(50, true);
         controller.setSpeed(0);
         setSpeedEditText.setText("");
     }
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
                     if (speed >= -100 && speed <= 100) {
                         controller.setSpeed(speed);
                     }
-                    speedBar.setProgress(100, true);
+                    speedBar.setProgress(50, true);
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), "Speed not provided correctly.",
                             Toast.LENGTH_LONG).show();
@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
             //TODO
             controller.stop();
             updateResult("Stop");
-            setSpeedBarValue(100);
+            setSpeedBarValue(50);
         }
     };
 
