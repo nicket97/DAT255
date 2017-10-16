@@ -235,16 +235,48 @@ public class Model {
     private int adjustVel(int vel) {
         vel = vel + 50;
 
-        if (vel > 0 && vel <= 25) {
-            vel = vel / 8;
-        } else if (vel > 25 && vel <= 50) {
-            vel = vel / 6;
-        } else if (vel > 50 && vel <= 75) {
-            vel = vel / 4;
-        } else if (vel > 75 && vel <= 100) {
-            vel = vel / 2;
-        } else if (vel > 100) {
-            vel = vel - 50;
+        // denna koden nedanför är jag särskilt stolt över. //blixxten
+        // om ni någonsin behöver hjälp med programmering, kontakta mig. jag är duktig. :^)
+        if (vel > 0) {
+            if (vel < 10) {
+                vel = 1;
+            } else if (vel < 18) {
+                vel = 2;
+            } else if (vel < 25) {
+                vel = 3;
+            } else if (vel < 33) {
+                vel = 4;
+            } else if (vel < 39) {
+                vel = 5;
+            } else if (vel < 50) {
+                vel = 7;
+            } else if (vel < 55) {
+                vel = 9;
+            } else if (vel < 60) {
+                vel = 12;
+            } else if (vel < 65) {
+                vel = 16;
+            } else if (vel < 70) {
+                vel = 19;
+            } else if (vel < 75) {
+                vel  = 23;
+            } else if (vel < 80) {
+                vel = 28;
+            } else if (vel < 90) {
+                vel = 35;
+            } else if (vel < 100) {
+                vel = 42;
+            } else if (vel < 110) {
+                vel = 54;
+            } else if (vel < 120) {
+                vel = 64;
+            } else if (vel < 130) {
+                vel = 78;
+            } else if (vel < 140) {
+                vel = 90;
+            } else if (vel <= 150) {
+                vel = 100;
+            }
         }
 
         System.out.println("VEL: " + vel);
