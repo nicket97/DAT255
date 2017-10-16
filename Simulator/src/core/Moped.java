@@ -9,14 +9,15 @@ public class Moped {
 	int posY = 0;
 	int enginePower = 0;
 	int stearing = 0;
+	int velocity = 0;
 	
 	// sensor data
-	private int inspeed_avg = 0;
-	private int odometer = 0;
-	private int fodometer = 0;
-	private int can_ultra = 0;
-	private int can_speed = 0;
-	private int can_steer = 0;
+	int inspeed_avg = 0;
+	int odometer = 0;
+	int fodometer = 0;
+	int can_ultra = 0;
+	int can_speed = 0;
+	int can_steer = 0;
 	
 	/*
 	inspeed_avg: providing the speed travelled (unit unknown)
