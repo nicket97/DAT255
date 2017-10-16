@@ -73,20 +73,20 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
     }
 
     private void ableUI(boolean state) {
-        btnStop.setEnabled(state);
-        dcButton.setEnabled(state);
-        setSpeedButton.setEnabled(state);
-        setSpeedEditText.setEnabled(state);
+        //btnStop.setEnabled(state);
+        //dcButton.setEnabled(state);
+        //setSpeedButton.setEnabled(state);
+        //setSpeedEditText.setEnabled(state);
         //centerButton.setEnabled(state);
-        speedBar.setEnabled(state);
+        //speedBar.setEnabled(state);
         //steerBar.setEnabled(state);
     }
 
     private void zeroUI() {
         //steerBar.setProgress(100, true);
-        speedBar.setProgress(50, true);
-        controller.setSpeed(0);
-        setSpeedEditText.setText("");
+        //speedBar.setProgress(50, true);
+        //controller.setSpeed(0);
+        //setSpeedEditText.setText("");
     }
 
     // Here we initalize listeners
@@ -160,11 +160,11 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
                 zeroUI();
                 controller.setPlatooning(true);
                 ableUI(false);
-                cruiseControlButton.setEnabled(false);
+                //cruiseControlButton.setEnabled(false);
             } else {
                 controller.setPlatooning(false);
                 ableUI(true);
-                cruiseControlButton.setEnabled(true);
+                //cruiseControlButton.setEnabled(true);
             }
         }
     };
@@ -176,11 +176,11 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
                         zeroUI();
                         controller.setACC(true);
                         ableUI(false);
-                        platooningButton.setEnabled(false);
+                        //platooningButton.setEnabled(false);
                     } else {
                         controller.setACC(false);
                         ableUI(true);
-                        platooningButton.setEnabled(true);
+                        //platooningButton.setEnabled(true);
                     }
                 }
             };
