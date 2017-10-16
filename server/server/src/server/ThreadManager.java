@@ -26,8 +26,8 @@ public class ThreadManager {
 	}
 
 	public void initThreads() {
-		 appThread.start();
-		// imgThread.start();
+		appThread.start();
+		imgThread.start();
 		dataThread.start();
 		dataOutThread.start();
 	}

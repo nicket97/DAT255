@@ -35,13 +35,9 @@ public class Start implements PropertyChangeListener {
 	public Start() {
 		// this.getConnectionDetails();
 		appConnection = new AppConnection(8080, this);
-
-		// imgInput = new MopedImgConnection("192.168.43.183", 3500, this);
-		// imgInput.run();
-
-		dataInput = new MopedDataConnection("192.168.43.173", 9999, this);
-
-		dataOutput = new MopedOutputConnection("192.168.43.183", 9000);
+		imgInput = new MopedImgConnection("192.168.43.61", 3000, this);
+		dataInput = new MopedDataConnection("192.168.43.61", 9999, this);
+		dataOutput = new MopedOutputConnection("192.168.43.61", 9000);
 
 		init();
 	}
@@ -51,12 +47,13 @@ public class Start implements PropertyChangeListener {
 	}
 
 	public void init() {
+		img = new ImageRecognition();
 		dataHolder = new FixedDataQueue(10);
 		dataPublisher = new DataPublisher();
 		dataReader = new DataReader();
 		threadManager = new ThreadManager();
 		
-		//img = new ImageRecognition();
+		
 	}
 
 	public static void initConnections() {
@@ -142,7 +139,9 @@ public class Start implements PropertyChangeListener {
 			System.out.println("New data from moped: " + arg.getNewValue());
 			dataHolder.addFirst(new Data(arg.getNewValue().toString()));
 		} else if (arg.getPropertyName().equals("new image")) {
-			img.locateImage(arg.getNewValue());
+	    	System.out.println("started!!!");
+	    	MopedSteeringHandler.setHandling(new ImageRecognition().locateImage(arg.getNewValue()));
+			
 			System.out.println("new image received from moped");
 		} else if (arg.getPropertyName().equals("connection lost")) {
 			appConnection.setMopedConnected(false);

@@ -36,7 +36,7 @@ public class MopedOutputConnection implements Runnable {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				out.println(MopedSteeringHandler.getSteeringCommand());	
+				//out.println(MopedSteeringHandler.getSteeringCommand());	
 			}
 		} catch (UnknownHostException e) {
 			System.err.println("Don't know about host " + hostname);
