@@ -45,14 +45,14 @@ public class ACCController implements Runnable {
 		int speed = 0;
 		//TODO update max speed
 		if(dist > 200){
-			speed = 5;
+			speed = 25;
 		}
 		// TODO uppdate safe distance
 		else if(dist < 20){
 			speed = 0;
 		}
 		else{
-			double k = (double)(200-targetDist)/(double)(100-targetSpeed);
+			double k = (double)(200-targetDist)/(double)(230-targetSpeed);
 			if((100 + (dist - 200)/k) > targetSpeed){
 				speed = (int) Math.ceil((100 + (dist - 200)/k)) ;
 			}
