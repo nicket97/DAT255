@@ -39,7 +39,7 @@ public class Start implements PropertyChangeListener {
 		// imgInput = new MopedImgConnection("192.168.43.183", 3500, this);
 		// imgInput.run();
 
-		dataInput = new MopedDataConnection("localhost", 9999, this);
+		dataInput = new MopedDataConnection("192.168.43.61", 9999, this);
 
 		dataOutput = new MopedOutputConnection("192.168.43.183", 9000);
 
@@ -140,7 +140,13 @@ public class Start implements PropertyChangeListener {
 			System.out.println("App sent a message: " + arg.getNewValue());
 		} else if (arg.getPropertyName().equals("new data from moped")) {
 			System.out.println("New data from moped: " + arg.getNewValue());
-			dataHolder.addFirst(new Data(arg.getNewValue().toString()));
+			Data d = new Data(arg.getNewValue().toString());
+					if(d.dist < 6){
+					dataHolder.addFirst(d);
+					}
+					else{
+						System.out.println("Wrong Data");
+					}
 		} else if (arg.getPropertyName().equals("new image")) {
 			img.locateImage(arg.getNewValue());
 			System.out.println("new image received from moped");
