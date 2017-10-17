@@ -34,7 +34,9 @@ public class ImageRecognition {
         
         //if nothing found in image, set posx1 to 0
         if (posX1 == -150.0) {
+        	System.out.println("cant find green");
         	posX1 = 0;
+        	
         }
         
 
@@ -49,16 +51,20 @@ public class ImageRecognition {
     private int toSteering(int posX) {
     	int steerInt = 0;
     	if (posX > 50) {
-    		steerInt = -100;
+    		steerInt = -50;
     	} else if (posX < -50) {
-    		steerInt = 100;
+    		steerInt = 50;
     	} else {
     		// here posx is between -50 and 50
     		//multiply by two, making steerint inbetween -100, 100
-    		steerInt = posX * 2;
+    		steerInt = posX * 1;
     		steerInt = steerInt * -1;
     	}
     	
+    	steerInt = steerInt * -1;
+
+    
+    	steerInt -= 10;
     	System.out.println("GENERATED STEERINT: " + steerInt);
     	return steerInt;
     }

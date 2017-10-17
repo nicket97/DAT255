@@ -70,8 +70,8 @@ public class ACCController implements Runnable {
 			}
 
 		}
-		if (speed > 100)
-			speed = 100;
+		if (speed > 30)
+			speed = 30;
 		return speed;
 	}
 
