@@ -37,8 +37,6 @@ public class ImageRecognition {
         	posX1 = 0;
         }
         
-        System.out.print("IMG RECOGNITION: " + posX1);
-        
 
         img.delete();
         
@@ -58,17 +56,11 @@ public class ImageRecognition {
     		// here posx is between -50 and 50
     		//multiply by two, making steerint inbetween -100, 100
     		steerInt = posX * 2;
-    		//invert steering because camera is upside down
-    		steerInt = -steerInt;
+    		steerInt = steerInt * -1;
     	}
-    	if (steerInt > 50) {
-    		steerInt = 50;
-    	} if (steerInt < -50) {
-    		steerInt = -50;
-    	}
+    	
     	System.out.println("GENERATED STEERINT: " + steerInt);
     	return steerInt;
-    	
     }
 
     static Dimension getCoordinates(IplImage thresholdImage) {
