@@ -99,7 +99,7 @@ public class Model {
                                 connected = false;
                             }
 
-                            System.out.println("sending json");
+                            System.out.println("sending json: " + json.toString());
                             out.println(json);
                         }
                 }

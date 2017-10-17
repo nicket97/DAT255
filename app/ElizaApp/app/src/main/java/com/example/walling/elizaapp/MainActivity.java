@@ -16,11 +16,9 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
 
     private Controller controller;
     private Button btnStop, dcButton, setSpeedButton, centerButton;
-    private ToggleButton cruiseControlButton, platooningButton;
+    private ToggleButton cruiseControlButton, autoSteerButton, platooningButton;
     private SeekBar speedBar, steerBar;
     private EditText setSpeedEditText;
-
-    private boolean alreadyCreated = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +38,16 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
         dcButton = (Button) findViewById(R.id.dcButton);
         setSpeedButton = (Button) findViewById(R.id.setSpeedButton);
         cruiseControlButton = (ToggleButton) findViewById(R.id.cruiseControlButton);
-        platooningButton = (ToggleButton) findViewById(R.id.platooningButton);
+        autoSteerButton = (ToggleButton) findViewById(R.id.autoSteerButton);
         setSpeedEditText = (EditText) findViewById(R.id.setSpeedEditText);
         centerButton = (Button) findViewById(R.id.centerButton);
+        platooningButton = (ToggleButton) findViewById(R.id.platoonButton);
 
+        platooningButton.setOnCheckedChangeListener(platooningButtonListener);
         btnStop.setOnClickListener(btnStopOnClick);
         dcButton.setOnClickListener(dcButtonOnClick);
         setSpeedButton.setOnClickListener(setSpeedOnClick);
-        platooningButton.setOnCheckedChangeListener(platooningButtonListener);
+        autoSteerButton.setOnCheckedChangeListener(autoSteeringButtonListener);
         cruiseControlButton.setOnCheckedChangeListener(cruiseControlButtonListener);
         centerButton.setOnClickListener(centerButtonOnClick);
         initSpeedBar();
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
     private void initSpeedBar(){
         speedBar = (SeekBar) findViewById(R.id.speedBar);
         speedBar.setMax(200);
-        speedBar.setProgress(speedBar.getMax() / 2 -50);
+        speedBar.setProgress(speedBar.getMax() / 2 - 50);
         speedBar.setOnSeekBarChangeListener(changeSpeedListener);
     }
 
@@ -72,21 +72,31 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
         speedBar.setProgress(newValue, true);
     }
 
-    private void ableUI(boolean state) {
-        //btnStop.setEnabled(state);
-        //dcButton.setEnabled(state);
-        //setSpeedButton.setEnabled(state);
-        //setSpeedEditText.setEnabled(state);
-        //centerButton.setEnabled(state);
-        //speedBar.setEnabled(state);
-        //steerBar.setEnabled(state);
+    private void ableUI(boolean state, ToggleButton toggleButton) {
+        btnStop.setEnabled(state);
+        dcButton.setEnabled(state);
+        setSpeedButton.setEnabled(state);
+        setSpeedEditText.setEnabled(state);
+        centerButton.setEnabled(state);
+        if (toggleButton == autoSteerButton) {
+            cruiseControlButton.setEnabled(state);
+            steerBar.setEnabled(state);
+        } else if (toggleButton == cruiseControlButton) {
+            autoSteerButton.setEnabled(state);
+            speedBar.setEnabled(state);
+        } else if (toggleButton == platooningButton) {
+            autoSteerButton.setEnabled(state);
+            cruiseControlButton.setEnabled(state);
+            speedBar.setEnabled(state);
+            steerBar.setEnabled(state);
+        }
     }
 
     private void zeroUI() {
-        //steerBar.setProgress(100, true);
-        //speedBar.setProgress(50, true);
-        //controller.setSpeed(0);
-        //setSpeedEditText.setText("");
+        steerBar.setProgress(100, true);
+        speedBar.setProgress(50, true);
+        controller.setSpeed(0);
+        setSpeedEditText.setText("");
     }
 
     // Here we initalize listeners
@@ -103,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
         }
     };
 
-    private SeekBar.OnSeekBarChangeListener changeSpeedListener= new SeekBar.OnSeekBarChangeListener(){
+    private SeekBar.OnSeekBarChangeListener changeSpeedListener = new SeekBar.OnSeekBarChangeListener(){
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             controller.changeVelocity(progress-100);
@@ -155,16 +165,30 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
 
     private CompoundButton.OnCheckedChangeListener platooningButtonListener =
             new CompoundButton.OnCheckedChangeListener() {
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        ableUI(false, platooningButton);
+                        controller.setPlatooning(true);
+                        controller.setACC(true);
+                    } else {
+                        controller.setPlatooning(false);
+                        controller.setACC(false);
+                        zeroUI();
+                        ableUI(true, platooningButton);
+                    }
+                }
+            };
+
+    private CompoundButton.OnCheckedChangeListener autoSteeringButtonListener =
+            new CompoundButton.OnCheckedChangeListener() {
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             if (isChecked) {
                 zeroUI();
                 controller.setPlatooning(true);
-                ableUI(false);
-                //cruiseControlButton.setEnabled(false);
+                ableUI(false, autoSteerButton);
             } else {
                 controller.setPlatooning(false);
-                ableUI(true);
-                //cruiseControlButton.setEnabled(true);
+                ableUI(true, autoSteerButton);
             }
         }
     };
@@ -175,12 +199,10 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
                     if (isChecked) {
                         zeroUI();
                         controller.setACC(true);
-                        ableUI(false);
-                        //platooningButton.setEnabled(false);
+                        ableUI(false, cruiseControlButton);
                     } else {
                         controller.setACC(false);
-                        ableUI(true);
-                        //platooningButton.setEnabled(true);
+                        ableUI(true, cruiseControlButton);
                     }
                 }
             };
@@ -188,8 +210,6 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
     private View.OnClickListener btnStopOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            //TODO
-            controller.stop();
             updateResult("Stop");
             setSpeedBarValue(50);
         }
@@ -198,6 +218,8 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
     private View.OnClickListener dcButtonOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            controller.setSpeed(0);
+            controller.setSteerString("V0000H0000");
             controller.disconnect();
         }
     };
@@ -211,8 +233,8 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
     public void update(MessageData msgData) {
         if (msgData.getMessageType() == MessageData.MessageType.CONNECTION_LOST1) {
             Toast.makeText(getApplicationContext(), "Connection lost", Toast.LENGTH_LONG).show();
-            ableUI(false);
-            platooningButton.setEnabled(false);
+            ableUI(false, null);
+            autoSteerButton.setEnabled(false);
             cruiseControlButton.setEnabled(false);
         }
 
