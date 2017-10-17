@@ -117,11 +117,11 @@ public class Start implements PropertyChangeListener {
 		if (arg.getPropertyName().equals("new message from app")) {
 			input = new InputInterpreter(arg.getNewValue().toString());
 			if (input.startACC())
-				ProgramManager.startACC(30); // TODO Change to proper value after testing
-			else if (input.startPlatooning())
-				ProgramManager.startPlatooning();
+				ProgramManager.startACC(30); 
 			else if (ProgramManager.ACCActive)
 				ProgramManager.stopACC();
+			if (input.startPlatooning())
+				ProgramManager.startPlatooning();
 			else if (ProgramManager.platooningActive)
 				ProgramManager.stopPlatooning();
 			if (!ProgramManager.ACCActive)
