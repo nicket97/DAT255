@@ -12,7 +12,7 @@
 | Niclas Johansson | [nicket](https://github.com/nicket) | [nicljoha@student.chalmers.se](mailto:nicljoha@student.chalmers.se) |
 | Olof Enström | [olofens](https://github.com/olofens) | [olofens@student.chalmers.se](mailto:olofens@student.chalmers.se) |
 | Omar Oueidat | [OmarOueidat](https://github.com/OmarOueidat) | [oueidat@student.chalmers.se](mailto:oueidat@student.chalmers.se) |
-| Viktor Engström | [Klickor](https://github.com/Klickor) | [???@student.chalmers.se](mailto:???@student.chalmers.se) |
+| Viktor Engström | [Klickor](https://github.com/Klickor) | [vikeng@student.chalmers.se](mailto:vikeng@student.chalmers.se) |
 
 ## Useful links
 
