@@ -10,10 +10,8 @@ public class ThreadManager {
 	Thread dataThread;
 
 	public ThreadManager() {
-		// Thread dataPublisherThread = new Thread();
-		// Thread dataReaderThread = new Thread();
 		appThread = new Thread(Start.appConnection);
-		imgThread = new Thread(Start.imgInput);
+		//imgThread = new Thread(Start.imgInput);
 		dataThread = new Thread(Start.mopedDataInput);
 
 		initThreads();
@@ -21,11 +19,8 @@ public class ThreadManager {
 
 	public void initThreads() {
 		appThread.start();
-		imgThread.start();
+		//imgThread.start();
 		dataThread.start();
-
-		// dataPublisherThread.start();
-		// dataReaderThread.start();
 	}
 
 }

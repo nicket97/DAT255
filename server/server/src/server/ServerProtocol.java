@@ -1,8 +1,8 @@
 package server;
 
 /**
- * Protocol that sends echo messages to the app. If the connection with the
- * moped is lost it sends the app an error message.
+ * Protocol that creates echo messages that are to be sent to the app. If the
+ * connection with the moped is lost it sends the app an error message.
  */
 public class ServerProtocol {
 

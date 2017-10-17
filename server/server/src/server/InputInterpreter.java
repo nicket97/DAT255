@@ -26,8 +26,6 @@ public class InputInterpreter {
 			this.platooning = json.getBoolean("Platooning"); // is platooning active?
 			this.speed = json.getDouble("Speed"); // cruise control speed
 
-			//MopedSteeringHandler.setHandling(handling);
-			//MopedSteeringHandler.setVelocity(velocity);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -44,7 +42,7 @@ public class InputInterpreter {
 	public int getVelocity() {
 		return velocity;
 	}
-	
+
 	public int getHandling() {
 		return handling;
 	}
