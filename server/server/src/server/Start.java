@@ -8,10 +8,14 @@ import java.util.Scanner;
 import camera.ImageRecognition;
 import comunication.MopedSteeringHandler;
 
+/**
+ * Main class of the server. Initiates all the connections, and validates the
+ * given port and ip.
+ */
 public class Start implements PropertyChangeListener {
 	public FixedDataQueue dataHolder;
-	public DataPublisher dataPublisher;
-	public DataReader dataReader;
+	//public DataPublisher dataPublisher;
+	//public DataReader dataReader;
 	public ThreadManager threadManager;
 	public static MopedImgConnection imgInput;
 	public static AppConnection appConnection;
@@ -46,8 +50,8 @@ public class Start implements PropertyChangeListener {
 	public void init() {
 		img = new ImageRecognition();
 		dataHolder = new FixedDataQueue(10);
-		dataPublisher = new DataPublisher();
-		dataReader = new DataReader();
+		//dataPublisher = new DataPublisher();
+		//dataReader = new DataReader();
 		threadManager = new ThreadManager();
 	}
 
@@ -112,19 +116,24 @@ public class Start implements PropertyChangeListener {
 
 	}
 
+	/**
+	 * Method that handles messages sent from the app and data/images sent from the
+	 * moped. Forwards the data to classes that can use them in calculations.
+	 */
 	@Override
 	public void propertyChange(PropertyChangeEvent arg) {
-		// System.out.println("RECEIVED EVENT");
 		if (arg.getPropertyName().equals("new message from app")) {
 			input = new InputInterpreter(arg.getNewValue().toString());
-			if (input.startACC())
+			if (input.startACC()) {
 				ProgramManager.startACC(30); // TODO Change to proper value after testing
-			else if (input.startPlatooning())
+			} else {
 				ProgramManager.startPlatooning();
-			else if (!input.startACC())
+			}
+			if (!input.startACC()) {
 				ProgramManager.stopACC();
-			else if (!input.startPlatooning())
+			} else {
 				ProgramManager.stopPlatooning();
+			}
 			if (!ProgramManager.ACCActive)
 				MopedSteeringHandler.setVelocity(input.getVelocity());
 			if (!ProgramManager.platooningActive)
@@ -135,8 +144,6 @@ public class Start implements PropertyChangeListener {
 			Data d = new Data(arg.getNewValue().toString());
 			if (d.dist < 6) {
 				dataHolder.addFirst(d);
-			} else {
-				// System.out.println("Wrong Data");
 			}
 		} else if (arg.getPropertyName().equals("new image")) {
 			System.out.println("started!!!");
@@ -153,6 +160,5 @@ public class Start implements PropertyChangeListener {
 
 	public static void setStart(Start start2) {
 		start = start2;
-
 	}
 }
