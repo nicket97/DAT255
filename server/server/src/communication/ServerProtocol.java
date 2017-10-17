@@ -1,6 +1,4 @@
-package server;
-
-import communication.AppConnection;
+package communication;
 
 /**
  * Protocol that creates echo messages that are to be sent to the app. If the
