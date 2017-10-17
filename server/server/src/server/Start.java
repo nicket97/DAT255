@@ -5,8 +5,8 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.util.Scanner;
 
-import camera.ImageRecognition;
 import comunication.MopedSteeringHandler;
+import platooning.PlatooningController;
 
 /**
  * Main class of the server. Initiates all the connections, and validates the
@@ -19,7 +19,7 @@ public class Start implements PropertyChangeListener {
 	public static AppConnection appConnection;
 	public static MopedDataConnection mopedDataInput;
 	public InputInterpreter input;
-	public ImageRecognition img;
+	public PlatooningController img;
 
 	public Data mopedData;
 
@@ -47,7 +47,7 @@ public class Start implements PropertyChangeListener {
 	}
 
 	public void init() {
-		img = new ImageRecognition();
+		img = new PlatooningController();
 		dataHolder = new FixedDataQueue(10);
 		threadManager = new ThreadManager();
 	}
@@ -145,7 +145,7 @@ public class Start implements PropertyChangeListener {
 		} else if (arg.getPropertyName().equals("new image")) {
 			System.out.println("started!!!");
 			if (ProgramManager.isPlatooningActive()) {
-				MopedSteeringHandler.setHandling(new ImageRecognition().locateImage(arg.getNewValue()));
+				MopedSteeringHandler.setHandling(new PlatooningController().locateImage(arg.getNewValue()));
 			} else {
 				((File) arg.getNewValue()).delete();
 			}

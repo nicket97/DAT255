@@ -26,14 +26,12 @@ public class Data {
 			JSONObject json = new JSONObject(data);
 
 			this.speed = json.getDouble("inspeed_avg"); // typ speed?
-			// fodometer = json.getDouble("fodometer"); //??
-			// odometer = json.getDouble("odometer"); //avstånd beräkna hastighet
 			this.dist = json.getDouble("can_ultra"); // sensor avstånd i meter
 			this.engineSpeed = json.getDouble("can_speed"); // motorns kraft 0-100
-			// can_steer = json.getDouble("can_steer"); //styrning
 			this.timeStamp = json.getLong("timestamp");
-			//System.out.println("Dist = " + dist);
-			//System.out.println(this.timeStamp);
+			// fodometer = json.getDouble("fodometer"); //??
+			// odometer = json.getDouble("odometer"); //avstånd beräkna hastighet
+			// can_steer = json.getDouble("can_steer"); //styrning
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
