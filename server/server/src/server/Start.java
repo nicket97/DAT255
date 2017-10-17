@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 import camera.ImageRecognition;
 import comunication.MopedSteeringHandler;
+import gui.DataGrabber;
+import gui.MainGUI;
 
 /**
  * Main class of the server. Initiates all the connections, and validates the
@@ -26,6 +28,7 @@ public class Start implements PropertyChangeListener {
 	private String mopedIP;
 	private int mopedPort;
 	private int serverPort;
+	public static MainGUI gui;
 	public static Start start;
 
 	public static void main(String[] args) {
@@ -38,7 +41,7 @@ public class Start implements PropertyChangeListener {
 		appConnection = new AppConnection(8080, start);
 		imgInput = new MopedImgConnection("192.168.43.61", 3000, start);
 		mopedDataInput = new MopedDataConnection("192.168.43.61", 9999, start);
-
+		gui = new MainGUI();
 		init();
 	}
 
@@ -50,6 +53,7 @@ public class Start implements PropertyChangeListener {
 		img = new ImageRecognition();
 		dataHolder = new FixedDataQueue(10);
 		threadManager = new ThreadManager();
+		
 	}
 
 	public static void initConnections() {

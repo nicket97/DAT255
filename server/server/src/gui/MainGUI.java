@@ -29,6 +29,7 @@ public class MainGUI extends Application implements Runnable {
 
     @Override
     public void run() {
+    	System.out.println("Starting GUI");
         main(null);
         
     }
