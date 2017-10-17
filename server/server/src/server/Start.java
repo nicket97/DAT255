@@ -2,6 +2,7 @@ package server;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
 import java.util.Scanner;
 
 import camera.ImageRecognition;
@@ -113,7 +114,7 @@ public class Start implements PropertyChangeListener {
 
 	@Override
 	public void propertyChange(PropertyChangeEvent arg) {
-		//System.out.println("RECEIVED EVENT");
+		// System.out.println("RECEIVED EVENT");
 		if (arg.getPropertyName().equals("new message from app")) {
 			input = new InputInterpreter(arg.getNewValue().toString());
 			if (input.startACC())
@@ -126,7 +127,7 @@ public class Start implements PropertyChangeListener {
 				ProgramManager.stopPlatooning();
 			if (!ProgramManager.ACCActive)
 				MopedSteeringHandler.setVelocity(input.getVelocity());
-			if(!ProgramManager.platooningActive) 
+			if (!ProgramManager.platooningActive)
 				MopedSteeringHandler.setHandling(input.getHandling());
 			System.out.println("App sent a message: " + arg.getNewValue());
 		} else if (arg.getPropertyName().equals("new data from moped")) {
@@ -135,11 +136,15 @@ public class Start implements PropertyChangeListener {
 			if (d.dist < 6) {
 				dataHolder.addFirst(d);
 			} else {
-				//System.out.println("Wrong Data");
+				// System.out.println("Wrong Data");
 			}
 		} else if (arg.getPropertyName().equals("new image")) {
 			System.out.println("started!!!");
-			MopedSteeringHandler.setHandling(new ImageRecognition().locateImage(arg.getNewValue()));
+			if (ProgramManager.platooningActive) {
+				MopedSteeringHandler.setHandling(new ImageRecognition().locateImage(arg.getNewValue()));
+			} else {
+				((File) arg.getNewValue()).delete();
+			}
 			System.out.println("new image received from moped");
 		} else if (arg.getPropertyName().equals("connection lost")) {
 			appConnection.setMopedConnected(false);
