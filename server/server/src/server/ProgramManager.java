@@ -23,9 +23,10 @@ public class ProgramManager {
 	}
 
 
+	@SuppressWarnings("deprecation")
 	public static void stopACC() {
-		if (accThread.isAlive()) {
-			accThread.interrupt();
+		if (ACCActive ) {
+			accThread.stop();
 			accThread = null;
 			ACCActive = false;
 		}
@@ -41,10 +42,11 @@ public class ProgramManager {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	public static void stopPlatooning() {
-		if (platoonThread.isAlive()) {
+		if (platooningActive) {
 			platooningActive = false;
-			platoonThread.interrupt();
+			platoonThread.stop();
 			platoonThread = null;
 		}
 	}
