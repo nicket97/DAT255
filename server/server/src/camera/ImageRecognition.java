@@ -34,7 +34,11 @@ public class ImageRecognition {
         
         //if nothing found in image, set posx1 to 0
         if (posX1 == -150.0) {
-        	System.out.println("cant find green");
+        	System.out.println("");
+        	System.out.println("");
+        	System.out.println("CANT FIND COLOR");
+        	System.out.println("");
+        	System.out.println("");
             posX1 = MopedSteeringHandler.getHandling();
        
         	
@@ -51,10 +55,10 @@ public class ImageRecognition {
     
     private int toSteering(int posX) {
     	int steerInt = 0;
-    	if (posX > 50) {
-    		steerInt = -50;
-    	} else if (posX < -50) {
-    		steerInt = 50;
+    	if (posX > 25) {
+    		steerInt = -25;
+    	} else if (posX < -25) {
+    		steerInt = 25;
     	} else {
     		// here posx is between -50 and 50
     		//multiply by two, making steerint inbetween -100, 100
@@ -92,12 +96,13 @@ public class ImageRecognition {
         IplImage imgThreshold = cvCreateImage(cvGetSize(orgImg), 8, 1);
 
         //custom range from MyRobotLab
-        cvInRangeS(imgHSV, cvScalar(36, 66, 20, 0), cvScalar(79, 255, 255, 0), imgThreshold);
+        //cvInRangeS(imgHSV, cvScalar(36, 66, 20, 0), cvScalar(79, 255, 255, 0), imgThreshold);
+        cvInRangeS(imgHSV, cvScalar(166, 161, 0, 0), cvScalar(256, 256, 255, 0), imgThreshold);
 
         cvReleaseImage(imgHSV);
 
         //gaussian blur
-        cvSmooth(imgThreshold, imgThreshold);
+        //cvSmooth(imgThreshold, imgThreshold);
 
         return imgThreshold;
     }
@@ -105,8 +110,9 @@ public class ImageRecognition {
     static IplImage morphImage(IplImage img){
 
         OpenCVFrameConverter fc = new OpenCVFrameConverter.ToMat();
-
+/*
         //Morphological operations
+        
         //erode
         Mat test123 = cvarrToMat(img);
         Mat element = new Mat(9, 9, CV_8U, new opencv_core.Scalar(1d));
@@ -118,6 +124,21 @@ public class ImageRecognition {
         //dilate
         Mat test1234 = cvarrToMat(img);
         Mat element1 = new Mat(10, 10, CV_8U, new opencv_core.Scalar(1d));
+        dilate(test123, test1234, element1);
+
+        
+       img = fc.convertToIplImage(fc.convert(test1234));
+       */
+        //erode
+        Mat test123 = cvarrToMat(img);
+        Mat element = new Mat(6, 6, CV_8U, new opencv_core.Scalar(1d));
+        erode(test123, test123, element);
+
+        img = fc.convertToIplImage(fc.convert(test123));
+
+        //dilate
+        Mat test1234 = cvarrToMat(img);
+        Mat element1 = new Mat(7, 7, CV_8U, new opencv_core.Scalar(1d));
         dilate(test123, test1234, element1);
 
         img = fc.convertToIplImage(fc.convert(test1234));
