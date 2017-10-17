@@ -121,9 +121,9 @@ public class Start implements PropertyChangeListener {
 				ProgramManager.startACC(30); // TODO Change to proper value after testing
 			else if (input.startPlatooning())
 				ProgramManager.startPlatooning();
-			else if (ProgramManager.ACCActive)
+			else if (!input.startACC())
 				ProgramManager.stopACC();
-			else if (ProgramManager.platooningActive)
+			else if (!input.startPlatooning())
 				ProgramManager.stopPlatooning();
 			if (!ProgramManager.ACCActive)
 				MopedSteeringHandler.setVelocity(input.getVelocity());
