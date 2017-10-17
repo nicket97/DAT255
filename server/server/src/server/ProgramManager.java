@@ -8,10 +8,10 @@ import platooning.PlatooningController;
  * to know if ACC or platooning are active on the moped.
  */
 public class ProgramManager {
-	static boolean programActive = false;
-	static boolean ACCActive = false;
-	static boolean platooningActive = false;
-	static Thread accThread = null;
+	private static boolean programActive = false;
+	private static boolean ACCActive = false;
+	private static boolean platooningActive = false;
+	private static Thread accThread = null;
 	static Thread platoonThread = null;
 
 	public static void startACC(int dist) {
@@ -49,11 +49,11 @@ public class ProgramManager {
 		}
 	}
 
-	public boolean isACCActive() {
+	public static boolean isACCActive() {
 		return ACCActive;
 	}
 
-	public boolean isPlatooningActive() {
+	public static boolean isPlatooningActive() {
 		return platooningActive;
 	}
 
