@@ -36,6 +36,7 @@ public class ProgramManager {
 	@SuppressWarnings("deprecation")
 	public static void stopPlatooning(){
 		if(platoonThread.isAlive()){
+			platooningActive = false;
 			platoonThread.stop();
 			platoonThread = null;
 		}
