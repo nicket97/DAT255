@@ -8,8 +8,6 @@ import java.net.*;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import comunication.MopedSteeringHandler;
-
 /**
  * Handles connection and sending + receiving messages from and to the app.
  */
@@ -19,6 +17,7 @@ public class AppConnection implements Runnable {
 	private int appPort;
 	private PropertyChangeSupport pcs;
 	private static boolean connected = true;
+	private static boolean appConnected = false;
 	private JSONObject exceptionMessage;
 
 	public AppConnection(int port, PropertyChangeListener mainServer) {
@@ -40,28 +39,34 @@ public class AppConnection implements Runnable {
 				ServerProtocol sp = new ServerProtocol();
 				outputLine = sp.processInput(null);
 				out.println(outputLine);
-				System.out.println("connected");
+				setAppConnected(true);
 
 				client.setSoTimeout(5000); // If no new message on inputLine in 5 seconds, break.
 
 				while ((inputLine = in.readLine()) != null) {
 					pcs.firePropertyChange("new message from app", null, inputLine);
-					//System.out.println("Server received " + inputLine);
 					outputLine = sp.processInput(inputLine);
 					out.println(outputLine);
-					if (outputLine.equals("Bye."))
-						break;
 				}
 			} catch (IOException e) {
 				if (e instanceof SocketTimeoutException) {
 					System.out.println("Connection lost.");
 				}
+				setAppConnected(false);
 				pcs.firePropertyChange("new message from app", null, createExceptionMessage().toString());
 				System.out.println(
 						"Exception caught when trying to listen on port " + appPort + " or listening for a connection");
 				System.out.println(e.getMessage());
 			}
 		}
+	}
+
+	private void setAppConnected(boolean b) {
+		appConnected = b;
+	}
+
+	public static boolean isAppConnected() {
+		return appConnected;
 	}
 
 	public static boolean isMopedConnected() {
