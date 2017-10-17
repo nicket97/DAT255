@@ -32,13 +32,14 @@ public class Start implements PropertyChangeListener {
 
 	public static void main(String[] args) {
 		start = new Start();
-		appConnection = new AppConnection(8080, start);
-		imgInput = new MopedImgConnection("192.168.43.61", 3000, start);
-		mopedDataInput = new MopedDataConnection("192.168.43.61", 9999, start);
+		
 	}
 
 	public Start() {
 		// this.getConnectionDetails();
+		appConnection = new AppConnection(8080, start);
+		imgInput = new MopedImgConnection("192.168.43.61", 3000, start);
+		mopedDataInput = new MopedDataConnection("192.168.43.61", 9999, start);
 
 		init();
 	}
@@ -135,9 +136,9 @@ public class Start implements PropertyChangeListener {
 			} else {
 				ProgramManager.stopPlatooning();
 			}
-			if (!ProgramManager.ACCActive)
+			if (!ProgramManager.isACCActive())
 				MopedSteeringHandler.setVelocity(input.getVelocity());
-			if (!ProgramManager.platooningActive)
+			if (!ProgramManager.isPlatooningActive())
 				MopedSteeringHandler.setHandling(input.getHandling());
 			System.out.println("App sent a message: " + arg.getNewValue());
 		} else if (arg.getPropertyName().equals("new data from moped")) {
@@ -148,7 +149,7 @@ public class Start implements PropertyChangeListener {
 			}
 		} else if (arg.getPropertyName().equals("new image")) {
 			System.out.println("started!!!");
-			if (ProgramManager.platooningActive) {
+			if (ProgramManager.isPlatooningActive()) {
 				MopedSteeringHandler.setHandling(new ImageRecognition().locateImage(arg.getNewValue()));
 			} else {
 				((File) arg.getNewValue()).delete();

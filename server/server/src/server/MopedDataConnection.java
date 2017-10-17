@@ -61,8 +61,8 @@ public class MopedDataConnection implements Runnable {
         try {
 			data.put("Velocity", MopedSteeringHandler.getVelocity());
 			data.put("Handling", MopedSteeringHandler.getHandling());
-			data.put("ACC", ProgramManager.ACCActive); // TODO set command
-			data.put("Platooning", ProgramManager.platooningActive); // TODO set command
+			data.put("ACC", ProgramManager.isACCActive()); // TODO set command
+			data.put("Platooning", ProgramManager.isPlatooningActive()); // TODO set command
 			data.put("Speed", 0.0); // TODO set command
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
