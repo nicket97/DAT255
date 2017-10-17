@@ -14,8 +14,6 @@ import comunication.MopedSteeringHandler;
  */
 public class Start implements PropertyChangeListener {
 	public FixedDataQueue dataHolder;
-	//public DataPublisher dataPublisher;
-	//public DataReader dataReader;
 	public ThreadManager threadManager;
 	public static MopedImgConnection imgInput;
 	public static AppConnection appConnection;
@@ -51,8 +49,6 @@ public class Start implements PropertyChangeListener {
 	public void init() {
 		img = new ImageRecognition();
 		dataHolder = new FixedDataQueue(10);
-		//dataPublisher = new DataPublisher();
-		//dataReader = new DataReader();
 		threadManager = new ThreadManager();
 	}
 
@@ -125,7 +121,6 @@ public class Start implements PropertyChangeListener {
 	public void propertyChange(PropertyChangeEvent arg) {
 		if (arg.getPropertyName().equals("new message from app")) {
 			input = new InputInterpreter(arg.getNewValue().toString());
-
 			if (input.startACC()) {
 				ProgramManager.startACC(30); // TODO Change to proper value after testing
 			} else {
