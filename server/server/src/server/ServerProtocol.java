@@ -1,5 +1,7 @@
 package server;
 
+import communication.AppConnection;
+
 /**
  * Protocol that creates echo messages that are to be sent to the app. If the
  * connection with the moped is lost it sends the app an error message.

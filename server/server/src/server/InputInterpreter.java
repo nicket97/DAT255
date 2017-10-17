@@ -3,7 +3,7 @@ package server;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import comunication.MopedSteeringHandler;
+import communication.MopedSteeringHandler;
 
 /***
  * This class interprets the JSON object sent from the app that contains

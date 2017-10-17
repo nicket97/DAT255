@@ -1,4 +1,4 @@
-package server;
+package communication;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -12,7 +12,7 @@ import java.net.UnknownHostException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import comunication.MopedSteeringHandler;
+import server.ProgramManager;
 
 /***
  * Receives data sent from moped. Notifies Start when a new value is received.

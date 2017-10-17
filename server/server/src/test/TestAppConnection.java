@@ -12,7 +12,8 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import org.junit.Before;
 import org.junit.Test;
-import server.AppConnection;
+
+import communication.AppConnection;
 
 public class TestAppConnection implements PropertyChangeListener {
 	private AppConnection input;

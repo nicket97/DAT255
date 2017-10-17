@@ -1,4 +1,4 @@
-package server;
+package communication;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -7,6 +7,8 @@ import java.net.*;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import server.ServerProtocol;
 
 /**
  * Handles connection and sending + receiving messages from and to the app.

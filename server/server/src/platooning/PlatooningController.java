@@ -13,7 +13,7 @@ import org.bytedeco.javacpp.opencv_imgproc.CvMoments;
 import org.bytedeco.javacv.OpenCVFrameConverter;
 import org.opencv.core.Mat;
 
-import comunication.MopedSteeringHandler;
+import communication.MopedSteeringHandler;
 
 /**
  * Responsible for image recognition and calculations for platooning. Analyzes

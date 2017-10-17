@@ -14,7 +14,7 @@ import java.net.Socket;
 import org.junit.Before;
 import org.junit.Test;
 
-import server.MopedDataConnection;
+import communication.MopedDataConnection;
 
 public class TestMopedConnection implements PropertyChangeListener {
 

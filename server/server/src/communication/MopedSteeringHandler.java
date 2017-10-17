@@ -1,4 +1,4 @@
-package comunication;
+package communication;
 
 /**
  * Stores speed and handling values that can be used by calculations and sent to

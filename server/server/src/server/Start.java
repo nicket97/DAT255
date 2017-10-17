@@ -4,8 +4,11 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.util.Scanner;
-import comunication.MopedSteeringHandler;
-import gui.DataGrabber;
+
+import communication.AppConnection;
+import communication.MopedDataConnection;
+import communication.MopedImgConnection;
+import communication.MopedSteeringHandler;
 import gui.MainGUI;
 import platooning.PlatooningController;
 
@@ -38,9 +41,9 @@ public class Start implements PropertyChangeListener {
 
 	public Start() {
 		// this.getConnectionDetails();
-		appConnection = new AppConnection(8080, start);
-		imgInput = new MopedImgConnection("192.168.43.61", 3000, start);
-		mopedDataInput = new MopedDataConnection("192.168.43.61", 9999, start);
+		appConnection = new AppConnection(8080, this);
+		imgInput = new MopedImgConnection("192.168.43.61", 3000, this);
+		mopedDataInput = new MopedDataConnection("192.168.43.61", 9999, this);
 		gui = new MainGUI();
 		init();
 	}

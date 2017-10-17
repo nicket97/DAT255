@@ -1,6 +1,6 @@
 package acc;
 
-import comunication.MopedSteeringHandler;
+import communication.MopedSteeringHandler;
 import server.Data;
 import server.Start;
 

@@ -7,7 +7,7 @@ import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 
-import comunication.MopedSteeringHandler;
+import communication.MopedSteeringHandler;
 import server.InputInterpreter;
 
 public class SteeringCommandTest {

@@ -1,4 +1,4 @@
-package server;
+package communication;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

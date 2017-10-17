@@ -1,8 +1,7 @@
-package gui;
+package server;
 
-import comunication.MopedSteeringHandler;
-import server.ProgramManager;
-import server.Start;
+import communication.MopedSteeringHandler;
+import gui.IDataGrabber;
 
 public class DataGrabber implements IDataGrabber {
 
