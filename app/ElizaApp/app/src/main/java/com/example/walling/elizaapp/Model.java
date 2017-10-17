@@ -79,7 +79,7 @@ public class Model {
                     System.out.println("client created");
 
                      out = new PrintWriter(client.getOutputStream(), true);
-                     BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));{
+                     BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream())); {
                         String response=in.readLine();
                         System.out.println("I received: " + response);
                         initJSON();
