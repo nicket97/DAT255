@@ -3,6 +3,7 @@ package core;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -12,13 +13,12 @@ import java.net.SocketTimeoutException;
 
 import org.omg.CORBA_2_3.portable.OutputStream;
 
-import server.ServerProtocol;
 
 public class MopedImgConnection implements Runnable {
 	private int port;
 	FileInputStream in = null;
 	BufferedInputStream bis = null;
-	OutputStream os = null;
+	java.io.OutputStream os = null;
 	ServerSocket servsock = null;
 	Socket sock = null;
 
@@ -57,4 +57,4 @@ public class MopedImgConnection implements Runnable {
 				System.out.println(e.getMessage());
 			}
 		}
-}}
+}
