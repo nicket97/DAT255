@@ -52,7 +52,7 @@ public class ConnectActivity extends AppCompatActivity implements IMainView, IMe
         connectButton.setOnClickListener(connectButtonClick);
 
         // set default ip
-        ipText.setText("10.0.2.2");
+        ipText.setText("192.168.43.");
         portText.setText("8080");
         raspPiImage.setRotation(348);
     }

@@ -32,8 +32,12 @@ public class ImageRecognition {
         
         int posX1 = (int)(position.getWidth()-150);
         
-        System.out.print("IMG RCGÖ    ");
-        System.out.print(position.getWidth() - 150);
+        //if nothing found in image, set posx1 to 0
+        if (posX1 == -150.0) {
+        	posX1 = 0;
+        }
+        
+        System.out.print("IMG RECOGNITION: " + posX1);
         
 
         img.delete();
@@ -62,6 +66,7 @@ public class ImageRecognition {
     	} if (steerInt < -50) {
     		steerInt = -50;
     	}
+    	System.out.println("GENERATED STEERINT: " + steerInt);
     	return steerInt;
     	
     }
