@@ -11,7 +11,7 @@ public class ThreadManager {
 
 	public ThreadManager() {
 		appThread = new Thread(Start.appConnection);
-		imgThread = new Thread(Start.imgInput);
+		//imgThread = new Thread(Start.imgInput);
 		dataThread = new Thread(Start.mopedDataInput);
 
 		initThreads();
@@ -19,7 +19,7 @@ public class ThreadManager {
 
 	public void initThreads() {
 		appThread.start();
-		imgThread.start();
+		//imgThread.start();
 		dataThread.start();
 	}
 

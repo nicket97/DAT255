@@ -22,6 +22,7 @@ public class ProgramManager {
 		}
 	}
 
+
 	public static void stopACC() {
 		if (accThread.isAlive()) {
 			accThread.interrupt();
@@ -29,12 +30,14 @@ public class ProgramManager {
 			ACCActive = false;
 		}
 	}
+	
+	public static void startPlatooning(){
+		if(!platooningActive){
+		platoonThread = new Thread(Start.imgInput);
+		platoonThread.start();
+		platooningActive = true;
 
-	public static void startPlatooning() {
-		if (!platooningActive) {
-			platoonThread = new Thread(new PlatooningController());
-			platoonThread.start();
-			platooningActive = true;
+
 		}
 	}
 
