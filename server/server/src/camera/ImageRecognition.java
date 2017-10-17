@@ -69,7 +69,7 @@ public class ImageRecognition {
     	steerInt = steerInt * -1;
 
     
-    	steerInt -= 10;
+    	//steerInt -= 10;
     	System.out.println("GENERATED STEERINT: " + steerInt);
     	return steerInt;
     }
