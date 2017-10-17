@@ -113,7 +113,7 @@ public class Start implements PropertyChangeListener {
 
 	@Override
 	public void propertyChange(PropertyChangeEvent arg) {
-		System.out.println("RECEIVED EVENT");
+		//System.out.println("RECEIVED EVENT");
 		if (arg.getPropertyName().equals("new message from app")) {
 			input = new InputInterpreter(arg.getNewValue().toString());
 			if (input.startACC())
@@ -124,17 +124,18 @@ public class Start implements PropertyChangeListener {
 				ProgramManager.stopACC();
 			else if (ProgramManager.platooningActive)
 				ProgramManager.stopPlatooning();
-			if (!ProgramManager.ACCActive || !ProgramManager.platooningActive)
+			if (!ProgramManager.ACCActive)
 				MopedSteeringHandler.setVelocity(input.getVelocity());
-			MopedSteeringHandler.setHandling(input.getHandling());
-			System.out.println("App sent a message: " + arg.getNewValue());
+			if(!ProgramManager.platooningActive) 
+				MopedSteeringHandler.setHandling(input.getHandling());
+			//System.out.println("App sent a message: " + arg.getNewValue());
 		} else if (arg.getPropertyName().equals("new data from moped")) {
-			System.out.println("New data from moped: " + arg.getNewValue());
+			//System.out.println("New data from moped: " + arg.getNewValue());
 			Data d = new Data(arg.getNewValue().toString());
 			if (d.dist < 6) {
 				dataHolder.addFirst(d);
 			} else {
-				System.out.println("Wrong Data");
+				//System.out.println("Wrong Data");
 			}
 		} else if (arg.getPropertyName().equals("new image")) {
 			System.out.println("started!!!");

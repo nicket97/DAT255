@@ -46,7 +46,7 @@ public class AppConnection implements Runnable {
 
 				while ((inputLine = in.readLine()) != null) {
 					pcs.firePropertyChange("new message from app", null, inputLine);
-					System.out.println("Server received " + inputLine);
+					//System.out.println("Server received " + inputLine);
 					outputLine = sp.processInput(inputLine);
 					out.println(outputLine);
 					if (outputLine.equals("Bye."))
