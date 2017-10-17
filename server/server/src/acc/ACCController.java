@@ -4,6 +4,10 @@ import comunication.MopedSteeringHandler;
 import server.Data;
 import server.Start;
 
+/**
+ * Responsible for all ACC calculations. Sends steering values to
+ * MopedSteeringHandler.
+ */
 public class ACCController implements Runnable {
 
 	public int distToCar;
@@ -63,8 +67,6 @@ public class ACCController implements Runnable {
 			} else if ((100 + (dist - 200) / k) < targetSpeed) {
 				speed = (int) Math.round((100 + (dist - 200) / k));
 			} else {
-
-		
 
 				speed = targetSpeed;
 			}
