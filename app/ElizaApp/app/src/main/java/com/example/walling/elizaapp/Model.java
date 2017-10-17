@@ -82,6 +82,7 @@ public class Model {
                      BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));{
                         String response=in.readLine();
                         System.out.println("I received: " + response);
+                        initJSON();
                         out.println(json);
 
                         while(connected) {
@@ -239,33 +240,33 @@ public class Model {
         // om ni någonsin behöver hjälp med programmering, kontakta mig. jag är duktig. :^)
         if (vel > 0) {
             if (vel < 10) {
-                vel = 1;
-            } else if (vel < 18) {
-                vel = 2;
-            } else if (vel < 25) {
-                vel = 3;
-            } else if (vel < 33) {
-                vel = 4;
-            } else if (vel < 39) {
-                vel = 5;
-            } else if (vel < 50) {
-                vel = 7;
-            } else if (vel < 55) {
-                vel = 9;
-            } else if (vel < 60) {
                 vel = 12;
-            } else if (vel < 65) {
+            } else if (vel < 18) {
+                vel = 13;
+            } else if (vel < 25) {
+                vel = 14;
+            } else if (vel < 33) {
+                vel = 15;
+            } else if (vel < 39) {
                 vel = 16;
-            } else if (vel < 70) {
+            } else if (vel < 50) {
+                vel = 17;
+            } else if (vel < 55) {
+                vel = 18;
+            } else if (vel < 60) {
                 vel = 19;
+            } else if (vel < 65) {
+                vel = 20;
+            } else if (vel < 70) {
+                vel = 22;
             } else if (vel < 75) {
-                vel  = 23;
+                vel  = 25;
             } else if (vel < 80) {
                 vel = 28;
             } else if (vel < 90) {
-                vel = 35;
+                vel = 33;
             } else if (vel < 100) {
-                vel = 42;
+                vel = 40;
             } else if (vel < 110) {
                 vel = 54;
             } else if (vel < 120) {
