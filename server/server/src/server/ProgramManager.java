@@ -28,7 +28,7 @@ public class ProgramManager {
 	
 	public static void startPlatooning(){
 		if(!platooningActive){
-		platoonThread = new Thread(new PlatooningController());
+		platoonThread = new Thread(Start.imgInput);
 		platoonThread.start();
 		platooningActive = true;
 		}
