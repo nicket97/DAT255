@@ -5,8 +5,8 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.util.Scanner;
 
-import camera.ImageRecognition;
 import comunication.MopedSteeringHandler;
+import platooning.PlatooningController;
 
 /**
  * Main class of the server. Initiates all the connections, and validates the
@@ -14,14 +14,12 @@ import comunication.MopedSteeringHandler;
  */
 public class Start implements PropertyChangeListener {
 	public FixedDataQueue dataHolder;
-	//public DataPublisher dataPublisher;
-	//public DataReader dataReader;
 	public ThreadManager threadManager;
 	public static MopedImgConnection imgInput;
 	public static AppConnection appConnection;
 	public static MopedDataConnection mopedDataInput;
 	public InputInterpreter input;
-	public ImageRecognition img;
+	public PlatooningController img;
 
 	public Data mopedData;
 
@@ -49,10 +47,8 @@ public class Start implements PropertyChangeListener {
 	}
 
 	public void init() {
-		img = new ImageRecognition();
+		img = new PlatooningController();
 		dataHolder = new FixedDataQueue(10);
-		//dataPublisher = new DataPublisher();
-		//dataReader = new DataReader();
 		threadManager = new ThreadManager();
 	}
 
@@ -125,7 +121,6 @@ public class Start implements PropertyChangeListener {
 	public void propertyChange(PropertyChangeEvent arg) {
 		if (arg.getPropertyName().equals("new message from app")) {
 			input = new InputInterpreter(arg.getNewValue().toString());
-
 			if (input.startACC()) {
 				ProgramManager.startACC(30); // TODO Change to proper value after testing
 			} else {
@@ -150,7 +145,7 @@ public class Start implements PropertyChangeListener {
 		} else if (arg.getPropertyName().equals("new image")) {
 			System.out.println("started!!!");
 			if (ProgramManager.isPlatooningActive()) {
-				MopedSteeringHandler.setHandling(new ImageRecognition().locateImage(arg.getNewValue()));
+				MopedSteeringHandler.setHandling(new PlatooningController().locateImage(arg.getNewValue()));
 			} else {
 				((File) arg.getNewValue()).delete();
 			}

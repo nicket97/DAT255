@@ -1,5 +1,9 @@
 package comunication;
 
+/**
+ * Stores speed and handling values that can be used by calculations and sent to
+ * the moped.
+ */
 public class MopedSteeringHandler {
 	public static String steeringCommand;
 	public static int velocity;
@@ -22,10 +26,5 @@ public class MopedSteeringHandler {
 
 	public static int getHandling() {
 		return MopedSteeringHandler.handling;
-	}
-
-	public static char[] getSteeringCommand() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
