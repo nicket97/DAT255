@@ -55,8 +55,8 @@ public class AppConnection implements Runnable {
 			} catch (IOException e) {
 				if (e instanceof SocketTimeoutException) {
 					System.out.println("Connection lost.");
-					pcs.firePropertyChange("new message from app", null, createExceptionMessage().toString());
 				}
+				pcs.firePropertyChange("new message from app", null, createExceptionMessage().toString());
 				System.out.println(
 						"Exception caught when trying to listen on port " + appPort + " or listening for a connection");
 				System.out.println(e.getMessage());
