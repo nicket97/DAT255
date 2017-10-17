@@ -2,22 +2,18 @@ package camera;
 
 import static org.bytedeco.javacpp.opencv_core.*;
 import static org.bytedeco.javacpp.opencv_imgcodecs.cvLoadImage;
-import static org.bytedeco.javacpp.opencv_imgcodecs.cvSaveImage;
 import static org.bytedeco.javacpp.opencv_imgproc.*;
 
-import org.bytedeco.javacpp.Loader;
+import java.awt.Dimension;
+import java.io.File;
+
 import org.bytedeco.javacpp.opencv_core;
 import org.bytedeco.javacpp.opencv_core.IplImage;
 import org.bytedeco.javacpp.opencv_imgproc.CvMoments;
 import org.bytedeco.javacv.OpenCVFrameConverter;
+import org.opencv.core.Mat;
 
 import comunication.MopedSteeringHandler;
-import server.Start;
-
-import org.bytedeco.javacpp.opencv_core.Mat;
-
-import java.awt.Dimension;
-import java.io.File;
 
 public class ImageRecognition {
 

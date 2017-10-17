@@ -46,7 +46,8 @@ public class Controller implements Initializable {
                         txtVelocity.setText(String.valueOf(mDataGrabber.getVelocity()));
                         txtHandling.setText(String.valueOf(mDataGrabber.getHandling()));
 
-                        imgView.setImage(new Image(mDataGrabber.getImagePath()));
+                        //TODO ADD PATH TO MOST RECENT PIC
+                        //imgView.setImage(new Image(mDataGrabber.getImagePath()));
 
                         txtACC.setText(String.valueOf(mDataGrabber.getACCActivated()));
 

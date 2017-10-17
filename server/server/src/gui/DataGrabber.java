@@ -27,7 +27,7 @@ public class DataGrabber implements IDataGrabber {
 	@Override
 	public boolean getAppConnection() {
 		//TODO fix
-		return true;
+		return Start.appConnection.isAppConnected();
 	}
 
 	@Override
