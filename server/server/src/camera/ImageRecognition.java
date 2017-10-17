@@ -10,6 +10,10 @@ import org.bytedeco.javacpp.opencv_core;
 import org.bytedeco.javacpp.opencv_core.IplImage;
 import org.bytedeco.javacpp.opencv_imgproc.CvMoments;
 import org.bytedeco.javacv.OpenCVFrameConverter;
+
+import comunication.MopedSteeringHandler;
+import server.Start;
+
 import org.bytedeco.javacpp.opencv_core.Mat;
 
 import java.awt.Dimension;
@@ -35,7 +39,8 @@ public class ImageRecognition {
         //if nothing found in image, set posx1 to 0
         if (posX1 == -150.0) {
         	System.out.println("cant find green");
-        	posX1 = 0;
+            posX1 = MopedSteeringHandler.getHandling();
+       
         	
         }
         
