@@ -13,7 +13,7 @@ public class ACCSimulation implements Runnable {
 	public ACCSimulation(Moped moped, int leadSpeed, int startDist) {
 		this.moped = moped;
 		this.leadSpeed = leadSpeed;
-		this.posx = startDist;
+		this.posX = startDist;
 	}
 
 	@Override
@@ -33,6 +33,7 @@ public class ACCSimulation implements Runnable {
 			posX += leadSpeed*(System.currentTimeMillis()-oldTime)/1000;
 			moped.posX += moped.velocity;
 			moped.can_ultra = this.posX - moped.posX;
+			
 			//moped.setSensors();
 		}
 		
