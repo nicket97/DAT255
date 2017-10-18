@@ -37,8 +37,8 @@ public class ACCController implements Runnable {
 
 	public void updateMopedSpeed() {
 
-		MopedSteeringHandler.velocity = convertSpeedToESCValue(this.getACCSpeed(Start.start.dataHolder.getFirst().getDist(), targetSpeed,
-				targetDist));
+		MopedSteeringHandler.velocity = this.getACCSpeed(Start.start.dataHolder.getFirst().getDist(), targetSpeed,
+				targetDist) ;
 		// MopedSteeringHandler.handling = -50;
 	}
 
