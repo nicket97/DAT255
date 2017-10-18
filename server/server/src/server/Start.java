@@ -43,10 +43,7 @@ public class Start implements PropertyChangeListener {
  */
 	public Start() {
 		// this.getConnectionDetails();
-		gui = new MainGUI();
-		appConnection = new AppConnection(8080, this);
-		imgInput = new MopedImgConnection("192.168.43.54", 3000, this);
-		mopedDataInput = new MopedDataConnection("192.168.43.54", 9999, this);
+		initConnections(this);
 		init();
 	}
 /**
@@ -56,6 +53,7 @@ public class Start implements PropertyChangeListener {
 	public Start(boolean testcase) {
 		init();
 	}
+	
 /**
  * inits objects other than connections
  */
@@ -66,8 +64,11 @@ public class Start implements PropertyChangeListener {
 		
 	}
 
-	public static void initConnections() {
-
+	public static void initConnections(PropertyChangeListener pcl) {
+		gui = new MainGUI();
+		appConnection = new AppConnection(8080, pcl);
+		imgInput = new MopedImgConnection("192.168.43.54", 3000, pcl);
+		mopedDataInput = new MopedDataConnection("192.168.43.54", 9999, pcl);
 	}
 /**
  * collects the ip and port to use in the connections to app and moped
