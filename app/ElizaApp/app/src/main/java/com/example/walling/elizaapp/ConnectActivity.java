@@ -85,14 +85,14 @@ public class ConnectActivity extends AppCompatActivity implements IMainView, IMe
 
                             handler.post(new Runnable() {
                                 public void run() {
-                                    Toast.makeText(getApplicationContext(), "Connected.", Toast.LENGTH_LONG).show();
+                                    //Toast.makeText(getApplicationContext(), "Connected.", Toast.LENGTH_LONG).show();
                                 }
                             });
 
                         } else {
                             handler.post(new Runnable() {
                                 public void run() {
-                                    Toast.makeText(getApplicationContext(), "Can't connect.", Toast.LENGTH_LONG).show();
+                                   // Toast.makeText(getApplicationContext(), "Can't connect.", Toast.LENGTH_LONG).show();
                                 }
                             });                        }
                     } catch (Exception e) {
@@ -137,7 +137,7 @@ public class ConnectActivity extends AppCompatActivity implements IMainView, IMe
         }
 
         if (toast != null) {
-            toast.show();
+           // toast.show();
         }
     }
 }
