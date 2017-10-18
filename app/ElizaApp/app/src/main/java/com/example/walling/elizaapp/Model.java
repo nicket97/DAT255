@@ -236,6 +236,15 @@ public class Model {
     private int adjustVel(int vel) {
         vel = vel + 50;
 
+        if(vel > 0) {
+        	if (vel >= 150) {
+        		vel = 100; }
+        	else {
+        	double vel2 = vel;
+        	vel2 = 7.16381 + 0.262285 * vel -0.00155898 * Math.pow(vel, 2) + 0.0000286057 * Math.pow(vel, 3);
+        	vel = (int) vel2; }
+        	}
+        /**
         // denna koden nedanför är jag särskilt stolt över. //blixxten
         // om ni någonsin behöver hjälp med programmering, kontakta mig. jag är duktig. :^)
         if (vel > 0) {
@@ -277,10 +286,9 @@ public class Model {
                 vel = 90;
             } else if (vel <= 150) {
                 vel = 100;
-            }
+            }*/
         }
 
         System.out.println("VEL: " + vel);
         return vel;
-    }
-}
+    }}
