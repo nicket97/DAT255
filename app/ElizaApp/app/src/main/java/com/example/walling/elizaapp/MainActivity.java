@@ -2,6 +2,8 @@ package com.example.walling.elizaapp;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -70,6 +72,19 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
 
     private void setSpeedBarValue(int newValue){
         speedBar.setProgress(newValue, true);
+    }
+
+    private void ableUI(boolean state) {
+        dcButton.setEnabled(state);
+        setSpeedButton.setEnabled(state);
+        setSpeedEditText.setEnabled(state);
+        centerButton.setEnabled(state);
+        cruiseControlButton.setEnabled(state);
+        steerBar.setEnabled(state);
+        btnStop.setEnabled(state);
+        autoSteerButton.setEnabled(state);
+        speedBar.setEnabled(state);
+        platooningButton.setEnabled(state);
     }
 
     private void ableUI(boolean state, ToggleButton toggleButton) {
@@ -220,9 +235,30 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
     private View.OnClickListener dcButtonOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            controller.setSpeed(0);
-            controller.setSteerString("V0000H0000");
-            controller.disconnect();
+            final Handler handler = new Handler();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Looper.prepare();
+                        controller.setSpeed(0);
+                        speedBar.setProgress(50, true);
+                        steerBar.setProgress(100, true);
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                ableUI(false);
+                            }
+                        });
+
+                        Thread.sleep(2000);
+                        controller.disconnect();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+
         }
     };
 

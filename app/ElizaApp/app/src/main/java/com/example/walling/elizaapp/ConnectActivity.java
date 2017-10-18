@@ -79,7 +79,7 @@ public class ConnectActivity extends AppCompatActivity implements IMainView, IMe
                         }
                     });
                     try {
-                        Thread.sleep(2000);
+                        Thread.sleep(1000);
                         if (Model.getInstance().isConnected()) {
                             startActivity(new Intent(ConnectActivity.this, MainActivity.class));
 
