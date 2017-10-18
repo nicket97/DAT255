@@ -38,7 +38,9 @@ public class Start implements PropertyChangeListener {
 		start = new Start();
 		
 	}
-
+/**
+ * Constructor for start
+ */
 	public Start() {
 		// this.getConnectionDetails();
 		gui = new MainGUI();
@@ -47,11 +49,16 @@ public class Start implements PropertyChangeListener {
 		mopedDataInput = new MopedDataConnection("192.168.43.54", 9999, this);
 		init();
 	}
-
+/**
+ * constructor for testing with out the socket connections
+ * @param testcase
+ */
 	public Start(boolean testcase) {
 		init();
 	}
-
+/**
+ * inits objects other than connections
+ */
 	public void init() {
 		img = new PlatooningController();
 		dataHolder = new FixedDataQueue(10);
@@ -62,7 +69,9 @@ public class Start implements PropertyChangeListener {
 	public static void initConnections() {
 
 	}
-
+/**
+ * collects the ip and port to use in the connections to app and moped
+ */
 	public void getConnectionDetails() {
 		Scanner s = new Scanner(System.in);
 		System.out.println("Input IP: ");
