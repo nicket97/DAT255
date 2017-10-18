@@ -50,10 +50,10 @@ public class PlatooningController {
 
 	private int toSteering(int posX) {
 		int steerInt = 0;
-		if (posX > 50) {
-			steerInt = -50;
-		} else if (posX < -50) {
-			steerInt = 50;
+		if (posX > 25) {
+			steerInt = -25;
+		} else if (posX < -25) {
+			steerInt = 25;
 		} else {
 			// here posx is between -50 and 50
 			// multiply by two, making steerint inbetween -100, 100
