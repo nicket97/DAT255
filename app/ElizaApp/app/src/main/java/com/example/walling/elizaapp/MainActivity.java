@@ -73,18 +73,20 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
     }
 
     private void ableUI(boolean state, ToggleButton toggleButton) {
-        btnStop.setEnabled(state);
         dcButton.setEnabled(state);
         setSpeedButton.setEnabled(state);
         setSpeedEditText.setEnabled(state);
-        centerButton.setEnabled(state);
         if (toggleButton == autoSteerButton) {
+            centerButton.setEnabled(state);
             cruiseControlButton.setEnabled(state);
             steerBar.setEnabled(state);
         } else if (toggleButton == cruiseControlButton) {
+            btnStop.setEnabled(state);
             autoSteerButton.setEnabled(state);
             speedBar.setEnabled(state);
         } else if (toggleButton == platooningButton) {
+            centerButton.setEnabled(state);
+            btnStop.setEnabled(state);
             autoSteerButton.setEnabled(state);
             cruiseControlButton.setEnabled(state);
             speedBar.setEnabled(state);
