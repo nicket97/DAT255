@@ -151,13 +151,13 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
                     }
                     speedBar.setProgress(50, true);
                 } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(), "Speed not provided correctly.",
-                            Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), "Speed not provided correctly.",
+                     //       Toast.LENGTH_LONG).show();
                 }
 
             } else {
-                Toast.makeText(getApplicationContext(), "You must provide a speed.",
-                        Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "You must provide a speed.",
+                 //       Toast.LENGTH_LONG).show();
             }
 
         }
@@ -232,7 +232,7 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
     @Override
     public void update(MessageData msgData) {
         if (msgData.getMessageType() == MessageData.MessageType.CONNECTION_LOST1) {
-            Toast.makeText(getApplicationContext(), "Connection lost", Toast.LENGTH_LONG).show();
+           // Toast.makeText(getApplicationContext(), "Connection lost", Toast.LENGTH_LONG).show();
             ableUI(false, null);
             autoSteerButton.setEnabled(false);
             cruiseControlButton.setEnabled(false);
