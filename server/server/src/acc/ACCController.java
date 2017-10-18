@@ -15,11 +15,17 @@ public class ACCController implements Runnable {
 	private int targetSpeed;
 	private int targetDist;
 
+	/**
+	 * 
+	 * @param targetDist The targetdist we want to be away from the moped infront
+	 */
 	public ACCController(int targetDist) {
 		this.targetDist = targetDist;
 
 	}
-
+	/**
+	 * 
+	 */
 	@Override
 	public void run() {
 		while (true) {
@@ -34,20 +40,33 @@ public class ACCController implements Runnable {
 		}
 
 	}
-
+/**
+ * is called by the loop and sets the velocity to send to the moped
+ */
 	public void updateMopedSpeed() {
 
 		MopedSteeringHandler.velocity = this.getACCSpeed(Start.start.dataHolder.getFirst().getDist(), targetSpeed,
 				targetDist) ;
 		// MopedSteeringHandler.handling = -50;
 	}
-
+/**
+ * Converts the speed in cm/s to a engine steering value
+ * @param speed
+ * @return engine steering value
+ */
 	public int convertSpeedToESCValue(int speed) {
 		int value;
 		value = (speed - 15) / 2;
 		return value;
 	}
-
+/**
+ * Uses the target speed to create a function from the dist and gives the speed we want to be driving
+ * 
+ * @param dist
+ * @param targetSpeed
+ * @param targetDist
+ * @return
+ */
 	public int getACCSpeed(double dist, int targetSpeed, int targetDist) {
 		dist *= 100;
 		int speed = 0;
@@ -76,11 +95,17 @@ public class ACCController implements Runnable {
 			speed = 20;
 		return speed;
 	}
-
+/**
+ * Sets the speed we want to target
+ * @param targetSpeed
+ */
 	public void setTargetSpeed(int targetSpeed) {
 		this.targetSpeed = targetSpeed;
 	}
-
+/**
+ * Returns the lead speed of the moped in front by calculating the difference in distance and adding it to our current speed
+ * @return speed of the moped in front of us
+ */
 	public int detreminLeadSpeed() {
 		Data d1 = Start.start.dataHolder.getFirst();
 		Data d2 = Start.start.dataHolder.get(1);
