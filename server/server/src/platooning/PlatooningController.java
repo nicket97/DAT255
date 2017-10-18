@@ -51,12 +51,12 @@ public class PlatooningController {
 			oldFile.delete();
 		}
 
-		DataGrabber.setImagePath(newFile.toURI().toString());
+		//DataGrabber.setImagePath(newFile.toURI().toString());
 
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 
 
-		String bookObject = "/Users/erikstrid/Desktop/CameraTest/src/main/resources/icon.jpg";
+		String bookObject = "/Users/olofenstrom/Desktop/icon.jpg";
 		String bookScene = newFile.getAbsolutePath();
 
 
@@ -68,7 +68,7 @@ public class PlatooningController {
 		FeatureDetector featureDetector = FeatureDetector.create(FeatureDetector.ORB);
 		featureDetector.detect(objectImage, objectKeyPoints);
 		org.opencv.core.KeyPoint[] keypoints = objectKeyPoints.toArray();
-		System.out.println(keypoints);
+		//System.out.println(keypoints);
 
 		MatOfKeyPoint objectDescriptors = new MatOfKeyPoint();
 		DescriptorExtractor descriptorExtractor = DescriptorExtractor.create(DescriptorExtractor.ORB);
@@ -114,93 +114,105 @@ public class PlatooningController {
 		}
 
 		if (goodMatchesList.size() >= 7) {
+			try {
+				System.out.println("good matches list: " + goodMatchesList.size());
 
-			List<KeyPoint> objKeypointlist = objectKeyPoints.toList();
-			List<KeyPoint> scnKeypointlist = sceneKeyPoints.toList();
+				List<KeyPoint> objKeypointlist = objectKeyPoints.toList();
+				List<KeyPoint> scnKeypointlist = sceneKeyPoints.toList();
 
-			//LinkedList<Point> objectPoints = new LinkedList<>();
-			//LinkedList<Point> scenePoints = new LinkedList<>();
+				//LinkedList<Point> objectPoints = new LinkedList<>();
+				//LinkedList<Point> scenePoints = new LinkedList<>();
 
-			LinkedList<Point> objectPoints = new LinkedList();
-			LinkedList<Point> scenePoints = new LinkedList();
+				LinkedList<Point> objectPoints = new LinkedList();
+				LinkedList<Point> scenePoints = new LinkedList();
 
-			for (int i = 0; i < goodMatchesList.size(); i++) {
-				objectPoints.addLast(objKeypointlist.get(goodMatchesList.get(i).queryIdx).pt);
-				scenePoints.addLast(scnKeypointlist.get(goodMatchesList.get(i).trainIdx).pt);
+				for (int i = 0; i < goodMatchesList.size(); i++) {
+					objectPoints.addLast(objKeypointlist.get(goodMatchesList.get(i).queryIdx).pt);
+					scenePoints.addLast(scnKeypointlist.get(goodMatchesList.get(i).trainIdx).pt);
+				}
+
+				MatOfPoint2f objMatOfPoint2f = new MatOfPoint2f();
+				objMatOfPoint2f.fromList(objectPoints);
+				MatOfPoint2f scnMatOfPoint2f = new MatOfPoint2f();
+				scnMatOfPoint2f.fromList(scenePoints);
+
+				Mat homography = Calib3d.findHomography(objMatOfPoint2f, scnMatOfPoint2f, Calib3d.RANSAC, 3);
+
+				Mat obj_corners = new Mat(4, 1, CvType.CV_32FC2);
+				Mat scene_corners = new Mat(4, 1, CvType.CV_32FC2);
+
+				obj_corners.put(0, 0, new double[]{0, 0});
+				obj_corners.put(1, 0, new double[]{objectImage.cols(), 0});
+				obj_corners.put(2, 0, new double[]{objectImage.cols(), objectImage.rows()});
+				obj_corners.put(3, 0, new double[]{0, objectImage.rows()});
+
+				Core.perspectiveTransform(obj_corners, scene_corners, homography);
+
+				Mat img = Imgcodecs.imread(bookScene, Imgcodecs.CV_LOAD_IMAGE_COLOR);
+
+				Point x1 = new Point(scene_corners.get(0, 0));
+				Point x2 = new Point(scene_corners.get(1, 0));
+				Point x3 = new Point(scene_corners.get(2, 0));
+				Point x4 = new Point(scene_corners.get(3, 0));
+
+				int posX = (int)(x1.x+x2.x+x3.x+x4.x)/4;
+				int posy = (int)(x1.y+x2.y+x3.y+x4.y)/4;
+				Imgproc.drawMarker(img, new Point(posX,posy),new Scalar(0, 255, 0));
+
+				System.out.print("X: " + posX + "\n" + "Y: " + posy + "\n");
+
+
+				//Imgproc.line(img, new Point(scene_corners.get(0, 0)), new Point(scene_corners.get(1, 0)), new Scalar(0, 255, 0), 4);
+				//Imgproc.line(img, new Point(scene_corners.get(1, 0)), new Point(scene_corners.get(2, 0)), new Scalar(0, 255, 0), 4);
+				//Imgproc.line(img, new Point(scene_corners.get(2, 0)), new Point(scene_corners.get(3, 0)), new Scalar(0, 255, 0), 4);
+				//Imgproc.line(img, new Point(scene_corners.get(3, 0)), new Point(scene_corners.get(0, 0)), new Scalar(0, 255, 0), 4);
+
+
+				//System.out.println("Drawing matches image...");
+				//MatOfDMatch goodMatches = new MatOfDMatch();
+				//goodMatches.fromList(goodMatchesList);
+
+				//Features2d.drawMatches(objectImage, objectKeyPoints, sceneImage, sceneKeyPoints, goodMatches, matchoutput, matchestColor, newKeypointColor, new MatOfByte(), 2);
+
+				//Imgcodecs.imwrite("test1.jpg", outputImage);
+				//Imgcodecs.imwrite("test2.jpg", matchoutput);
+				Imgcodecs.imwrite("test3.jpg", img);
+				int posX1 = (posX - 200);
+
+				// if nothing found in image, set posx1 to 0
+				if (posX1 == -200) {
+					System.out.println("cant find image");
+					posX1 = MopedSteeringHandler.getHandling();
+
+				}
+
+				
+				//img.delete();
+
+				// output steering signal
+				DataGrabber.setImagePath(newFile.toURI().toString());
+				DataGrabber.setPosX(posX);
+				DataGrabber.setPosY(posy);
+				
+				return toSteering(posX1);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				System.out.println("ERROR ERROR ERROR ERROR ERROR\nERROR ERROR ERROR ERROR");
+				return MopedSteeringHandler.getHandling();
 			}
-
-			MatOfPoint2f objMatOfPoint2f = new MatOfPoint2f();
-			objMatOfPoint2f.fromList(objectPoints);
-			MatOfPoint2f scnMatOfPoint2f = new MatOfPoint2f();
-			scnMatOfPoint2f.fromList(scenePoints);
-
-			Mat homography = Calib3d.findHomography(objMatOfPoint2f, scnMatOfPoint2f, Calib3d.RANSAC, 3);
-
-			Mat obj_corners = new Mat(4, 1, CvType.CV_32FC2);
-			Mat scene_corners = new Mat(4, 1, CvType.CV_32FC2);
-
-			obj_corners.put(0, 0, new double[]{0, 0});
-			obj_corners.put(1, 0, new double[]{objectImage.cols(), 0});
-			obj_corners.put(2, 0, new double[]{objectImage.cols(), objectImage.rows()});
-			obj_corners.put(3, 0, new double[]{0, objectImage.rows()});
-
-			Core.perspectiveTransform(obj_corners, scene_corners, homography);
-
-			Mat img = Imgcodecs.imread(bookScene, Imgcodecs.CV_LOAD_IMAGE_COLOR);
-
-			Point x1 = new Point(scene_corners.get(0, 0));
-			Point x2 = new Point(scene_corners.get(1, 0));
-			Point x3 = new Point(scene_corners.get(2, 0));
-			Point x4 = new Point(scene_corners.get(3, 0));
-
-			int posX = (int)(x1.x+x2.x+x3.x+x4.x)/4;
-			int posy = (int)(x1.y+x2.y+x3.y+x4.y)/4;
-			Imgproc.drawMarker(img, new Point(posX,posy),new Scalar(0, 255, 0));
-
-			System.out.print("X: " + posX + "\n" + "Y: " + posy + "\n");
-
-
-			//Imgproc.line(img, new Point(scene_corners.get(0, 0)), new Point(scene_corners.get(1, 0)), new Scalar(0, 255, 0), 4);
-			//Imgproc.line(img, new Point(scene_corners.get(1, 0)), new Point(scene_corners.get(2, 0)), new Scalar(0, 255, 0), 4);
-			//Imgproc.line(img, new Point(scene_corners.get(2, 0)), new Point(scene_corners.get(3, 0)), new Scalar(0, 255, 0), 4);
-			//Imgproc.line(img, new Point(scene_corners.get(3, 0)), new Point(scene_corners.get(0, 0)), new Scalar(0, 255, 0), 4);
-
-
-			//System.out.println("Drawing matches image...");
-			//MatOfDMatch goodMatches = new MatOfDMatch();
-			//goodMatches.fromList(goodMatchesList);
-
-			//Features2d.drawMatches(objectImage, objectKeyPoints, sceneImage, sceneKeyPoints, goodMatches, matchoutput, matchestColor, newKeypointColor, new MatOfByte(), 2);
-
-			//Imgcodecs.imwrite("test1.jpg", outputImage);
-			//Imgcodecs.imwrite("test2.jpg", matchoutput);
-			Imgcodecs.imwrite("test3.jpg", img);
-			posX = (posX - 200);
-
-			// if nothing found in image, set posx1 to 0
-			if (posX == -200) {
-				System.out.println("cant find image");
-				posX = MopedSteeringHandler.getHandling();
-
-			}
-
-			//img.delete();
-
-			// output steering signal
-			return toSteering(posX);
 
 		} else {
-			System.out.println("Object Not Found");
-			return 0;
+			return MopedSteeringHandler.getHandling();
 		}
 	}
 
 	private int toSteering(int posX) {
-		int maxSteering = 25;
+		int maxSteering = 30;
+		int maxPixel = maxSteering + 10;
 		int steerInt = 0;
-		if (posX > maxSteering) {
+		if (posX > maxPixel) {
 			steerInt = -maxSteering;
-		} else if (posX < -maxSteering) {
+		} else if (posX < -maxPixel) {
 			steerInt = maxSteering;
 		} else {
 			// here posx is between -maxSteering and maxSteering

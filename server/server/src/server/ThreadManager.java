@@ -22,9 +22,7 @@ public class ThreadManager {
 		System.out.println("starting Threads");
 		guiThread.start();
 		appThread.start();
-		imgThread.start();
+		//imgThread.start();
 		dataThread.start();
-		
 	}
-
 }
