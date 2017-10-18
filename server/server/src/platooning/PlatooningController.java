@@ -49,13 +49,14 @@ public class PlatooningController {
 	}
 
 	private int toSteering(int posX) {
+		int maxSteering = 25;
 		int steerInt = 0;
-		if (posX > 25) {
-			steerInt = -25;
-		} else if (posX < -25) {
-			steerInt = 25;
+		if (posX > maxSteering) {
+			steerInt = -maxSteering;
+		} else if (posX < -maxSteering) {
+			steerInt = maxSteering;
 		} else {
-			// here posx is between -50 and 50
+			// here posx is between -maxSteering and maxSteering
 			// multiply by two, making steerint inbetween -100, 100
 			steerInt = posX * 1;
 			steerInt = steerInt * -1;
