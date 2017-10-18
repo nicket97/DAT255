@@ -4,6 +4,7 @@ import communication.MopedSteeringHandler;
 import gui.IDataGrabber;
 
 public class DataGrabber implements IDataGrabber {
+	private static String imagePath;
 
 	@Override
 	public double getVelocity() {
@@ -16,16 +17,17 @@ public class DataGrabber implements IDataGrabber {
 		
 		return MopedSteeringHandler.handling;
 	}
+	
+	public static void setImagePath(String imagePath) {
+		DataGrabber.imagePath = imagePath;
+	}
 
-	@Override
 	public String getImagePath() {
-		
-		return null;
+		return DataGrabber.imagePath;
 	}
 
 	@Override
 	public boolean getAppConnection() {
-		//TODO fix
 		return Start.appConnection.isAppConnected();
 	}
 

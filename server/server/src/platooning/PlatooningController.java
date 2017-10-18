@@ -14,6 +14,7 @@ import org.bytedeco.javacv.OpenCVFrameConverter;
 import org.opencv.core.Mat;
 
 import communication.MopedSteeringHandler;
+import server.DataGrabber;
 
 /**
  * Responsible for image recognition and calculations for platooning. Analyzes
@@ -21,12 +22,24 @@ import communication.MopedSteeringHandler;
  * steering values.
  */
 public class PlatooningController {
+	private static File oldFile;
+	private static File newFile;
 
 	public int locateImage(Object imgFile) {
 		// input img
-		File img = (File) imgFile;
-
-		IplImage orgImg = cvLoadImage(img.getAbsolutePath());
+		
+		if (newFile == null) {
+			newFile = (File) imgFile;
+		} else {
+			oldFile = newFile;
+			newFile = (File) imgFile;
+			oldFile.delete();
+		}
+		
+		
+		DataGrabber.setImagePath(newFile.toURI().toString());
+		IplImage orgImg = cvLoadImage(newFile.getAbsolutePath());
+		
 
 		IplImage thresholdImage = createThreshold(orgImg);
 		thresholdImage = morphImage(thresholdImage);
@@ -42,7 +55,7 @@ public class PlatooningController {
 
 		}
 
-		img.delete();
+		//img.delete();
 
 		// output steering signal
 		return toSteering(posX1);
