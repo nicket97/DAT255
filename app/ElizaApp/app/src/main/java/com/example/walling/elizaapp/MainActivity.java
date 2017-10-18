@@ -22,6 +22,10 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
     private SeekBar speedBar, steerBar;
     private EditText setSpeedEditText;
 
+    /**
+     * Creates MainActivity and runs initGUI.
+     * @param savedInstanceState argument needed to start view.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -262,11 +266,19 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
         }
     };
 
+    /**
+     * Update Result method, implemented by interface
+     * @param res String argument given to update the result
+     */
     @Override
     public void updateResult(String res) {
 
     }
 
+    /**
+     * Listens to updates from the BUS. This is our version of an observer/listener pattern
+     * @param msgData The data which is passed along with the bus.
+     */
     @Override
     public void update(MessageData msgData) {
         if (msgData.getMessageType() == MessageData.MessageType.CONNECTION_LOST1) {
@@ -281,6 +293,9 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
         }
     }
 
+    /**
+     * When the app is minimized (not closed!), all manual steering is overriden for safety.
+     */
     @Override
     protected void onPause() {
         super.onPause();

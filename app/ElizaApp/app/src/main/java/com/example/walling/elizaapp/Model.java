@@ -153,7 +153,7 @@ public class Model {
 	}
 
 	/**
-	 * Stops the MOPED
+	 * Stops the MOPED.
 	 */
 	public void stop() {
 		SteeringHelper.getInstance().setVelocity(0);
@@ -191,9 +191,10 @@ public class Model {
 		setSteerString(SteeringHelper.getInstance().getCommandString());
 	}
 
-	/*
-	 * Set state of Adaptive Cruise Control
-	 */
+    /**
+     * Set the state of ACC
+     * @param state boolean argument, true or false, that sets ACC
+     */
 	public void setACC(boolean state) {
 		try {
 			json.put("ACC", state);
@@ -202,9 +203,10 @@ public class Model {
 		}
 	}
 
-	/*
-	 * Set state of Platooning
-	 */
+    /**
+     * Set the state of platooning
+     * @param state boolean argument, true or false, that sets the platooning
+     */
 	public void setPlatooning(boolean state) {
 		try {
 			json.put("Platooning", state);
@@ -213,16 +215,17 @@ public class Model {
 		}
 	}
 
-	/*
-	 * Disconnect from the server
-	 */
+    /**
+     * Disconnect the App from the server
+     */
 	public void disconnect() {
 		connected = false;
 	}
 
-	/*
-	 * Set the steer-string which later is sent to the server
-	 */
+    /**
+     * Set the steerString of the MOPED
+     * @param steerString must be provided as a valid MOPED steerstring, ex: V0000H0000
+     */
 	public void setSteerString(String steerString) {
 		try {
 			int vel = Integer.parseInt(steerString.substring(1, 5));
@@ -235,9 +238,10 @@ public class Model {
 		}
 	}
 
-	/*
-	 * Set the speed of the MOPED
-	 */
+    /**
+     * Set the speed of the MOPED
+     * @param speed Speed given as a double
+     */
 	public void setSpeed(double speed) {
 		try {
 			json.put("Speed", speed);

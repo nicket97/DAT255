@@ -13,10 +13,18 @@ public enum MessageListener {
 
     private List<IMessageListener> listeners = new ArrayList<>();
 
+    /**
+     * Add an object which listens to updates from the BUS.
+     * @param listener A class (which must implement IMessageListener) that is to be added as a listener
+     */
     public void addListener(IMessageListener listener) {
         listeners.add(listener);
     }
 
+    /**
+     * Send out the bus along with a message as an enum.
+     * @param msgData The message that goes along with the bus, providing the information which is to be provided.
+     */
     public void updateMessage(MessageData msgData) {
         try {
             for (IMessageListener messageUpdater : listeners) {

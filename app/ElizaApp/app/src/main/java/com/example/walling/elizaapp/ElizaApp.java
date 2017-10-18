@@ -7,6 +7,9 @@ import android.app.Application;
  */
 
 public class ElizaApp extends Application {
+    /**
+     * onCreate method for the main app class
+     */
     @Override
     public void onCreate() {
         super.onCreate();
