@@ -16,7 +16,10 @@ public class InputInterpreter {
 	private boolean acc;
 	private boolean platooning;
 	private double speed;
-
+/**
+ * Takes a string and gets the json objects and uses it to set the data
+ * @param input String generated from json
+ */
 	public InputInterpreter(String input) {
 		try {
 			JSONObject json = new JSONObject(input);
