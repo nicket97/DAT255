@@ -29,6 +29,10 @@ public class ConnectActivity extends AppCompatActivity implements IMainView, IMe
     Toast toast;
     private ImageView raspPiImage;
 
+    /**
+     * onCreate method for this Activity
+     * @param savedInstanceState savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,11 +118,19 @@ public class ConnectActivity extends AppCompatActivity implements IMainView, IMe
         }
     };
 
+    /**
+     * Implement generated method.
+     * @param res String which is updated
+     */
     @Override
     public void updateResult(String res) {
 
     }
 
+    /**
+     * Method which listens to BUS updates. Observer pattern.
+     * @param msgData the message data which is passed along with the bus.
+     */
     @Override
     public void update(MessageData msgData) {
 
