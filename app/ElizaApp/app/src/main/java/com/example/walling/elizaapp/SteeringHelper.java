@@ -26,6 +26,11 @@ public class SteeringHelper {
         this.velocityString = "V0000";
         this.directionString = "H0000";
     }
+
+    /**
+     * Create instance of SteeringHelper. The class is a Singleton.
+     * @return Returns the instance, a Singleton, of the class.
+     */
     public static SteeringHelper getInstance(){
         if(instance == null){
             instance = new SteeringHelper();
@@ -33,14 +38,28 @@ public class SteeringHelper {
         return instance;
     }
 
+    /**
+     * Set the velocity of the MOPED.
+     * @param newVelocity The new velocity given as an integer.
+     */
     public void setVelocity(int newVelocity){
         this.velocity = newVelocity;
         updateCommandString();
     }
+
+    /**
+     * Set the direction of the MOPED.
+     * @param newDirection The new direction given as an integer.
+     */
     public void setDirection(int newDirection){
         this.direction = newDirection;
         updateCommandString();
     }
+
+    /**
+     * Change the velocity of the MOPED.
+     * @param changeInVelocity The change in velocity, given as an integer.
+     */
     public void changeVelocity(int changeInVelocity){
         int newVelocity = this.velocity + changeInVelocity;
         if (newVelocity > 100){
@@ -52,6 +71,11 @@ public class SteeringHelper {
         }
         updateCommandString();
     }
+
+    /**
+     * Change the direction of the MOPED.
+     * @param changeInDirection The change in direction, given as an integer.
+     */
     public void changeDirection(int changeInDirection){
         int newDirection = this.direction + changeInDirection;
         if (newDirection > 100){
@@ -63,21 +87,47 @@ public class SteeringHelper {
         }
         updateCommandString();
     }
+
+    /**
+     * Get the velocity saved in this object
+     * @return velocity as an integer
+     */
     public int getVelocity(){
         return velocity;
     }
+
+    /**
+     * Get the direction of themoped saved in this object
+     * @return direction given as an integer
+     */
     public int getDirection(){
         return direction;
     }
+
+    /**
+     * Get the current velocity String
+     * @return The current velocity String
+     */
     public String getVelocityString(){
         return velocityString;
     }
+
+    /**
+     * Get the current direction String.
+     * @return The current direction String.
+     */
     public String getDirectionString(){
         return directionString;
     }
+
+    /**
+     * Get the current command string, which is the concatenation of the Steering and Velocity Strings.
+     * @return Current command String as String
+     */
     public String getCommandString(){
         return commandString;
     }
+    
     private void updateCommandString(){
         updateVelocityString();
         updateDirectionString();
