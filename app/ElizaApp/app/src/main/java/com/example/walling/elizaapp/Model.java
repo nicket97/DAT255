@@ -129,7 +129,7 @@ public class Model {
 								MessageListener.BUS
 										.updateMessage(new MessageData(MessageData.MessageType.CONNECTION_LOST1));
 								try {
-									Thread.sleep(2500);
+									Thread.sleep(1000);
 								} catch (Exception e) {
 									System.out.println(e.getMessage());
 								}
