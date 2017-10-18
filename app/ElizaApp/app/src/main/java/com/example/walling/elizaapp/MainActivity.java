@@ -242,4 +242,11 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
             startActivity(new Intent(MainActivity.this, ConnectActivity.class));
         }
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        speedBar.setProgress(50, true);
+        steerBar.setProgress(100, true);
+    }
 }
