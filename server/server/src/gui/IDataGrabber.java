@@ -5,6 +5,8 @@ public interface IDataGrabber {
     double getHandling();
 
     String getImagePath();
+    int getPosX();
+    int getPosY();
 
     boolean getAppConnection();
     boolean getACCActivated();

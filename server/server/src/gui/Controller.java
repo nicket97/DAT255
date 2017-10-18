@@ -5,8 +5,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import server.DataGrabber;
 
+import java.awt.Canvas;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,6 +25,9 @@ import com.sun.media.jfxmediaimpl.platform.Platform;
 import communication.MopedSteeringHandler;
 
 public class Controller implements Initializable {
+	@FXML
+	Pane circlePane;
+	
     @FXML
     Label txtVelocity;
 
@@ -50,9 +58,9 @@ public class Controller implements Initializable {
 			public void run() {
 				try {
 					while (true) {
-						System.out.println("startUpdateUISequence looped");
+						//System.out.println("startUpdateUISequence looped");
 					updateUI();
-					Thread.sleep(200);
+					Thread.sleep(100);
 					}
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
@@ -88,16 +96,24 @@ public class Controller implements Initializable {
 						//System.out.println(image.getHeight() + ", " + image.getWidth());
 						//Image image = new Image("file:./resources/3.jpg");
 						if (imgPath != null) {
-							System.out.println(imgPath);
+							//System.out.println(imgPath);
 							Image image = new Image(imgPath);
-							System.out.println(image.getHeight() + ", " + image.getWidth());
-							System.out.println();
+							circlePane.getChildren().clear();
+							Circle circle = new Circle(mDataGrabber.getPosX(), mDataGrabber.getPosY(), 15);
+							circle.setStrokeWidth(3);
+							circle.setFill(Color.TRANSPARENT);
+							circle.setStroke(Color.GREEN);
+							circlePane.getChildren().add(circle);
+							
+						
+							//System.out.println(image.getHeight() + ", " + image.getWidth());
+							//System.out.println();
 							imgView.setImage(image);
 							//imgView.setImage(image);
 							//imgView.autosize();
-							System.out.println("image set");
+							//System.out.println("image set");
 						} else {
-							System.out.println("IMG PATH NULL");
+							//System.out.println("IMG PATH NULL");
 						}
 						
 						
@@ -105,7 +121,7 @@ public class Controller implements Initializable {
 					
 					
 
-					System.out.println("updated ui");
+					//System.out.println("updated ui");
 
 					txtACC.setText("CHANGING");
 				} catch (Exception e) {
@@ -124,7 +140,7 @@ public class Controller implements Initializable {
 
 
 
-        System.out.println("SSRTAERGRG");
+        //System.out.println("SSRTAERGRG");
         txtACC.setText(String.valueOf(mDataGrabber.getACCActivated()));
 
         txtApp.setText(String.valueOf(mDataGrabber.getAppConnection()));
