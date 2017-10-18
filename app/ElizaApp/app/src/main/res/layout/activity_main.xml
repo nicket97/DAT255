@@ -33,12 +33,15 @@
         android:text="Cruise Control"
         android:textOff="start autosteering"
         android:textOn="stop autosteering"
-        tools:layout_editor_absoluteY="277dp"
         app:layout_constraintLeft_toRightOf="@+id/btnStop"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginRight="20dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.52" />
+        app:layout_constraintTop_toTopOf="@+id/platoonButton"
+        android:layout_marginTop="-1dp"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/cruiseControlButton"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/btnStop"
@@ -70,7 +73,7 @@
         android:text="Cruise Control"
         android:textOff="START CRUISE CONTROL"
         android:textOn="stop cruise control"
-        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toRightOf="@+id/btnStop"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/steerBar"
