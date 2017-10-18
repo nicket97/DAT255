@@ -21,7 +21,7 @@ public class ExampleInstrumentedTest {
     public void useAppContext() throws Exception {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
-        Model.getInstance().establishConnection();
+        Model.getInstance().establishConnection("12312312",9999);
 
         Assert.assertTrue(Model.getInstance().isConnected());
 
