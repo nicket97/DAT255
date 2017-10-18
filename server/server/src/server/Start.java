@@ -11,6 +11,7 @@ import communication.MopedImgConnection;
 import communication.MopedSteeringHandler;
 import gui.MainGUI;
 import platooning.PlatooningController;
+import programs.ProgramManager;
 
 
 /**
@@ -31,7 +32,7 @@ public class Start implements PropertyChangeListener {
 	private String mopedIP;
 	private int mopedPort;
 	private int serverPort;
-	public static MainGUI gui;
+	//public static MainGUI gui;
 	public static Start start;
 
 	public static void main(String[] args) {
@@ -44,7 +45,7 @@ public class Start implements PropertyChangeListener {
 		appConnection = new AppConnection(8080, this);
 		imgInput = new MopedImgConnection("192.168.0.103", 3000, this);
 		mopedDataInput = new MopedDataConnection("192.168.0.103", 9999, this);
-		gui = new MainGUI();
+		//gui = new MainGUI();
 		init();
 	}
 

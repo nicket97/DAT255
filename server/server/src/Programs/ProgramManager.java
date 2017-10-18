@@ -1,7 +1,8 @@
-package server;
+package Programs;
 
 import acc.ACCController;
 import platooning.PlatooningController;
+import server.Start;
 
 /**
  * Handles threads for ACC and platooning. Also has methods that can be called
@@ -34,10 +35,10 @@ public class ProgramManager {
 	
 	public static void startPlatooning(){
 		if(!platooningActive){
-		platoonThread = new Thread(Start.imgInput);
+		/*platoonThread = new Thread(Start.imgInput);
 		platoonThread.start();
 		platooningActive = true;
-
+*/
 
 		}
 	}

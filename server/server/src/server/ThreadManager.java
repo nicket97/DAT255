@@ -14,13 +14,13 @@ public class ThreadManager {
 		appThread = new Thread(Start.appConnection);
 		imgThread = new Thread(Start.imgInput);
 		dataThread = new Thread(Start.mopedDataInput);
-		guiThread = new Thread(Start.gui);
+		//guiThread = new Thread(Start.gui);
 		initThreads();
 	}
 
 	public void initThreads() {
 		System.out.println("starting Threads");
-		guiThread.start();
+		//guiThread.start();
 		appThread.start();
 		imgThread.start();
 		dataThread.start();

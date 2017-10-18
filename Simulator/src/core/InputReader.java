@@ -10,6 +10,7 @@ public class InputReader {
 	public static void readInput(String readLine) {
 		try {
 			JSONObject json = new JSONObject(readLine);
+			System.out.println(readLine);
 			Start.start.moped.can_speed = json.getInt("velocity");
 			Start.start.moped.can_steer = (int) json.getInt("steering");
 		} catch (JSONException e) {

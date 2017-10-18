@@ -1,4 +1,4 @@
-package gui;
+package server;
 
 public interface IDataGrabber {
     double getVelocity();

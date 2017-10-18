@@ -1,7 +1,7 @@
 package server;
 
 import communication.MopedSteeringHandler;
-import gui.IDataGrabber;
+import programs.ProgramManager;
 
 public class DataGrabber implements IDataGrabber {
 

@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import server.DataGrabber;
+import server.Start;
 
 public class MainGUI extends Application implements Runnable {
 
@@ -26,12 +27,13 @@ public class MainGUI extends Application implements Runnable {
 
     public static void main(String[] args) {
         launch(args);
+        Start.start = new Start();
     }
 
     @Override
     public void run() {
     	System.out.println("Starting GUI");
-        main(null);
+       // main(null);
         
     }
 }
