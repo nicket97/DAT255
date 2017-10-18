@@ -28,7 +28,7 @@ public class Conection implements Runnable {
 				while ((inputLine = in.readLine()) != null) {
 				
 					out.println(Start.start.moped.getMopedOutput());
-					Start.start.moped.sendServerSignal(in.readLine());
+					InputReader.readInput(in.readLine());
 					Thread.sleep(200);
 				}
 			}
