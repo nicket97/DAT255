@@ -127,7 +127,7 @@ public class SteeringHelper {
     public String getCommandString(){
         return commandString;
     }
-    
+
     private void updateCommandString(){
         updateVelocityString();
         updateDirectionString();
