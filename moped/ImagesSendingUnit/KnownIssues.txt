@@ -1,0 +1,13 @@
+In PythonServer.py
+
+# It is defined in the function keepingSpeed
+PythonServer.py:15: Global variable (clientConnected) not defined in module scope
+
+# It is defined in setupServer and used within the reach there. Could be moved out so it's also defined outside of module
+
+PythonServer.py:17: No global (myDoDriveRef) found
+
+We used the same name as an existing function for clarity of use.
+PythonServer.py:21: (filter) shadows builtin
+
+
