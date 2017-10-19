@@ -58,6 +58,7 @@ public class PlatooningController {
 		String bookObject = "/Users/olofenstrom/Desktop/icon.jpg";
 		String bookScene = newFile.getAbsolutePath();
 
+		try {
 		Mat objectImage = Imgcodecs.imread(bookObject, Imgcodecs.CV_LOAD_IMAGE_COLOR);
 		Mat sceneImage = Imgcodecs.imread(bookScene, Imgcodecs.CV_LOAD_IMAGE_COLOR);
 
@@ -107,8 +108,7 @@ public class PlatooningController {
 		}
 
 		if (goodMatchesList.size() >= 7) {
-			try {
-				System.out.println("good matches: " + goodMatchesList.size());
+				System.out.println("good matches list: " + goodMatchesList.size());
 
 				List<KeyPoint> objKeypointlist = objectKeyPoints.toList();
 				List<KeyPoint> scnKeypointlist = sceneKeyPoints.toList();
@@ -174,13 +174,13 @@ public class PlatooningController {
 				DataGrabber.setPosY(posy);
 				
 				return toSteering(posX1);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				System.out.println("ERROR ERROR ERROR ERROR ERROR\nERROR ERROR ERROR ERROR");
-				return MopedSteeringHandler.getHandling();
-			}
 
 		} else {
+			return MopedSteeringHandler.getHandling();
+		}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("ERROR ERROR ERROR ERROR ERROR\nERROR ERROR ERROR ERROR");
 			return MopedSteeringHandler.getHandling();
 		}
 	}

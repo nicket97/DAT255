@@ -77,9 +77,10 @@ public class ACCController implements Runnable {
 
 		}
 		// TODO uppdate safe distance
-		else if (dist < 20) {
+		else if (dist < 30) {
 
-		} else {
+		} 
+		else {
 			double k = (double) (200 - targetDist) / (double) (100 - targetSpeed);
 			if ((100 + (dist - 200) / k) > targetSpeed) {
 				speed = (int) Math.ceil((100 + (dist - 200) / k));
