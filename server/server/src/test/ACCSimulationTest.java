@@ -18,7 +18,7 @@ package test;
  	@SuppressWarnings("deprecation")
  	@Test
  	public void testACC(){
- 		int targetSpeed = 50;
+ 		int targetSpeed = 15;
  		int targetDist = 50;
  		int startDist = 200;
  		ACCSimulator acc = new ACCSimulator(targetSpeed,startDist,targetDist);
@@ -42,7 +42,7 @@ package test;
  		}
  		
  		
- 		targetSpeed = 30;
+ 		targetSpeed = 10;
  		targetDist = 80;
  		startDist = 100;
  		ACCSimulator acc2 = new ACCSimulator(targetSpeed,startDist,targetDist);
