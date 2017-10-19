@@ -55,40 +55,33 @@ public class PlatooningController {
 
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 
-
 		String bookObject = "/Users/olofenstrom/Desktop/icon.jpg";
 		String bookScene = newFile.getAbsolutePath();
 
-
 		try {
-
 		Mat objectImage = Imgcodecs.imread(bookObject, Imgcodecs.CV_LOAD_IMAGE_COLOR);
 		Mat sceneImage = Imgcodecs.imread(bookScene, Imgcodecs.CV_LOAD_IMAGE_COLOR);
 
 		MatOfKeyPoint objectKeyPoints = new MatOfKeyPoint();
 		FeatureDetector featureDetector = FeatureDetector.create(FeatureDetector.ORB);
 		featureDetector.detect(objectImage, objectKeyPoints);
-		org.opencv.core.KeyPoint[] keypoints = objectKeyPoints.toArray();
-		//System.out.println(keypoints);
 
 		MatOfKeyPoint objectDescriptors = new MatOfKeyPoint();
 		DescriptorExtractor descriptorExtractor = DescriptorExtractor.create(DescriptorExtractor.ORB);
 		descriptorExtractor.compute(objectImage, objectKeyPoints, objectDescriptors);
 
-		// Create the matrix for output image.
+		//Create matrix for output image.
 		Mat outputImage = new Mat(objectImage.rows(), objectImage.cols(), Imgcodecs.CV_LOAD_IMAGE_COLOR);
 		Scalar newKeypointColor = new Scalar(255, 0, 0);
 
 		Features2d.drawKeypoints(objectImage, objectKeyPoints, outputImage, newKeypointColor, 0);
 
-		// Match object image with the scene image
+		//Match object image with scene image
 		MatOfKeyPoint sceneKeyPoints = new MatOfKeyPoint();
 		MatOfKeyPoint sceneDescriptors = new MatOfKeyPoint();
 		featureDetector.detect(sceneImage, sceneKeyPoints);
 		descriptorExtractor.compute(sceneImage, sceneKeyPoints, sceneDescriptors);
 
-		Mat matchoutput = new Mat(sceneImage.rows() * 2, sceneImage.cols() * 2, Imgcodecs.CV_LOAD_IMAGE_COLOR);
-		Scalar matchestColor = new Scalar(0, 255, 0);
 
 		List<MatOfDMatch> matches = new LinkedList<MatOfDMatch>();
 
@@ -120,8 +113,6 @@ public class PlatooningController {
 				List<KeyPoint> objKeypointlist = objectKeyPoints.toList();
 				List<KeyPoint> scnKeypointlist = sceneKeyPoints.toList();
 
-				//LinkedList<Point> objectPoints = new LinkedList<>();
-				//LinkedList<Point> scenePoints = new LinkedList<>();
 
 				LinkedList<Point> objectPoints = new LinkedList();
 				LinkedList<Point> scenePoints = new LinkedList();
@@ -162,18 +153,6 @@ public class PlatooningController {
 				System.out.print("X: " + posX + "\n" + "Y: " + posy + "\n");
 
 
-				//Imgproc.line(img, new Point(scene_corners.get(0, 0)), new Point(scene_corners.get(1, 0)), new Scalar(0, 255, 0), 4);
-				//Imgproc.line(img, new Point(scene_corners.get(1, 0)), new Point(scene_corners.get(2, 0)), new Scalar(0, 255, 0), 4);
-				//Imgproc.line(img, new Point(scene_corners.get(2, 0)), new Point(scene_corners.get(3, 0)), new Scalar(0, 255, 0), 4);
-				//Imgproc.line(img, new Point(scene_corners.get(3, 0)), new Point(scene_corners.get(0, 0)), new Scalar(0, 255, 0), 4);
-
-
-				//System.out.println("Drawing matches image...");
-				//MatOfDMatch goodMatches = new MatOfDMatch();
-				//goodMatches.fromList(goodMatchesList);
-
-				//Features2d.drawMatches(objectImage, objectKeyPoints, sceneImage, sceneKeyPoints, goodMatches, matchoutput, matchestColor, newKeypointColor, new MatOfByte(), 2);
-
 				//Imgcodecs.imwrite("test1.jpg", outputImage);
 				//Imgcodecs.imwrite("test2.jpg", matchoutput);
 				Imgcodecs.imwrite("test3.jpg", img);
@@ -199,8 +178,7 @@ public class PlatooningController {
 		} else {
 			return MopedSteeringHandler.getHandling();
 		}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("ERROR ERROR ERROR ERROR ERROR\nERROR ERROR ERROR ERROR");
 			return MopedSteeringHandler.getHandling();
