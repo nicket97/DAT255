@@ -14,6 +14,10 @@
 | Omar Oueidat | [OmarOueidat](https://github.com/OmarOueidat) | [oueidat@student.chalmers.se](mailto:oueidat@student.chalmers.se) |
 | Viktor Engström | [Klickor](https://github.com/Klickor) | [vikeng@student.chalmers.se](mailto:vikeng@student.chalmers.se) |
 
+## Structure
+# Server
+Contains the Java server we used to comunicate between tha app and the MOPED aswell as running the ACC and ALC programs
+
 ## Useful links
 
 * [Course repository](https://github.com/hburden/DAT255/)
