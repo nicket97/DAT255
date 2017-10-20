@@ -17,10 +17,10 @@ public class ACCController implements Runnable {
 
 	/**
 	 * 
-	 * @param targetDist The targetdist we want to be away from the moped infront
+	 * @param targetDist2 The targetdist we want to be away from the moped infront
 	 */
-	public ACCController(int targetDist) {
-		this.targetDist = targetDist;
+	public ACCController(int targetDist2) {
+		this.targetDist = targetDist2;
 
 	}
 	/**
@@ -92,8 +92,8 @@ public class ACCController implements Runnable {
 			}
 
 		}
-		if (speed > 20)
-			speed = 20;
+		/*if (speed > 20)
+			speed = 20;*/
 		return speed;
 	}
 /**

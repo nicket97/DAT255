@@ -37,10 +37,10 @@ public class MainGUI extends Application implements Runnable {
         Start.start = new Start();
     }
 
-    @Override
+   /* @Override
     public void run() {
     	System.out.println("Starting GUI");
         main(null);
         
-    }
+    }*/
 }

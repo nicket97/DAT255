@@ -47,7 +47,7 @@ public class PlatooningController {
 			newFile = (File) imgFile;
 		} else {
 			oldFile = newFile;
-			newFile = (File) imgFile;
+			setNewFile((File) imgFile);
 			oldFile.delete();
 		}
 
@@ -375,4 +375,10 @@ public class PlatooningController {
 
 	}
 	*/
+	public static void setNewFile(File nFile){
+		newFile = nFile;
+	}
+	public static void setOldFile(File oFile){
+		oldFile = oFile;
+	}
 }
