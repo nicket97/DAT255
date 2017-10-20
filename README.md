@@ -15,8 +15,15 @@
 | Viktor Engström | [Klickor](https://github.com/Klickor) | [vikeng@student.chalmers.se](mailto:vikeng@student.chalmers.se) |
 
 ## Structure
-# Server
-Contains the Java server we used to comunicate between tha app and the MOPED aswell as running the ACC and ALC programs
+### Server
+Contains the eclipse project for the JAVA server we used to comunicate between tha app and the MOPED aswell as running the ACC and ALC programs
+### App
+Contais the Androidstudio project for the app we used to send comands to the server
+### MOPED
+Contains the python code that we ran on the MOPED
+### doc
+Contains usefull docementations for the project
+
 
 ## Useful links
 
