@@ -23,6 +23,12 @@ Contais the Androidstudio project for the app we used to send comands to the ser
 Contains the python code that we ran on the MOPED
 ### doc
 Contains usefull docementations for the project
+### Simulator
+Contains the simulator we started on to test the Server and app code
+### Documents
+Contains the Documents thatr was handed in as parts of assignments
+### Meetings
+Contains the meeting protecols from the group meetings
 
 
 ## Useful links
