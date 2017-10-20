@@ -2,11 +2,18 @@ package communication;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.io.*;
-import java.net.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.SocketTimeoutException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+
 
 /**
  * Handles connection and sending + receiving messages from and to the app.
