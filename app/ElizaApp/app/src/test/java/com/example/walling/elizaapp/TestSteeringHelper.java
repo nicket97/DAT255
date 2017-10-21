@@ -21,7 +21,7 @@ public class TestSteeringHelper {
         SteeringHelper.getInstance().setVelocity(20);
         assertTrue(SteeringHelper.getInstance().getCommandString().equals("V0020H0000"));
     }
-    @Tes
+    @Test
     public void changeSteeringTest(){
         assertTrue(SteeringHelper.getInstance().getCommandString().equals("V0000H0000"));
         SteeringHelper.getInstance().changeDirection(-50);
