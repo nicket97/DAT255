@@ -37,7 +37,7 @@ public class ConnectActivity extends AppCompatActivity implements IMainView, IMe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connect);
-        controller = new Controller(this);
+        controller = new Controller();
 
 
         if (!Model.getInstance().wasEverConnected()) {

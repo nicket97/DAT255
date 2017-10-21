@@ -109,6 +109,8 @@ public class Model {
 						}
 					}
 
+				} catch (RuntimeException e) {
+					throw e;
 				} catch (Exception e) {
 					connected = false;
 					System.out.println(e.getMessage());

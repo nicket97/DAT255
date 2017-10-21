@@ -7,14 +7,11 @@ package com.example.walling.elizaapp;
  */
 
 public class Controller {
-    private IMainView ui;
 
     /**
      * Instantiate the controller
-     * @param ui The UI
      */
-    public Controller(IMainView ui){
-        this.ui = ui;
+    public Controller(){
     }
 
     /**
@@ -22,7 +19,6 @@ public class Controller {
      */
     public void stop() {
         Model.getInstance().stop();
-        //ui.setSpeedBarValue(0);
     }
 
     /**

@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements IMainView, IMessa
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_main);
-        controller = new Controller(this);
+        controller = new Controller();
         if (Model.getInstance().wasEverConnected()) {
             MessageListener.BUS.addListener(this);
         }
