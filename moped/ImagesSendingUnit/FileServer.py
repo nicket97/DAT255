@@ -1,57 +1,79 @@
+"""Starts the client so the server can connect and send """
 import socket
 import time
 import threading
 import os
-import glob
-import CameraMock
 from os import listdir
-
-s = socket.socket()
-s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-
-lastResult = ""
+import CameraMock
 
 
-def getNumber(item):
-    filename, file_extension = os.path.splitext(item)
+class Value:
+    """Wrapper class for variables"""
+
+    def __init__(self, init_value):
+        """iniittes all"""
+        self.value = init_value
+
+    def set_value(self, new_value):
+        """A setter method"""
+        self.value = new_value
+
+    def get_value(self):
+        """A getter method"""
+        return self.value
+
+
+SOCKET = socket.socket()
+SOCKET.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
+LAST_RESULT = Value("")
+
+
+def get_number(item):
+    """Retrieves the filenumber as an int from the filename"""
+    filename = os.path.splitext(item)
     return int(filename)
 
 
-def deleteFiles(folder, mesFiles):
-    files = mesFiles
-    print("keeping " + str(files[-2]))
-    files = files[:-2]
+def delete_files(folder, mes_files):
+    """Deletes all the files except the last 2 """
+    files = mes_files
+    if len(files) >= 2:
+        files = files[:-2]
     # Remove all files in the other list
-    for f in files:
-        os.remove('./' + folder + '/' + f)
+    for file in files:
+        os.remove('./' + folder + '/' + file)
 
 
-def getLatestFile(folder):
-    global lastResult
+def reset_image_folder(folder):
+    """Resets the images folder for a fresh start"""
     files = listdir("./" + folder)
-    files.sort(key=getNumber)
-    if (len(files)==0 or files[-2] == lastResult):
+    for file in files:
+        os.remove('./' + folder + '/' + file)
+
+
+def get_latest_file(folder):
+    """Retrieves the latest file so we can send it"""
+    files = listdir("./" + folder)
+    files.sort(key=get_number)
+    length_of_list = len(files)
+    if length_of_list == 0 or length_of_list >= 2 and files[-2] == LAST_RESULT:
         return ""
-    lastResult = files[-2]
-    deleteFiles(folder, files)
-    return "./" + folder + "/" + files[-2]
+    if length_of_list >= 2:
+        LAST_RESULT.set_value(files[-2])
+        delete_files(folder, files)
+        return "./" + folder + "/" + files[-2]
+    return ""
 
 
-def printPercentage(msg, percentage):
-    print(msg + " " + str(percentage), end='\r')
-
-
-def analyzeFile(filename):
-    size = 0;
-    contents = b""
-
-    chunk = 0
+def analyze_file(filename):
+    """Analyzes the file so it can be sent byte by byte"""
     with open(filename, "rb") as file:
         try:
             bytes_read = file.read()
-           # while bytes_read:
+            # while bytes_read:
             #    contents += bytes_read
-             #   bytes_read = file.read(chunk)
+            #   bytes_read = file.read(chunk)
         finally:
             file.close()
 
@@ -64,58 +86,62 @@ def analyzeFile(filename):
     return size, contents
 
 
-def RetrieveFile(thread_name, client):
+def retrieve_file(client):
+    """Retrieves files and sends them to the server as well ,
+    as stopping the moped if client disconnects"""
     while True:
-        filename = getLatestFile("images")
-        if (filename == ""):
+        time.sleep(0.025)
+        filename = get_latest_file("ImagesSendingUnit/images")
+        if filename == "":
             continue
         print(filename)
         try:
-            if (os.path.isfile(filename)):
+            if os.path.isfile(filename):
                 print(filename + "is found")
-                filesize, contents = analyzeFile(filename)
+                filesize, contents = analyze_file(filename)
                 print(str(filesize))
                 client.send((filename + "," + str(filesize) + '\n').encode())
                 starttime = time.time()
                 client.send(contents)
                 print("done in " + str(time.time() - starttime) + " seconds")
             while True:
-                resp = client.recv(10);
-                resp = resp.decode();
-                if ("OK" in resp):
+                resp = client.recv(10)
+                resp = resp.decode()
+                if "OK" in resp:
                     break
-        except socket.error as e:
+        except socket.error as err:
             client.close()
-            CameraMock.stopCapturing()
+            print("Exception occurred " + str(err))
+            reset_image_folder("ImagesSendingUnit/images")
+            CameraMock.stop_capturing()
             print("Client disconnected")
             ##Call stop moped
             return
 
 
-def setupImageServer():
+def setup_image_server():
+    """Setups the image server when a client connects to the MOPED"""
     host = ""
     port = 3000
-    s = socket.socket()
-    s.bind((host, port))
-    global lastResult
-    lastResult = ""
-    s.listen(5)
+    sock = socket.socket()
+    sock.bind((host, port))
+    LAST_RESULT.set_value("")
+    sock.listen(20)
 
     print("Image Server started")
-
-    while (True):
-        c, addr = s.accept()
+    reset_image_folder("ImagesSendingUnit/images/")
+    while True:
+        clock, addr = sock.accept()
+        reset_image_folder("ImagesSendingUnit/images/")
         print("Client connected " + str(addr))
-        capturingImagesThread = threading.Thread(target=CameraMock.startCapturing)
-        capturingImagesThread.start()
-        time.sleep(2)
-        t = threading.Thread(target=RetrieveFile, args=("retrieveThread", c))
-        t.start()
+        capturing_image_thread = threading.Thread(target=CameraMock.start_capturin)
+        capturing_image_thread.start()
+        time.sleep(0.5)
+        thread = threading.Thread(target=retrieve_file, args=("retrieveThread", clock))
+        thread.start()
 
-    s.close()
+    sock.close()
 
 
 if __name__ == "__main__":
-    setupImageServer()
-
-
+    setup_image_server()
