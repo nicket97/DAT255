@@ -1,0 +1,5 @@
+The only bugs we have in our created code is in CameraMock.py
+
+E:  3, 0: Unable to import 'picamera' (import-error)
+
+The bug occurs because we cannot read a PiCamera module in our computer and thus says we can not import it.
