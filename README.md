@@ -16,20 +16,22 @@
 
 ## Structure
 ### Server
-Contains the eclipse project for the JAVA server we used to comunicate between tha app and the MOPED aswell as running the ACC and ALC programs
+Contains the Eclipse project for the Java server we used to communicate between the app and the MOPED, aswell as running the ACC and ALC programs.
 ### App
-Contais the Androidstudio project for the app we used to send comands to the server
+Contains the Android Studio project for the app we used to send commands to the server.
 ### MOPED
-Contains the python code that we ran on the MOPED
+Contains the Python code that we ran on the MOPED.
 ### doc
-Contains usefull docementations for the project
+Contains useful docementation for the project.
 ### Simulator
-Contains the simulator we started on to test the Server and app code
+Contains the simulator we started to develop to test the functionality of the server and app code.
 ### Documents
-Contains the Documents thatr was handed in as parts of assignments
+Contains the Documents that was handed in as parts of assignments.
 ### Meetings
-Contains the meeting protecols from the group meetings
+Contains the protocols from the group meetings
 
+## Trello
+Our Trello board with user stories can be found [here](https://trello.com/b/a1rdZgUQ/dat255-bra-ish).
 
 ## Useful links
 
