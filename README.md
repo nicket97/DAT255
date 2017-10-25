@@ -3,7 +3,7 @@
 
 | Name | Handle | Email |
 | ---- | ------ | ----- |
-| Abdullatif AlSharif | [llusx](https://github.com/llusx) | [shriaf@student.chalmers.se](mailto:shriaf@student.chalmers.se) |
+| Abdullatif alShriaf | [llusx](https://github.com/llusx) | [shriaf@student.chalmers.se](mailto:shriaf@student.chalmers.se) |
 | Erik Strid | [strid408](https://github.com/strid408) | [stride@student.chalmers.se](mailto:stride@student.chalmers.se) |
 | Evelina Stridsberg | [evestr](https://github.com/evestr) | [evestr@student.chalmers.se](mailto:evestr@student.chalmers.se) |
 | Gabriel Wallin | [gabrielwallin](https://github.com/gabrielwallin) | [walling@student.chalmers.se](mailto:walling@student.chalmers.se) |
