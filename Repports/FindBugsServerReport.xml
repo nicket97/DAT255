@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="3.0.2-dev-20160306-90c514b" sequence="1" timestamp="1508506192371" analysisTimestamp="1508506190578" release="">
+  <Project projectName="server">
+    <Jar>C:\Users\nicla\Dat255\DAT255\server\target\classes</Jar>
+    <Jar>C:\Users\nicla\Dat255\DAT255\server\target\test-classes</Jar>
+    <AuxClasspathEntry>C:\Users\nicla\Dat255\DAT255\server\target\classes</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\nicla\Dat255\DAT255\server\target\test-classes</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\nicla\Dat255\DAT255\server\server\lib\java-json.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\nicla\.p2\pool\plugins\org.junit_4.12.0.v201504281640\junit.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\nicla\.p2\pool\plugins\org.hamcrest.core_1.3.0.v201303031735.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Program Files\Java\jdk1.8.0_131\jre\lib\rt.jar</AuxClasspathEntry>
+    <SrcDir>C:\Users\nicla\Dat255\DAT255\server\src\main\java</SrcDir>
+    <SrcDir>C:\Users\nicla\Dat255\DAT255\server\src\test\java</SrcDir>
+    <SrcDir>C:\Users\nicla\Dat255\DAT255\server\server\src</SrcDir>
+    <Cloud id="edu.umd.cs.findbugs.cloud.doNothingCloud" online="false"></Cloud>
+  </Project>
+  <BugInstance type="ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD" priority="2" rank="17" abbrev="ST" category="STYLE" first="1">
+    <Class classname="acc.ACCController">
+      <SourceLine classname="acc.ACCController" sourcefile="ACCController.java" sourcepath="acc/ACCController.java"/>
+    </Class>
+    <Method classname="acc.ACCController" name="updateMopedSpeed" signature="()V" isStatic="false">
+      <SourceLine classname="acc.ACCController" start="48" end="51" startBytecode="0" endBytecode="82" sourcefile="ACCController.java" sourcepath="acc/ACCController.java"/>
+    </Method>
+    <Field classname="communication.MopedSteeringHandler" name="velocity" signature="I" isStatic="true">
+      <SourceLine classname="communication.MopedSteeringHandler" sourcefile="MopedSteeringHandler.java" sourcepath="communication/MopedSteeringHandler.java"/>
+    </Field>
+    <SourceLine classname="acc.ACCController" start="48" end="48" startBytecode="25" endBytecode="25" sourcefile="ACCController.java" sourcepath="acc/ACCController.java"/>
+    <SourceLine classname="acc.ACCController" start="48" end="48" startBytecode="25" endBytecode="25" sourcefile="ACCController.java" sourcepath="acc/ACCController.java"/>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD" priority="2" rank="17" abbrev="UuF" category="STYLE" first="1">
+    <Class classname="acc.ACCController">
+      <SourceLine classname="acc.ACCController" sourcefile="ACCController.java" sourcepath="acc/ACCController.java"/>
+    </Class>
+    <Field classname="acc.ACCController" name="distToCar" signature="I" isStatic="false">
+      <SourceLine classname="acc.ACCController" start="13" end="13" startBytecode="0" endBytecode="0" sourcefile="ACCController.java" sourcepath="acc/ACCController.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD" priority="2" rank="17" abbrev="UuF" category="STYLE" first="1">
+    <Class classname="acc.ACCController">
+      <SourceLine classname="acc.ACCController" sourcefile="ACCController.java" sourcepath="acc/ACCController.java"/>
+    </Class>
+    <Field classname="acc.ACCController" name="oldDist" signature="I" isStatic="false">
+      <SourceLine classname="acc.ACCController" start="14" end="14" startBytecode="0" endBytecode="0" sourcefile="ACCController.java" sourcepath="acc/ACCController.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N" first="1">
+    <Class classname="communication.AppConnection">
+      <SourceLine classname="communication.AppConnection" sourcefile="AppConnection.java" sourcepath="communication/AppConnection.java"/>
+    </Class>
+    <Method classname="communication.AppConnection" name="run" signature="()V" isStatic="false">
+      <SourceLine classname="communication.AppConnection" start="39" end="38" startBytecode="0" endBytecode="871" sourcefile="AppConnection.java" sourcepath="communication/AppConnection.java"/>
+    </Method>
+    <Method classname="java.io.InputStreamReader" name="&lt;init&gt;" signature="(Ljava/io/InputStream;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.InputStreamReader" start="72" end="79" startBytecode="0" endBytecode="108" sourcefile="InputStreamReader.java" sourcepath="java/io/InputStreamReader.java"/>
+    </Method>
+    <SourceLine classname="communication.AppConnection" start="44" end="44" startBytecode="75" endBytecode="75" sourcefile="AppConnection.java" sourcepath="communication/AppConnection.java"/>
+    <SourceLine classname="communication.AppConnection" start="44" end="44" startBytecode="75" endBytecode="75" sourcefile="AppConnection.java" sourcepath="communication/AppConnection.java"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N" first="1">
+    <Class classname="communication.AppConnection">
+      <SourceLine classname="communication.AppConnection" sourcefile="AppConnection.java" sourcepath="communication/AppConnection.java"/>
+    </Class>
+    <Method classname="communication.AppConnection" name="run" signature="()V" isStatic="false">
+      <SourceLine classname="communication.AppConnection" start="39" end="38" startBytecode="0" endBytecode="871" sourcefile="AppConnection.java" sourcepath="communication/AppConnection.java"/>
+    </Method>
+    <Method classname="java.io.PrintWriter" name="&lt;init&gt;" signature="(Ljava/io/OutputStream;Z)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.PrintWriter" start="148" end="154" startBytecode="0" endBytecode="93" sourcefile="PrintWriter.java" sourcepath="java/io/PrintWriter.java"/>
+    </Method>
+    <SourceLine classname="communication.AppConnection" start="43" end="43" startBytecode="57" endBytecode="57" sourcefile="AppConnection.java" sourcepath="communication/AppConnection.java"/>
+    <SourceLine classname="communication.AppConnection" start="43" end="43" startBytecode="57" endBytecode="57" sourcefile="AppConnection.java" sourcepath="communication/AppConnection.java"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N" first="1">
+    <Class classname="communication.MopedDataConnection">
+      <SourceLine classname="communication.MopedDataConnection" sourcefile="MopedDataConnection.java" sourcepath="communication/MopedDataConnection.java"/>
+    </Class>
+    <Method classname="communication.MopedDataConnection" name="run" signature="()V" isStatic="false">
+      <SourceLine classname="communication.MopedDataConnection" start="40" end="56" startBytecode="0" endBytecode="527" sourcefile="MopedDataConnection.java" sourcepath="communication/MopedDataConnection.java"/>
+    </Method>
+    <Method classname="java.io.InputStreamReader" name="&lt;init&gt;" signature="(Ljava/io/InputStream;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.InputStreamReader" start="72" end="79" startBytecode="0" endBytecode="108" sourcefile="InputStreamReader.java" sourcepath="java/io/InputStreamReader.java"/>
+    </Method>
+    <SourceLine classname="communication.MopedDataConnection" start="42" end="42" startBytecode="46" endBytecode="46" sourcefile="MopedDataConnection.java" sourcepath="communication/MopedDataConnection.java"/>
+    <SourceLine classname="communication.MopedDataConnection" start="42" end="42" startBytecode="46" endBytecode="46" sourcefile="MopedDataConnection.java" sourcepath="communication/MopedDataConnection.java"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N" first="1">
+    <Class classname="communication.MopedDataConnection">
+      <SourceLine classname="communication.MopedDataConnection" sourcefile="MopedDataConnection.java" sourcepath="communication/MopedDataConnection.java"/>
+    </Class>
+    <Method classname="communication.MopedDataConnection" name="run" signature="()V" isStatic="false">
+      <SourceLine classname="communication.MopedDataConnection" start="40" end="56" startBytecode="0" endBytecode="527" sourcefile="MopedDataConnection.java" sourcepath="communication/MopedDataConnection.java"/>
+    </Method>
+    <Method classname="java.io.PrintWriter" name="&lt;init&gt;" signature="(Ljava/io/OutputStream;Z)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.PrintWriter" start="148" end="154" startBytecode="0" endBytecode="93" sourcefile="PrintWriter.java" sourcepath="java/io/PrintWriter.java"/>
+    </Method>
+    <SourceLine classname="communication.MopedDataConnection" start="41" end="41" startBytecode="29" endBytecode="29" sourcefile="MopedDataConnection.java" sourcepath="communication/MopedDataConnection.java"/>
+    <SourceLine classname="communication.MopedDataConnection" start="41" end="41" startBytecode="29" endBytecode="29" sourcefile="MopedDataConnection.java" sourcepath="communication/MopedDataConnection.java"/>
+  </BugInstance>
+  <BugInstance type="DM_EXIT" priority="2" rank="16" abbrev="Dm" category="BAD_PRACTICE" first="1">
+    <Class classname="communication.MopedDataConnection">
+      <SourceLine classname="communication.MopedDataConnection" sourcefile="MopedDataConnection.java" sourcepath="communication/MopedDataConnection.java"/>
+    </Class>
+    <Method classname="communication.MopedDataConnection" name="run" signature="()V" isStatic="false">
+      <SourceLine classname="communication.MopedDataConnection" start="40" end="56" startBytecode="0" endBytecode="527" sourcefile="MopedDataConnection.java" sourcepath="communication/MopedDataConnection.java"/>
+    </Method>
+    <SourceLine classname="communication.MopedDataConnection" start="51" end="51" startBytecode="224" endBytecode="224" sourcefile="MopedDataConnection.java" sourcepath="communication/MopedDataConnection.java"/>
+    <SourceLine classname="communication.MopedDataConnection" start="51" end="51" startBytecode="224" endBytecode="224" sourcefile="MopedDataConnection.java" sourcepath="communication/MopedDataConnection.java"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N" first="1">
+    <Class classname="communication.MopedImgConnection">
+      <SourceLine classname="communication.MopedImgConnection" sourcefile="MopedImgConnection.java" sourcepath="communication/MopedImgConnection.java"/>
+    </Class>
+    <Method classname="communication.MopedImgConnection" name="run" signature="()V" isStatic="false">
+      <SourceLine classname="communication.MopedImgConnection" start="32" end="85" startBytecode="0" endBytecode="989" sourcefile="MopedImgConnection.java" sourcepath="communication/MopedImgConnection.java"/>
+    </Method>
+    <Method classname="java.io.OutputStreamWriter" name="&lt;init&gt;" signature="(Ljava/io/OutputStream;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.OutputStreamWriter" start="109" end="115" startBytecode="0" endBytecode="108" sourcefile="OutputStreamWriter.java" sourcepath="java/io/OutputStreamWriter.java"/>
+    </Method>
+    <SourceLine classname="communication.MopedImgConnection" start="34" end="34" startBytecode="38" endBytecode="38" sourcefile="MopedImgConnection.java" sourcepath="communication/MopedImgConnection.java"/>
+    <SourceLine classname="communication.MopedImgConnection" start="34" end="34" startBytecode="38" endBytecode="38" sourcefile="MopedImgConnection.java" sourcepath="communication/MopedImgConnection.java"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N" first="1">
+    <Class classname="communication.MopedImgConnection">
+      <SourceLine classname="communication.MopedImgConnection" sourcefile="MopedImgConnection.java" sourcepath="communication/MopedImgConnection.java"/>
+    </Class>
+    <Method classname="communication.MopedImgConnection" name="run" signature="()V" isStatic="false">
+      <SourceLine classname="communication.MopedImgConnection" start="32" end="85" startBytecode="0" endBytecode="989" sourcefile="MopedImgConnection.java" sourcepath="communication/MopedImgConnection.java"/>
+    </Method>
+    <Method classname="java.lang.String" name="&lt;init&gt;" signature="([BII)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.lang.String" start="544" end="547" startBytecode="0" endBytecode="56" sourcefile="String.java" sourcepath="java/lang/String.java"/>
+    </Method>
+    <SourceLine classname="communication.MopedImgConnection" start="53" end="53" startBytecode="121" endBytecode="121" sourcefile="MopedImgConnection.java" sourcepath="communication/MopedImgConnection.java"/>
+    <SourceLine classname="communication.MopedImgConnection" start="53" end="53" startBytecode="121" endBytecode="121" sourcefile="MopedImgConnection.java" sourcepath="communication/MopedImgConnection.java"/>
+  </BugInstance>
+  <BugInstance type="DM_EXIT" priority="2" rank="16" abbrev="Dm" category="BAD_PRACTICE" first="1">
+    <Class classname="communication.MopedImgConnection">
+      <SourceLine classname="communication.MopedImgConnection" sourcefile="MopedImgConnection.java" sourcepath="communication/MopedImgConnection.java"/>
+    </Class>
+    <Method classname="communication.MopedImgConnection" name="run" signature="()V" isStatic="false">
+      <SourceLine classname="communication.MopedImgConnection" start="32" end="85" startBytecode="0" endBytecode="989" sourcefile="MopedImgConnection.java" sourcepath="communication/MopedImgConnection.java"/>
+    </Method>
+    <SourceLine classname="communication.MopedImgConnection" start="80" end="80" startBytecode="375" endBytecode="375" sourcefile="MopedImgConnection.java" sourcepath="communication/MopedImgConnection.java"/>
+    <SourceLine classname="communication.MopedImgConnection" start="80" end="80" startBytecode="375" endBytecode="375" sourcefile="MopedImgConnection.java" sourcepath="communication/MopedImgConnection.java"/>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" rank="18" abbrev="UuF" category="PERFORMANCE" first="1">
+    <Class classname="communication.MopedImgConnection">
+      <SourceLine classname="communication.MopedImgConnection" sourcefile="MopedImgConnection.java" sourcepath="communication/MopedImgConnection.java"/>
+    </Class>
+    <Field classname="communication.MopedImgConnection" name="bytes" signature="[B" isStatic="false">
+      <SourceLine classname="communication.MopedImgConnection" start="17" end="17" startBytecode="0" endBytecode="0" sourcefile="MopedImgConnection.java" sourcepath="communication/MopedImgConnection.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="MS_CANNOT_BE_FINAL" priority="2" rank="18" abbrev="MS" category="MALICIOUS_CODE" first="1">
+    <Class classname="communication.MopedSteeringHandler">
+      <SourceLine classname="communication.MopedSteeringHandler" sourcefile="MopedSteeringHandler.java" sourcepath="communication/MopedSteeringHandler.java"/>
+    </Class>
+    <Field classname="communication.MopedSteeringHandler" name="handling" signature="I" isStatic="true">
+      <SourceLine classname="communication.MopedSteeringHandler" start="14" end="14" startBytecode="0" endBytecode="0" sourcefile="MopedSteeringHandler.java" sourcepath="communication/MopedSteeringHandler.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="MS_CANNOT_BE_FINAL" priority="2" rank="18" abbrev="MS" category="MALICIOUS_CODE" first="1">
+    <Class classname="communication.MopedSteeringHandler">
+      <SourceLine classname="communication.MopedSteeringHandler" sourcefile="MopedSteeringHandler.java" sourcepath="communication/MopedSteeringHandler.java"/>
+    </Class>
+    <Field classname="communication.MopedSteeringHandler" name="velocity" signature="I" isStatic="true">
+      <SourceLine classname="communication.MopedSteeringHandler" start="13" end="13" startBytecode="0" endBytecode="0" sourcefile="MopedSteeringHandler.java" sourcepath="communication/MopedSteeringHandler.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="MS_PKGPROTECT" priority="2" rank="18" abbrev="MS" category="MALICIOUS_CODE" first="1">
+    <Class classname="communication.MopedSteeringHandler">
+      <SourceLine classname="communication.MopedSteeringHandler" sourcefile="MopedSteeringHandler.java" sourcepath="communication/MopedSteeringHandler.java"/>
+    </Class>
+    <Field classname="communication.MopedSteeringHandler" name="image" signature="Ljava/io/File;" isStatic="true">
+      <SourceLine classname="communication.MopedSteeringHandler" start="18" end="18" startBytecode="0" endBytecode="0" sourcefile="MopedSteeringHandler.java" sourcepath="communication/MopedSteeringHandler.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD" priority="2" rank="17" abbrev="UuF" category="STYLE" first="1">
+    <Class classname="communication.MopedSteeringHandler">
+      <SourceLine classname="communication.MopedSteeringHandler" sourcefile="MopedSteeringHandler.java" sourcepath="communication/MopedSteeringHandler.java"/>
+    </Class>
+    <Field classname="communication.MopedSteeringHandler" name="steeringCommand" signature="Ljava/lang/String;" isStatic="true">
+      <SourceLine classname="communication.MopedSteeringHandler" start="12" end="12" startBytecode="0" endBytecode="0" sourcefile="MopedSteeringHandler.java" sourcepath="communication/MopedSteeringHandler.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" rank="18" abbrev="UrF" category="PERFORMANCE" first="1">
+    <Class classname="communication.ServerProtocol">
+      <SourceLine classname="communication.ServerProtocol" sourcefile="ServerProtocol.java" sourcepath="communication/ServerProtocol.java"/>
+    </Class>
+    <Field classname="communication.ServerProtocol" name="connected" signature="Z" isStatic="false">
+      <SourceLine classname="communication.ServerProtocol" sourcefile="ServerProtocol.java" sourcepath="communication/ServerProtocol.java"/>
+    </Field>
+    <SourceLine classname="communication.ServerProtocol" start="9" end="9" startBytecode="6" endBytecode="6" sourcefile="ServerProtocol.java" sourcepath="communication/ServerProtocol.java"/>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" rank="18" abbrev="UrF" category="PERFORMANCE" first="1">
+    <Class classname="gui.MainGUI">
+      <SourceLine classname="gui.MainGUI" sourcefile="MainGUI.java" sourcepath="gui/MainGUI.java"/>
+    </Class>
+    <Field classname="gui.MainGUI" name="holder" signature="Ljavafx/embed/swing/JFXPanel;" isStatic="false">
+      <SourceLine classname="gui.MainGUI" sourcefile="MainGUI.java" sourcepath="gui/MainGUI.java"/>
+    </Field>
+    <SourceLine classname="gui.MainGUI" start="19" end="19" startBytecode="8" endBytecode="8" sourcefile="MainGUI.java" sourcepath="gui/MainGUI.java"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N" first="1">
+    <Class classname="server.Start">
+      <SourceLine classname="server.Start" sourcefile="Start.java" sourcepath="server/Start.java"/>
+    </Class>
+    <Method classname="server.Start" name="getConnectionDetails" signature="()V" isStatic="false">
+      <SourceLine classname="server.Start" start="77" end="101" startBytecode="0" endBytecode="272" sourcefile="Start.java" sourcepath="server/Start.java"/>
+    </Method>
+    <Method classname="java.util.Scanner" name="&lt;init&gt;" signature="(Ljava/io/InputStream;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.util.Scanner" start="563" end="564" startBytecode="0" endBytecode="43" sourcefile="Scanner.java" sourcepath="java/util/Scanner.java"/>
+    </Method>
+    <SourceLine classname="server.Start" start="77" end="77" startBytecode="7" endBytecode="7" sourcefile="Start.java" sourcepath="server/Start.java"/>
+    <SourceLine classname="server.Start" start="77" end="77" startBytecode="7" endBytecode="7" sourcefile="Start.java" sourcepath="server/Start.java"/>
+  </BugInstance>
+  <BugInstance type="MS_CANNOT_BE_FINAL" priority="2" rank="18" abbrev="MS" category="MALICIOUS_CODE" first="1">
+    <Class classname="server.Start">
+      <SourceLine classname="server.Start" sourcefile="Start.java" sourcepath="server/Start.java"/>
+    </Class>
+    <Field classname="server.Start" name="start" signature="Lserver/Start;" isStatic="true">
+      <SourceLine classname="server.Start" start="35" end="35" startBytecode="0" endBytecode="0" sourcefile="Start.java" sourcepath="server/Start.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="MS_PKGPROTECT" priority="2" rank="18" abbrev="MS" category="MALICIOUS_CODE" first="1">
+    <Class classname="server.Start">
+      <SourceLine classname="server.Start" sourcefile="Start.java" sourcepath="server/Start.java"/>
+    </Class>
+    <Field classname="server.Start" name="appConnection" signature="Lcommunication/AppConnection;" isStatic="true">
+      <SourceLine classname="server.Start" start="24" end="24" startBytecode="0" endBytecode="0" sourcefile="Start.java" sourcepath="server/Start.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="MS_PKGPROTECT" priority="2" rank="18" abbrev="MS" category="MALICIOUS_CODE" first="1">
+    <Class classname="server.Start">
+      <SourceLine classname="server.Start" sourcefile="Start.java" sourcepath="server/Start.java"/>
+    </Class>
+    <Field classname="server.Start" name="gui" signature="Lgui/MainGUI;" isStatic="true">
+      <SourceLine classname="server.Start" start="34" end="34" startBytecode="0" endBytecode="0" sourcefile="Start.java" sourcepath="server/Start.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="MS_PKGPROTECT" priority="2" rank="18" abbrev="MS" category="MALICIOUS_CODE" first="1">
+    <Class classname="server.Start">
+      <SourceLine classname="server.Start" sourcefile="Start.java" sourcepath="server/Start.java"/>
+    </Class>
+    <Field classname="server.Start" name="imgInput" signature="Lcommunication/MopedImgConnection;" isStatic="true">
+      <SourceLine classname="server.Start" start="23" end="23" startBytecode="0" endBytecode="0" sourcefile="Start.java" sourcepath="server/Start.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="MS_PKGPROTECT" priority="2" rank="18" abbrev="MS" category="MALICIOUS_CODE" first="1">
+    <Class classname="server.Start">
+      <SourceLine classname="server.Start" sourcefile="Start.java" sourcepath="server/Start.java"/>
+    </Class>
+    <Field classname="server.Start" name="mopedDataInput" signature="Lcommunication/MopedDataConnection;" isStatic="true">
+      <SourceLine classname="server.Start" start="25" end="25" startBytecode="0" endBytecode="0" sourcefile="Start.java" sourcepath="server/Start.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="RV_RETURN_VALUE_IGNORED_BAD_PRACTICE" priority="2" rank="16" abbrev="RV" category="BAD_PRACTICE" first="1">
+    <Class classname="server.Start">
+      <SourceLine classname="server.Start" sourcefile="Start.java" sourcepath="server/Start.java"/>
+    </Class>
+    <Method classname="server.Start" name="propertyChange" signature="(Ljava/beans/PropertyChangeEvent;)V" isStatic="false">
+      <SourceLine classname="server.Start" start="139" end="173" startBytecode="0" endBytecode="431" sourcefile="Start.java" sourcepath="server/Start.java"/>
+    </Method>
+    <Method classname="java.io.File" name="delete" signature="()Z" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.File" start="1034" end="1041" startBytecode="0" endBytecode="91" sourcefile="File.java" sourcepath="java/io/File.java"/>
+    </Method>
+    <SourceLine classname="server.Start" start="167" end="167" startBytecode="209" endBytecode="209" sourcefile="Start.java" sourcepath="server/Start.java"/>
+    <SourceLine classname="server.Start" start="167" end="167" startBytecode="209" endBytecode="209" sourcefile="Start.java" sourcepath="server/Start.java"/>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" priority="2" rank="18" abbrev="UrF" category="STYLE" first="1">
+    <Class classname="server.Start">
+      <SourceLine classname="server.Start" sourcefile="Start.java" sourcepath="server/Start.java"/>
+    </Class>
+    <Field classname="server.Start" name="img" signature="Lplatooning/PlatooningController;" isStatic="false">
+      <SourceLine classname="server.Start" sourcefile="Start.java" sourcepath="server/Start.java"/>
+    </Field>
+    <SourceLine classname="server.Start" start="61" end="61" startBytecode="8" endBytecode="8" sourcefile="Start.java" sourcepath="server/Start.java"/>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD" priority="2" rank="18" abbrev="UrF" category="STYLE" first="1">
+    <Class classname="server.Start">
+      <SourceLine classname="server.Start" sourcefile="Start.java" sourcepath="server/Start.java"/>
+    </Class>
+    <Field classname="server.Start" name="threadManager" signature="Lserver/ThreadManager;" isStatic="false">
+      <SourceLine classname="server.Start" sourcefile="Start.java" sourcepath="server/Start.java"/>
+    </Field>
+    <SourceLine classname="server.Start" start="63" end="63" startBytecode="32" endBytecode="32" sourcefile="Start.java" sourcepath="server/Start.java"/>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD" priority="2" rank="17" abbrev="UuF" category="STYLE" first="1">
+    <Class classname="server.Start">
+      <SourceLine classname="server.Start" sourcefile="Start.java" sourcepath="server/Start.java"/>
+    </Class>
+    <Field classname="server.Start" name="mopedData" signature="Lserver/Data;" isStatic="false">
+      <SourceLine classname="server.Start" start="29" end="29" startBytecode="0" endBytecode="0" sourcefile="Start.java" sourcepath="server/Start.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" rank="18" abbrev="UrF" category="PERFORMANCE" first="1">
+    <Class classname="server.ThreadManager">
+      <SourceLine classname="server.ThreadManager" sourcefile="ThreadManager.java" sourcepath="server/ThreadManager.java"/>
+    </Class>
+    <Field classname="server.ThreadManager" name="imgThread" signature="Ljava/lang/Thread;" isStatic="false">
+      <SourceLine classname="server.ThreadManager" sourcefile="ThreadManager.java" sourcepath="server/ThreadManager.java"/>
+    </Field>
+    <SourceLine classname="server.ThreadManager" start="15" end="15" startBytecode="29" endBytecode="29" sourcefile="ThreadManager.java" sourcepath="server/ThreadManager.java"/>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" rank="18" abbrev="UuF" category="PERFORMANCE" first="1">
+    <Class classname="test.ACCSimulationTest">
+      <SourceLine classname="test.ACCSimulationTest" sourcefile="ACCSimulationTest.java" sourcepath="test/ACCSimulationTest.java"/>
+    </Class>
+    <Field classname="test.ACCSimulationTest" name="car" signature="Ljava/lang/Thread;" isStatic="false">
+      <SourceLine classname="test.ACCSimulationTest" start="11" end="11" startBytecode="0" endBytecode="0" sourcefile="ACCSimulationTest.java" sourcepath="test/ACCSimulationTest.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" rank="18" abbrev="UrF" category="PERFORMANCE" first="1">
+    <Class classname="test.ACCSimulator">
+      <SourceLine classname="test.ACCSimulator" sourcefile="ACCSimulator.java" sourcepath="test/ACCSimulator.java"/>
+    </Class>
+    <Field classname="test.ACCSimulator" name="pm" signature="Lserver/ProgramManager;" isStatic="false">
+      <SourceLine classname="test.ACCSimulator" sourcefile="ACCSimulator.java" sourcepath="test/ACCSimulator.java"/>
+    </Field>
+    <SourceLine classname="test.ACCSimulator" start="22" end="22" startBytecode="43" endBytecode="43" sourcefile="ACCSimulator.java" sourcepath="test/ACCSimulator.java"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N" first="1">
+    <Class classname="test.DummyClient">
+      <SourceLine classname="test.DummyClient" sourcefile="DummyClient.java" sourcepath="test/DummyClient.java"/>
+    </Class>
+    <Method classname="test.DummyClient" name="connectAndSend" signature="(Ljava/lang/String;)Ljava/lang/String;" isStatic="false">
+      <SourceLine classname="test.DummyClient" start="20" end="43" startBytecode="0" endBytecode="795" sourcefile="DummyClient.java" sourcepath="test/DummyClient.java"/>
+    </Method>
+    <Method classname="java.io.InputStreamReader" name="&lt;init&gt;" signature="(Ljava/io/InputStream;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.InputStreamReader" start="72" end="79" startBytecode="0" endBytecode="108" sourcefile="InputStreamReader.java" sourcepath="java/io/InputStreamReader.java"/>
+    </Method>
+    <SourceLine classname="test.DummyClient" start="22" end="22" startBytecode="49" endBytecode="49" sourcefile="DummyClient.java" sourcepath="test/DummyClient.java"/>
+    <SourceLine classname="test.DummyClient" start="22" end="22" startBytecode="49" endBytecode="49" sourcefile="DummyClient.java" sourcepath="test/DummyClient.java"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N" first="1">
+    <Class classname="test.DummyClient">
+      <SourceLine classname="test.DummyClient" sourcefile="DummyClient.java" sourcepath="test/DummyClient.java"/>
+    </Class>
+    <Method classname="test.DummyClient" name="connectAndSend" signature="(Ljava/lang/String;)Ljava/lang/String;" isStatic="false">
+      <SourceLine classname="test.DummyClient" start="20" end="43" startBytecode="0" endBytecode="795" sourcefile="DummyClient.java" sourcepath="test/DummyClient.java"/>
+    </Method>
+    <Method classname="java.io.PrintWriter" name="&lt;init&gt;" signature="(Ljava/io/OutputStream;Z)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.PrintWriter" start="148" end="154" startBytecode="0" endBytecode="93" sourcefile="PrintWriter.java" sourcepath="java/io/PrintWriter.java"/>
+    </Method>
+    <SourceLine classname="test.DummyClient" start="21" end="21" startBytecode="31" endBytecode="31" sourcefile="DummyClient.java" sourcepath="test/DummyClient.java"/>
+    <SourceLine classname="test.DummyClient" start="21" end="21" startBytecode="31" endBytecode="31" sourcefile="DummyClient.java" sourcepath="test/DummyClient.java"/>
+  </BugInstance>
+  <BugInstance type="DM_EXIT" priority="2" rank="16" abbrev="Dm" category="BAD_PRACTICE" first="1">
+    <Class classname="test.DummyClient">
+      <SourceLine classname="test.DummyClient" sourcefile="DummyClient.java" sourcepath="test/DummyClient.java"/>
+    </Class>
+    <Method classname="test.DummyClient" name="connectAndSend" signature="(Ljava/lang/String;)Ljava/lang/String;" isStatic="false">
+      <SourceLine classname="test.DummyClient" start="20" end="43" startBytecode="0" endBytecode="795" sourcefile="DummyClient.java" sourcepath="test/DummyClient.java"/>
+    </Method>
+    <SourceLine classname="test.DummyClient" start="38" end="38" startBytecode="346" endBytecode="346" sourcefile="DummyClient.java" sourcepath="test/DummyClient.java"/>
+    <SourceLine classname="test.DummyClient" start="38" end="38" startBytecode="346" endBytecode="346" sourcefile="DummyClient.java" sourcepath="test/DummyClient.java"/>
+  </BugInstance>
+  <BugInstance type="RV_DONT_JUST_NULL_CHECK_READLINE" priority="2" rank="17" abbrev="RV" category="STYLE" first="1">
+    <Class classname="test.DummyClient">
+      <SourceLine classname="test.DummyClient" sourcefile="DummyClient.java" sourcepath="test/DummyClient.java"/>
+    </Class>
+    <Method classname="test.DummyClient" name="connectAndSend" signature="(Ljava/lang/String;)Ljava/lang/String;" isStatic="false">
+      <SourceLine classname="test.DummyClient" start="20" end="43" startBytecode="0" endBytecode="795" sourcefile="DummyClient.java" sourcepath="test/DummyClient.java"/>
+    </Method>
+    <SourceLine classname="test.DummyClient" start="23" end="23" startBytecode="178" endBytecode="178" sourcefile="DummyClient.java" sourcepath="test/DummyClient.java"/>
+    <SourceLine classname="test.DummyClient" start="23" end="23" startBytecode="178" endBytecode="178" sourcefile="DummyClient.java" sourcepath="test/DummyClient.java"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N" first="1">
+    <Class classname="test.DummyServer">
+      <SourceLine classname="test.DummyServer" sourcefile="DummyServer.java" sourcepath="test/DummyServer.java"/>
+    </Class>
+    <Method classname="test.DummyServer" name="run" signature="()V" isStatic="false">
+      <SourceLine classname="test.DummyServer" start="28" end="47" startBytecode="0" endBytecode="675" sourcefile="DummyServer.java" sourcepath="test/DummyServer.java"/>
+    </Method>
+    <Method classname="java.io.InputStreamReader" name="&lt;init&gt;" signature="(Ljava/io/InputStream;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.InputStreamReader" start="72" end="79" startBytecode="0" endBytecode="108" sourcefile="InputStreamReader.java" sourcepath="java/io/InputStreamReader.java"/>
+    </Method>
+    <SourceLine classname="test.DummyServer" start="31" end="31" startBytecode="49" endBytecode="49" sourcefile="DummyServer.java" sourcepath="test/DummyServer.java"/>
+    <SourceLine classname="test.DummyServer" start="31" end="31" startBytecode="49" endBytecode="49" sourcefile="DummyServer.java" sourcepath="test/DummyServer.java"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N" first="1">
+    <Class classname="test.DummyServer">
+      <SourceLine classname="test.DummyServer" sourcefile="DummyServer.java" sourcepath="test/DummyServer.java"/>
+    </Class>
+    <Method classname="test.DummyServer" name="run" signature="()V" isStatic="false">
+      <SourceLine classname="test.DummyServer" start="28" end="47" startBytecode="0" endBytecode="675" sourcefile="DummyServer.java" sourcepath="test/DummyServer.java"/>
+    </Method>
+    <Method classname="java.io.PrintWriter" name="&lt;init&gt;" signature="(Ljava/io/OutputStream;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.PrintWriter" start="131" end="132" startBytecode="0" endBytecode="34" sourcefile="PrintWriter.java" sourcepath="java/io/PrintWriter.java"/>
+    </Method>
+    <SourceLine classname="test.DummyServer" start="30" end="30" startBytecode="31" endBytecode="31" sourcefile="DummyServer.java" sourcepath="test/DummyServer.java"/>
+    <SourceLine classname="test.DummyServer" start="30" end="30" startBytecode="31" endBytecode="31" sourcefile="DummyServer.java" sourcepath="test/DummyServer.java"/>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" rank="18" abbrev="UuF" category="PERFORMANCE" first="1">
+    <Class classname="test.DummyServer">
+      <SourceLine classname="test.DummyServer" sourcefile="DummyServer.java" sourcepath="test/DummyServer.java"/>
+    </Class>
+    <Field classname="test.DummyServer" name="bytes" signature="[B" isStatic="false">
+      <SourceLine classname="test.DummyServer" start="19" end="19" startBytecode="0" endBytecode="0" sourcefile="DummyServer.java" sourcepath="test/DummyServer.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" rank="18" abbrev="UuF" category="PERFORMANCE" first="1">
+    <Class classname="test.DummyServer">
+      <SourceLine classname="test.DummyServer" sourcefile="DummyServer.java" sourcepath="test/DummyServer.java"/>
+    </Class>
+    <Field classname="test.DummyServer" name="newimg" signature="Ljava/awt/Image;" isStatic="false">
+      <SourceLine classname="test.DummyServer" start="17" end="17" startBytecode="0" endBytecode="0" sourcefile="DummyServer.java" sourcepath="test/DummyServer.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="UUF_UNUSED_FIELD" priority="2" rank="18" abbrev="UuF" category="PERFORMANCE" first="1">
+    <Class classname="test.DummyServer">
+      <SourceLine classname="test.DummyServer" sourcefile="DummyServer.java" sourcepath="test/DummyServer.java"/>
+    </Class>
+    <Field classname="test.DummyServer" name="server" signature="Ljava/net/Socket;" isStatic="false">
+      <SourceLine classname="test.DummyServer" start="20" end="20" startBytecode="0" endBytecode="0" sourcefile="DummyServer.java" sourcepath="test/DummyServer.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="NM_METHOD_NAMING_CONVENTION" priority="2" rank="16" abbrev="Nm" category="BAD_PRACTICE" first="1">
+    <Class classname="test.SteeringCommandTest">
+      <SourceLine classname="test.SteeringCommandTest" sourcefile="SteeringCommandTest.java" sourcepath="test/SteeringCommandTest.java"/>
+    </Class>
+    <Method classname="test.SteeringCommandTest" name="TestSteering" signature="()V" isStatic="false">
+      <SourceLine classname="test.SteeringCommandTest" start="22" end="42" startBytecode="0" endBytecode="361" sourcefile="SteeringCommandTest.java" sourcepath="test/SteeringCommandTest.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N" first="1">
+    <Class classname="test.TestAppConnection">
+      <SourceLine classname="test.TestAppConnection" sourcefile="TestAppConnection.java" sourcepath="test/TestAppConnection.java"/>
+    </Class>
+    <Method classname="test.TestAppConnection" name="connectionTest" signature="()V" isStatic="false">
+      <SourceLine classname="test.TestAppConnection" start="34" end="51" startBytecode="0" endBytecode="293" sourcefile="TestAppConnection.java" sourcepath="test/TestAppConnection.java"/>
+    </Method>
+    <Method classname="java.io.InputStreamReader" name="&lt;init&gt;" signature="(Ljava/io/InputStream;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.InputStreamReader" start="72" end="79" startBytecode="0" endBytecode="108" sourcefile="InputStreamReader.java" sourcepath="java/io/InputStreamReader.java"/>
+    </Method>
+    <SourceLine classname="test.TestAppConnection" start="39" end="39" startBytecode="64" endBytecode="64" sourcefile="TestAppConnection.java" sourcepath="test/TestAppConnection.java"/>
+    <SourceLine classname="test.TestAppConnection" start="39" end="39" startBytecode="64" endBytecode="64" sourcefile="TestAppConnection.java" sourcepath="test/TestAppConnection.java"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N" first="1">
+    <Class classname="test.TestAppConnection">
+      <SourceLine classname="test.TestAppConnection" sourcefile="TestAppConnection.java" sourcepath="test/TestAppConnection.java"/>
+    </Class>
+    <Method classname="test.TestAppConnection" name="connectionTest" signature="()V" isStatic="false">
+      <SourceLine classname="test.TestAppConnection" start="34" end="51" startBytecode="0" endBytecode="293" sourcefile="TestAppConnection.java" sourcepath="test/TestAppConnection.java"/>
+    </Method>
+    <Method classname="java.io.PrintWriter" name="&lt;init&gt;" signature="(Ljava/io/OutputStream;Z)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.PrintWriter" start="148" end="154" startBytecode="0" endBytecode="93" sourcefile="PrintWriter.java" sourcepath="java/io/PrintWriter.java"/>
+    </Method>
+    <SourceLine classname="test.TestAppConnection" start="38" end="38" startBytecode="42" endBytecode="42" sourcefile="TestAppConnection.java" sourcepath="test/TestAppConnection.java"/>
+    <SourceLine classname="test.TestAppConnection" start="38" end="38" startBytecode="42" endBytecode="42" sourcefile="TestAppConnection.java" sourcepath="test/TestAppConnection.java"/>
+  </BugInstance>
+  <BugInstance type="RV_DONT_JUST_NULL_CHECK_READLINE" priority="2" rank="17" abbrev="RV" category="STYLE" first="1">
+    <Class classname="test.TestAppConnection">
+      <SourceLine classname="test.TestAppConnection" sourcefile="TestAppConnection.java" sourcepath="test/TestAppConnection.java"/>
+    </Class>
+    <Method classname="test.TestAppConnection" name="connectionTest" signature="()V" isStatic="false">
+      <SourceLine classname="test.TestAppConnection" start="34" end="51" startBytecode="0" endBytecode="293" sourcefile="TestAppConnection.java" sourcepath="test/TestAppConnection.java"/>
+    </Method>
+    <SourceLine classname="test.TestAppConnection" start="43" end="43" startBytecode="95" endBytecode="95" sourcefile="TestAppConnection.java" sourcepath="test/TestAppConnection.java"/>
+    <SourceLine classname="test.TestAppConnection" start="43" end="43" startBytecode="95" endBytecode="95" sourcefile="TestAppConnection.java" sourcepath="test/TestAppConnection.java"/>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" rank="18" abbrev="UrF" category="PERFORMANCE" first="1">
+    <Class classname="test.TestEventRecived">
+      <SourceLine classname="test.TestEventRecived" sourcefile="TestEventRecived.java" sourcepath="test/TestEventRecived.java"/>
+    </Class>
+    <Field classname="test.TestEventRecived" name="s" signature="Lserver/Start;" isStatic="false">
+      <SourceLine classname="test.TestEventRecived" sourcefile="TestEventRecived.java" sourcepath="test/TestEventRecived.java"/>
+    </Field>
+    <SourceLine classname="test.TestEventRecived" start="12" end="12" startBytecode="9" endBytecode="9" sourcefile="TestEventRecived.java" sourcepath="test/TestEventRecived.java"/>
+  </BugInstance>
+  <BugInstance type="DLS_DEAD_LOCAL_STORE" priority="2" rank="17" abbrev="DLS" category="STYLE" first="1">
+    <Class classname="test.TestMopedConnection">
+      <SourceLine classname="test.TestMopedConnection" sourcefile="TestMopedConnection.java" sourcepath="test/TestMopedConnection.java"/>
+    </Class>
+    <Method classname="test.TestMopedConnection" name="mopedConnectionTest" signature="()V" isStatic="false">
+      <SourceLine classname="test.TestMopedConnection" start="42" end="73" startBytecode="0" endBytecode="59" sourcefile="TestMopedConnection.java" sourcepath="test/TestMopedConnection.java"/>
+    </Method>
+    <LocalVariable name="s" register="1" pc="107" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="test.TestMopedConnection" start="65" end="65" startBytecode="106" endBytecode="106" sourcefile="TestMopedConnection.java" sourcepath="test/TestMopedConnection.java"/>
+    <SourceLine classname="test.TestMopedConnection" start="65" end="65" startBytecode="106" endBytecode="106" sourcefile="TestMopedConnection.java" sourcepath="test/TestMopedConnection.java"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.BASE_VALUE" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.LOCAL_NAME" value="s"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.METHOD_RESULT" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.NO_LOADS" value="true"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N" first="1">
+    <Class classname="test.TestMopedConnection">
+      <SourceLine classname="test.TestMopedConnection" sourcefile="TestMopedConnection.java" sourcepath="test/TestMopedConnection.java"/>
+    </Class>
+    <Method classname="test.TestMopedConnection" name="mopedConnectionTest" signature="()V" isStatic="false">
+      <SourceLine classname="test.TestMopedConnection" start="42" end="73" startBytecode="0" endBytecode="354" sourcefile="TestMopedConnection.java" sourcepath="test/TestMopedConnection.java"/>
+    </Method>
+    <Method classname="java.io.InputStreamReader" name="&lt;init&gt;" signature="(Ljava/io/InputStream;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.InputStreamReader" start="72" end="79" startBytecode="0" endBytecode="108" sourcefile="InputStreamReader.java" sourcepath="java/io/InputStreamReader.java"/>
+    </Method>
+    <SourceLine classname="test.TestMopedConnection" start="51" end="51" startBytecode="43" endBytecode="43" sourcefile="TestMopedConnection.java" sourcepath="test/TestMopedConnection.java"/>
+    <SourceLine classname="test.TestMopedConnection" start="51" end="51" startBytecode="43" endBytecode="43" sourcefile="TestMopedConnection.java" sourcepath="test/TestMopedConnection.java"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N" first="1">
+    <Class classname="test.TestMopedConnection">
+      <SourceLine classname="test.TestMopedConnection" sourcefile="TestMopedConnection.java" sourcepath="test/TestMopedConnection.java"/>
+    </Class>
+    <Method classname="test.TestMopedConnection" name="mopedConnectionTest" signature="()V" isStatic="false">
+      <SourceLine classname="test.TestMopedConnection" start="42" end="73" startBytecode="0" endBytecode="354" sourcefile="TestMopedConnection.java" sourcepath="test/TestMopedConnection.java"/>
+    </Method>
+    <Method classname="java.io.PrintWriter" name="&lt;init&gt;" signature="(Ljava/io/OutputStream;Z)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.PrintWriter" start="148" end="154" startBytecode="0" endBytecode="93" sourcefile="PrintWriter.java" sourcepath="java/io/PrintWriter.java"/>
+    </Method>
+    <SourceLine classname="test.TestMopedConnection" start="57" end="57" startBytecode="73" endBytecode="73" sourcefile="TestMopedConnection.java" sourcepath="test/TestMopedConnection.java"/>
+    <SourceLine classname="test.TestMopedConnection" start="57" end="57" startBytecode="73" endBytecode="73" sourcefile="TestMopedConnection.java" sourcepath="test/TestMopedConnection.java"/>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" rank="18" abbrev="UrF" category="PERFORMANCE" first="1">
+    <Class classname="test.TestServerProtocol">
+      <SourceLine classname="test.TestServerProtocol" sourcefile="TestServerProtocol.java" sourcepath="test/TestServerProtocol.java"/>
+    </Class>
+    <Field classname="test.TestServerProtocol" name="start" signature="Lserver/Start;" isStatic="false">
+      <SourceLine classname="test.TestServerProtocol" sourcefile="TestServerProtocol.java" sourcepath="test/TestServerProtocol.java"/>
+    </Field>
+    <SourceLine classname="test.TestServerProtocol" start="23" end="23" startBytecode="8" endBytecode="8" sourcefile="TestServerProtocol.java" sourcepath="test/TestServerProtocol.java"/>
+  </BugInstance>
+  <Errors errors="0" missingClasses="0"></Errors>
+  <FindBugsSummary timestamp="Fri, 20 Oct 2017 15:20:34 +0200" total_classes="32" referenced_classes="91" total_bugs="49" total_size="1003" num_packages="6" java_version="1.8.0_131" vm_version="25.131-b11" cpu_seconds="7.95" clock_seconds="35.66" peak_mbytes="812.88" alloc_mbytes="1024.00" gc_seconds="0.06" priority_2="34" priority_1="15">
+    <PackageStats package="acc" total_bugs="3" total_types="1" total_size="53" priority_2="3">
+      <ClassStats class="acc.ACCController" sourceFile="ACCController.java" interface="false" size="53" bugs="3" priority_2="3"/>
+    </PackageStats>
+    <PackageStats package="communication" total_bugs="14" total_types="5" total_size="198" priority_2="8" priority_1="6">
+      <ClassStats class="communication.AppConnection" sourceFile="AppConnection.java" interface="false" size="59" bugs="2" priority_1="2"/>
+      <ClassStats class="communication.MopedDataConnection" sourceFile="MopedDataConnection.java" interface="false" size="41" bugs="3" priority_2="1" priority_1="2"/>
+      <ClassStats class="communication.MopedImgConnection" sourceFile="MopedImgConnection.java" interface="false" size="49" bugs="4" priority_2="2" priority_1="2"/>
+      <ClassStats class="communication.MopedSteeringHandler" sourceFile="MopedSteeringHandler.java" interface="false" size="30" bugs="4" priority_2="4"/>
+      <ClassStats class="communication.ServerProtocol" sourceFile="ServerProtocol.java" interface="false" size="19" bugs="1" priority_2="1"/>
+    </PackageStats>
+    <PackageStats package="gui" total_bugs="1" total_types="5" total_size="100" priority_2="1">
+      <ClassStats class="gui.Controller" sourceFile="Controller.java" interface="false" size="34" bugs="0"/>
+      <ClassStats class="gui.Controller$1" sourceFile="Controller.java" interface="false" size="12" bugs="0"/>
+      <ClassStats class="gui.Controller$2" sourceFile="Controller.java" interface="false" size="25" bugs="0"/>
+      <ClassStats class="gui.IDataGrabber" sourceFile="IDataGrabber.java" interface="true" size="9" bugs="0"/>
+      <ClassStats class="gui.MainGUI" sourceFile="MainGUI.java" interface="false" size="20" bugs="1" priority_2="1"/>
+    </PackageStats>
+    <PackageStats package="platooning" total_bugs="0" total_types="2" total_size="56">
+      <ClassStats class="platooning.Contraster" sourceFile="Contraster.java" interface="false" size="29" bugs="0"/>
+      <ClassStats class="platooning.PlatooningController" sourceFile="PlatooningController.java" interface="false" size="27" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="server" total_bugs="11" total_types="7" total_size="286" priority_2="10" priority_1="1">
+      <ClassStats class="server.Data" sourceFile="Data.java" interface="false" size="52" bugs="0"/>
+      <ClassStats class="server.DataGrabber" sourceFile="DataGrabber.java" interface="false" size="31" bugs="0"/>
+      <ClassStats class="server.FixedDataQueue" sourceFile="FixedDataQueue.java" interface="false" size="15" bugs="0"/>
+      <ClassStats class="server.InputInterpreter" sourceFile="InputInterpreter.java" interface="false" size="27" bugs="0"/>
+      <ClassStats class="server.ProgramManager" sourceFile="ProgramManager.java" interface="false" size="44" bugs="0"/>
+      <ClassStats class="server.Start" sourceFile="Start.java" interface="false" size="98" bugs="10" priority_2="9" priority_1="1"/>
+      <ClassStats class="server.ThreadManager" sourceFile="ThreadManager.java" interface="false" size="19" bugs="1" priority_2="1"/>
+    </PackageStats>
+    <PackageStats package="test" total_bugs="20" total_types="12" total_size="310" priority_2="12" priority_1="8">
+      <ClassStats class="test.ACCSimulationTest" sourceFile="ACCSimulationTest.java" interface="false" size="31" bugs="1" priority_2="1"/>
+      <ClassStats class="test.ACCSimulator" sourceFile="ACCSimulator.java" interface="false" size="33" bugs="1" priority_2="1"/>
+      <ClassStats class="test.DummyClient" sourceFile="DummyClient.java" interface="false" size="28" bugs="4" priority_2="2" priority_1="2"/>
+      <ClassStats class="test.DummyServer" sourceFile="DummyServer.java" interface="false" size="27" bugs="5" priority_2="3" priority_1="2"/>
+      <ClassStats class="test.SteeringCommandTest" sourceFile="SteeringCommandTest.java" interface="false" size="22" bugs="1" priority_2="1"/>
+      <ClassStats class="test.TestAppConnection" sourceFile="TestAppConnection.java" interface="false" size="29" bugs="3" priority_2="1" priority_1="2"/>
+      <ClassStats class="test.TestEventRecived" sourceFile="TestEventRecived.java" interface="false" size="9" bugs="1" priority_2="1"/>
+      <ClassStats class="test.TestFixedDataQueue" sourceFile="TestFixedDataQueue.java" interface="false" size="17" bugs="0"/>
+      <ClassStats class="test.TestJSON" sourceFile="TestJSON.java" interface="false" size="23" bugs="0"/>
+      <ClassStats class="test.TestMopedConnection" sourceFile="TestMopedConnection.java" interface="false" size="36" bugs="3" priority_2="1" priority_1="2"/>
+      <ClassStats class="test.TestServerProtocol" sourceFile="TestServerProtocol.java" interface="false" size="28" bugs="1" priority_2="1"/>
+      <ClassStats class="test.TestValidateIp" sourceFile="TestValidateIp.java" interface="false" size="27" bugs="0"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="211" invocations="679" avgMicrosecondsPerInvocation="311" maxMicrosecondsPerInvocation="14581" standardDeviationMircosecondsPerInvocation="888"/>
+      <ClassProfile name="de.tobject.findbugs.builder.FindBugs2Eclipse" totalMilliseconds="159" invocations="2" avgMicrosecondsPerInvocation="79843" maxMicrosecondsPerInvocation="87109" standardDeviationMircosecondsPerInvocation="7266"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="91" invocations="682" avgMicrosecondsPerInvocation="134" maxMicrosecondsPerInvocation="2758" standardDeviationMircosecondsPerInvocation="162"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="84" invocations="91" avgMicrosecondsPerInvocation="931" maxMicrosecondsPerInvocation="10864" standardDeviationMircosecondsPerInvocation="1666"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNoSideEffectMethods" totalMilliseconds="80" invocations="91" avgMicrosecondsPerInvocation="889" maxMicrosecondsPerInvocation="8232" standardDeviationMircosecondsPerInvocation="1545"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" totalMilliseconds="64" invocations="154" avgMicrosecondsPerInvocation="415" maxMicrosecondsPerInvocation="10859" standardDeviationMircosecondsPerInvocation="1162"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.OverridingEqualsNotSymmetrical" totalMilliseconds="62" invocations="91" avgMicrosecondsPerInvocation="690" maxMicrosecondsPerInvocation="47008" standardDeviationMircosecondsPerInvocation="4891"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="58" invocations="347" avgMicrosecondsPerInvocation="168" maxMicrosecondsPerInvocation="2254" standardDeviationMircosecondsPerInvocation="296"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="50" invocations="154" avgMicrosecondsPerInvocation="328" maxMicrosecondsPerInvocation="3403" standardDeviationMircosecondsPerInvocation="610"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="50" invocations="146" avgMicrosecondsPerInvocation="345" maxMicrosecondsPerInvocation="6397" standardDeviationMircosecondsPerInvocation="841"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="49" invocations="146" avgMicrosecondsPerInvocation="341" maxMicrosecondsPerInvocation="5973" standardDeviationMircosecondsPerInvocation="794"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.StreamResourceTracker" totalMilliseconds="47" invocations="79" avgMicrosecondsPerInvocation="595" maxMicrosecondsPerInvocation="4002" standardDeviationMircosecondsPerInvocation="702"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.CFGFactory" totalMilliseconds="38" invocations="146" avgMicrosecondsPerInvocation="261" maxMicrosecondsPerInvocation="1753" standardDeviationMircosecondsPerInvocation="339"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNullDerefsInvolvingNonShortCircuitEvaluation" totalMilliseconds="37" invocations="32" avgMicrosecondsPerInvocation="1182" maxMicrosecondsPerInvocation="34031" standardDeviationMircosecondsPerInvocation="5900"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindUnsyncGet" totalMilliseconds="32" invocations="32" avgMicrosecondsPerInvocation="1007" maxMicrosecondsPerInvocation="31151" standardDeviationMircosecondsPerInvocation="5414"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.UnconditionalValueDerefDataflowFactory" totalMilliseconds="29" invocations="146" avgMicrosecondsPerInvocation="201" maxMicrosecondsPerInvocation="3097" standardDeviationMircosecondsPerInvocation="376"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="27" invocations="628" avgMicrosecondsPerInvocation="44" maxMicrosecondsPerInvocation="8071" standardDeviationMircosecondsPerInvocation="323"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison$SpecialTypeAnalysis" totalMilliseconds="27" invocations="91" avgMicrosecondsPerInvocation="304" maxMicrosecondsPerInvocation="3467" standardDeviationMircosecondsPerInvocation="570"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNullDeref$CheckCallSitesAndReturnInstructions" totalMilliseconds="26" invocations="146" avgMicrosecondsPerInvocation="178" maxMicrosecondsPerInvocation="18677" standardDeviationMircosecondsPerInvocation="1539"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.DumbMethods" totalMilliseconds="23" invocations="32" avgMicrosecondsPerInvocation="721" maxMicrosecondsPerInvocation="8131" standardDeviationMircosecondsPerInvocation="1422"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="22" invocations="91" avgMicrosecondsPerInvocation="250" maxMicrosecondsPerInvocation="3705" standardDeviationMircosecondsPerInvocation="453"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ConstantDataflowFactory" totalMilliseconds="22" invocations="146" avgMicrosecondsPerInvocation="155" maxMicrosecondsPerInvocation="5725" standardDeviationMircosecondsPerInvocation="617"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.ReflectiveClasses" totalMilliseconds="21" invocations="91" avgMicrosecondsPerInvocation="236" maxMicrosecondsPerInvocation="14256" standardDeviationMircosecondsPerInvocation="1484"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildStringPassthruGraph" totalMilliseconds="18" invocations="91" avgMicrosecondsPerInvocation="204" maxMicrosecondsPerInvocation="3706" standardDeviationMircosecondsPerInvocation="550"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindOpenStream" totalMilliseconds="17" invocations="32" avgMicrosecondsPerInvocation="534" maxMicrosecondsPerInvocation="2499" standardDeviationMircosecondsPerInvocation="751"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History>
+    <AppVersion sequence="0" timestamp="1508506192370" release="" codeSize="0" numClasses="0"/>
+  </History>
+</BugCollection>
