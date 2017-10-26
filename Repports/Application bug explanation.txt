@@ -1,0 +1,4 @@
+FindBugs reports a total of 49 bugs in the application. 
+47 of these bugs are a result of android studio itself. Some of it's classes start with a lower-case letter, which is bad practice.
+2 of these bugs are a result of assuming the byte decoding between the server and the app. This was not dealt with since the development team was and will be in full control of both parts of the system. 
+Summary: I, the app developer, argue that the app has 0 bugs at this point in time. 
