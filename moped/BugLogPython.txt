@@ -1,0 +1,31 @@
+PythonServer.py
+
+Omars-MacBook-Air:BraishScripts Omaroueidat$ pylint PythonServer.py 
+No config file found, using default configuration
+
+--------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
+
+---------------------------------------------------------------------
+
+FileServer.py
+
+Omars-MacBook-Air:ImagesSendingUnit Omaroueidat$ pylint FileServer.py 
+No config file found, using default configuration
+
+--------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
+
+---------------------------------------------------------------------
+
+CameraMock.py
+
+Omars-MacBook-Air:ImagesSendingUnit Omaroueidat$ pylint CameraMock.py 
+No config file found, using default configuration
+************* Module CameraMock
+E:  3, 0: Unable to import 'picamera' (import-error)
+
+------------------------------------------------------------------
+Your code has been rated at 8.33/10 (previous run: 8.33/10, +0.00)
+
+The error in CameraMock.py can be read about in DAT255/moped/ImagesSendingUnit/KnownPythonBugs.txt
